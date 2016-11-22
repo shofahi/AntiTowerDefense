@@ -84,7 +84,7 @@ public class RunGame implements Runnable{
             update();
             render();
             
-            //Make the thread sleep 
+            //Make the thread sleep long enough to reach our TARGET_DPS
             try {
 				Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000 );
 			} catch (InterruptedException e) {
