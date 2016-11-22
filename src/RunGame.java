@@ -130,6 +130,13 @@ public class RunGame implements Runnable{
             public void run() {
                 Window gui=new Window(TITLE,WIDTH,HEIGHT);
                 gui.add(gamePanel);
+                
+                MainMenu menu = new MainMenu();
+                gui.add(menu.createMenu());
+                
+                Store store = new Store();
+                gui.add(store.buildStore());
+                
                 gui.setVisible(true);
                 theLvl.loadImageLevel("tmpLevel.png");
 
