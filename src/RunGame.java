@@ -1,6 +1,5 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -26,10 +25,6 @@ public class RunGame implements Runnable{
 
     //Load the level
     private LevelLoader theLvl;
-    
-    //Parameters used for GameLoop
-	final int TARGET_FPS = 60;
-	final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
 
     public RunGame(String title, int width,int height) {
 
@@ -57,40 +52,12 @@ public class RunGame implements Runnable{
             gameRunning = true;
         }
     }
-   
+
     @Override
     public void run() {
-    	//Set the lastLoopTime to system time when program starts.
-    	long lastLoopTime = System.nanoTime();
-    	long lastFpsTime = 0;
-    	int fps = 0;
-    	
         while (gameRunning){
-            long time = System.nanoTime();
-            long updateLength = time - lastLoopTime;
-            lastLoopTime = time;
-
-            lastFpsTime += updateLength;
-            fps++;
-
-            //Update update variables if more than a second passed
-            if (lastFpsTime >= 1000000000)
-            {
-               System.out.println("FPS: "+fps);
-               lastFpsTime = 0;
-               fps = 0;
-            }
-        	
             update();
             render();
-            
-            //Make the thread sleep long enough to reach our TARGET_DPS
-            try {
-				Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000 );
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
         }
     }
 
@@ -131,15 +98,9 @@ public class RunGame implements Runnable{
                 Window gui=new Window(TITLE,WIDTH,HEIGHT);
                 gui.add(gamePanel);
                 
-                MainMenu menu = new MainMenu();
-                gui.add(menu.createMenu());
-                
-                Store store = new Store();
-                gui.add(store.buildStore(), BorderLayout.EAST);
-                
                 gui.setVisible(true);
                 theLvl.loadImageLevel("tmpLevel.png");
-
+                
                 //starta tråden
                 start();
             }});
