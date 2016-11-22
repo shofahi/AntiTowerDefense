@@ -135,7 +135,7 @@ public class RunGame implements Runnable{
                 gui.add(menu.createMenu());
                 
                 Store store = new Store();
-                gui.add(store.buildStore());
+                gui.add(store.buildStore(), BorderLayout.EAST);
                 
                 gui.setVisible(true);
                 theLvl.loadImageLevel("tmpLevel.png");
