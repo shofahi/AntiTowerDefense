@@ -57,7 +57,7 @@ public class RunGame implements Runnable{
             gameRunning = true;
         }
     }
-    
+   
     @Override
     public void run() {
     	//Set the lastLoopTime to system time when program starts.
