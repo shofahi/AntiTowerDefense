@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Defender {
 
     private Integer ID;
@@ -61,32 +64,13 @@ public class Defender {
     
     public Position[] getReachableBlocks(){
     	Position[] reach = new Position[range*range*4];
-    	Position pos = getPos();
-    	int k = 1;
-    	
-    	pos.setX(pos.getX()-range);
-    	System.out.println("startX: "+pos.getX());
-    	pos.setY(pos.getY()-range);
-    	int startY = pos.getY();
-    	System.out.println("startY: "+startY);
-    	
-    	System.out.println("length:"+reach.length);
-    	reach[0] = pos;
-    	
-    	for(int i = 0; i < this.range*2; i++){
-    		pos.setX(pos.getX()+1);
-    		pos.setY(startY);
-    		for(int j = 0; j < this.range*2; j++){
-    			pos.setY(pos.getY()+1);
-    			
-    			reach[k] = pos;
-    			System.out.println("X: " + pos.getX() + ", Y: " + pos.getY());
+    	int k = 0;
+
+    	for(int i = this.pos.getX()-range; i < this.pos.getX()+range; i++){
+    		for(int j = this.pos.getY()-range; j < this.pos.getY()+range; j++){
+    			reach[k] = new Position(i,j);
     			k++;
     		}
-    	}
-    	
-    	for (int x = 0; x < reach.length; x++){
-    		System.out.println(x+" - "+"X:" + reach[x].getX() + " Y:" + reach[x].getY());
     	}
     	
     	return reach;
