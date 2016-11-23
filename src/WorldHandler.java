@@ -13,23 +13,26 @@ public class WorldHandler {
     private LinkedList<BufferedImage> listOfLevels = null;
 
     private Position startPosition;
-    private Position goalPosition;
-    //private LinkedList<Position> path;
-    private LinkedList<Block> turns = new LinkedList<>();
+    private Rectangle goalPosition;
 
+    //This list will store the directions sign for the level
+    private LinkedList<Block> turns = new LinkedList<>();
+    private LinkedList<Attacker> attackersList = new LinkedList<>();
+
+    //This is just temporary and should be replaced with Attack class
 
     public WorldHandler(int blockSize){
 
         blocks = new LinkedList<>();
         this.blockSize = blockSize;
-        //path = new LinkedList<>();
 
     }
 
     public void loadAllImages(){
+
         listOfLevels = new LinkedList<>();
 
-        File  directory = new File("Images");
+        File  directory = new File("Levels");
 
         for (File file : directory.listFiles())
         {
@@ -47,13 +50,21 @@ public class WorldHandler {
         for (int i = 0; i < blocks.size();i++){
             blocks.get(i).render(g);
         }
+        for (int i = 0; i < attackersList.size(); i++){
+            attackersList.get(i).render(g);
+        }
 
     }
 
-    public void tick(){
+    public void update(){
 
+        for (int i = 0; i < attackersList.size(); i++){
+            attackersList.get(i).update();
+            if(attackersList.get(i).getBound().intersects(goalPosition)){
+                attackersList.remove(i);
+            }
+        }
     }
-
 
     public void loadImageLevel(int levelSelect){
 
@@ -76,29 +87,19 @@ public class WorldHandler {
                 //hur mycket blå färg på pixel
                 int blue = (pixel) & 0xff;
 
-
                 //*********Kommer göra XML för alla färger**************
                 //Path          Color = orange
                 if (red == 253 && green == 135 && blue == 26){
 
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.PATH));
-
-                    //path.add(pos);
-
-                   /* for (int i = 0; i < blockSize; i++){
-                        for (int j = 0; j < blockSize; j++){
-                            Position tmp  = new Position(pos.getX()+i,pos.getY()+j);
-                            System.out.println("X: "+tmp.getX() + " Y: " + tmp.getY());
-                        }
-                    }*/
                 }
 
                 if (red == 251 && green == 0 && blue == 7){
 
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.GOALPOSITION));
-                    goalPosition = pos;
+                    goalPosition = new Rectangle(pos.getX(),pos.getY(),blockSize,blockSize);
                 }
 
                 if (red == 27 && green == 209 && blue == 30){
@@ -129,11 +130,7 @@ public class WorldHandler {
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNWEST));
                     turns.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNWEST));
-
                 }
-
-
-
             }
         }
 
@@ -148,15 +145,20 @@ public class WorldHandler {
         return startPosition;
     }
 
-    public Position getGoalPosition() {
+    public Rectangle getGoalPosition() {
         return goalPosition;
     }
 
-    /*public LinkedList<Position> getPath() {
-        return path;
-    }*/
 
     public LinkedList<Block> getTurns() {
         return turns;
+    }
+
+    public void createNewAttacker(AttackerType type){
+
+        if(type.equals(AttackerType.NORMALATTACKER)){
+            attackersList.add(new NormalAttacker(startPosition,turns));
+        }
+
     }
 }

@@ -2,12 +2,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
 import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 /**
@@ -18,13 +16,19 @@ import javax.swing.JPanel;
 
 public class Store {
 
-	private int money;
 	public BufferedImage attacker;// = new BufferedImage(null, null, false, null);
 	public LoadImage loader;
 	private JButton btnBuyNormal;
 	private JButton btnBuySpecial; 
-	
-	public Store(){
+	private int wallet;
+	private int normalAttackerPrice;
+	private int specialAttackerPrice;
+	private WorldHandler worldHandler;
+    private StoreListener storeListener;
+
+	public Store(WorldHandler worldHandler){
+		this.worldHandler = worldHandler;
+        storeListener = new StoreListener(this,worldHandler);
 		this.loader = new LoadImage();
 	}
 	
@@ -44,13 +48,6 @@ public class Store {
         return storePanel;
     }
     
-    public void setMoney(int money){
-    	this.money = money;
-    }
-    public int setMoney(){
-    	return this.money;
-    }
-    
     private JPanel headerPanel(){
     	JPanel headerPanel = new JPanel();
     	headerPanel.setPreferredSize(new Dimension(155,125));
@@ -64,7 +61,7 @@ public class Store {
     	lblTitle.setForeground(Color.white);
     	lblTitle.setFont(new Font("Sans-Serif", Font.PLAIN, 20));
     	headerPanel.add(lblTitle,BorderLayout.WEST);
-    	JLabel lblMoney = new JLabel("$" + money);
+    	JLabel lblMoney = new JLabel("$" + wallet);
     	lblMoney.setFont(new Font("Sans-Serif", Font.PLAIN, 28));
     	lblMoney.setForeground(Color.white);
     	headerPanel.add(lblMoney,BorderLayout.EAST);
@@ -80,7 +77,7 @@ public class Store {
     	specialAttacker.setForeground(Color.white);
     	specialAttackerPanel.add(specialAttacker,BorderLayout.WEST);
     	btnBuySpecial = new JButton("Buy Special Attacker");
-        btnBuySpecial.addActionListener(new StoreListener(this));
+        btnBuySpecial.addActionListener(storeListener);
         specialAttackerPanel.add(btnBuySpecial,BorderLayout.EAST);
     	
     	return specialAttackerPanel;
@@ -95,7 +92,7 @@ public class Store {
     	normalAttackerPanel.add(normalAttacker, BorderLayout.WEST);
         
         btnBuyNormal = new JButton("Buy Normal Attacker");
-        btnBuyNormal.addActionListener(new StoreListener(this));
+        btnBuyNormal.addActionListener(storeListener);
         normalAttackerPanel.add(btnBuyNormal,BorderLayout.EAST);
     	return normalAttackerPanel;
     }
@@ -105,5 +102,28 @@ public class Store {
     }
     public JButton getBtnBuyNormal() {
         return btnBuyNormal;
+    }
+    
+    public void setWallet(int money){
+    	this.wallet = money;
+    }
+    public int setWallet(){
+    	return this.wallet;
+    }
+    
+    public void setNormalAttackerPrice(int newPrice){
+    	this.normalAttackerPrice = newPrice;
+    }
+    
+    public int getNormalAttackerPrice(){
+    	return normalAttackerPrice;
+    }
+    
+    public void setSpecialAttackerPrice(int newPrice){
+    	this.specialAttackerPrice = newPrice;
+    }
+    
+    public int getSpecialAttackerPrice(){
+    	return specialAttackerPrice;
     }
 }
