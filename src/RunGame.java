@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class RunGame implements Runnable{
 
-    PlayerTMP playerTMP;
+    NormalAttacker testNormalAttacker;
 
     //GUI information
     private final int WIDTH;
@@ -56,7 +56,10 @@ public class RunGame implements Runnable{
 
         theLvl.loadAllImages();
         theLvl.loadImageLevel(0);
-        playerTMP = new PlayerTMP(theLvl.getStartPosition(),theLvl.getTurns());
+        testNormalAttacker = new NormalAttacker(1, theLvl.getStartPosition(),theLvl.getTurns());
+        System.out.println("Test inflict damage: Damage before: " + testNormalAttacker.getHealth());
+        testNormalAttacker.inflictDamage(10);
+        System.out.println("After: " + testNormalAttacker.getHealth());
     }
 
     /**
@@ -98,7 +101,7 @@ public class RunGame implements Runnable{
     }
 
     public void update(){
-        playerTMP.update();
+        testNormalAttacker.update();
     }
 
     public void render(){
@@ -109,7 +112,7 @@ public class RunGame implements Runnable{
         //********************************Draw here***********************/
 
         theLvl.render(graphics);
-        playerTMP.render(graphics);
+        testNormalAttacker.render(graphics);
         //*************************************************************
         drawGameImage();
 
