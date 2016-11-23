@@ -60,4 +60,8 @@ public class PlayerTMP {
         }
 
     }
+
+    public Rectangle getBound(){
+        return playerRect;
+    }
 }
