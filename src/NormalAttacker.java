@@ -1,3 +1,6 @@
+import javafx.geometry.Pos;
+
+import java.awt.*;
 import java.util.LinkedList;
 
 /**
@@ -7,9 +10,67 @@ import java.util.LinkedList;
 public class NormalAttacker extends Attacker {
     static private final int SPEED = 10;            //Default speed for Normal
     static private final int START_HEALTH = 100;    //Default health for Normal
+    static private final int ATTACKER_WIDTH = 20;
+    static private final int ATTACKER_HEIGHT = 20;
+
+    public NormalAttacker(Position pos, LinkedList<Block> directionSign){
+        super(pos, directionSign, START_HEALTH, SPEED,ATTACKER_WIDTH,ATTACKER_HEIGHT);
+    }
+
+    public void render(Graphics g){
+        g.setColor(Color.BLUE);
+        //Ändra till en bild
+        g.fillRect(getPos().getX(),getPos().getY(),getWidth(),getHeight());
+    }
+
+    public void getTurn() {
+
+        for (int i = 0; i < getDirectionSign().size(); i++) {
+
+            if (getBound().intersects(getDirectionSign().get(i).getBound()) && getDirectionSign().get(i).getBlockType() == BlockType.TURNWEST) {
+                turn = "WEST";
+            } else if (getBound().intersects(getDirectionSign().get(i).getBound()) && getDirectionSign().get(i).getBlockType() == BlockType.TURNSOUTH) {
+                turn = "SOUTH";
+            } else if (getBound().intersects(getDirectionSign().get(i).getBound()) && getDirectionSign().get(i).getBlockType() == BlockType.TURNNORTH) {
+                turn = "NORTH";
+            } else if (getBound().intersects(getDirectionSign().get(i).getBound()) && getDirectionSign().get(i).getBlockType() == BlockType.TURNEAST) {
+                turn = "EAST";
+            }
+        }
 
 
-    public NormalAttacker(int ID, Position pos, LinkedList<Block> path){
-        super(ID, pos, path, START_HEALTH, SPEED);
+    }
+    public void update() {
+
+        getTurn();
+
+        if (turn.equals("WEST")) {
+            getPos().setX(getPos().getX()-1);
+
+        } else if (turn.equals("SOUTH")) {
+            getPos().setY(getPos().getY()+1);
+        } else if (turn.equals("NORTH")) {
+            getPos().setY(getPos().getY()-1);
+        } else if (turn.equals("EAST")) {
+            getPos().setX(getPos().getX()+1);
+
+        }
+    }
+
+    public void inflictDamage(int dmg) {
+        int currentHP = this.getHealth();
+        int newHP = currentHP - dmg;
+
+        if (newHP <= 0) {
+            //TODO: KILL the attacker somehow
+            System.out.println("DEAD");
+        } else {
+            this.setHealth(newHP);
+        }
+    }
+
+    @Override
+    public Rectangle getBound() {
+        return new Rectangle(getPos().getX(),getPos().getY(),getWidth(),getHeight());
     }
 }

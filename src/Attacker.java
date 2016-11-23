@@ -7,38 +7,25 @@ import java.util.LinkedList;
  * made by saby
  */
 abstract class Attacker {
-    private int ID;
+
     private int health;
     private int moveSpeed;
-    private boolean reachedGoal;
-    private BufferedImage img;
-    Position pos;
-    Position nextPos;
+    private int width;
+    private int height;
+    private Position pos;
+
     String turn = "EAST";
 
-    private LinkedList<Block> turns;
-    private Rectangle playerRect;
-
+    private LinkedList<Block> directionSign;
 
     //Spawns an Attacker.
-    Attacker(int ID, Position pos, LinkedList <Block> path,
-             int health, int moveSpeed) {
-        this.reachedGoal = false;
+    Attacker(Position pos, LinkedList <Block> directionSign, int health, int moveSpeed, int width, int height) {
+        this.pos = pos;
+        this.width = width;
+        this.height = height;
         this.health = health;
         this.moveSpeed = moveSpeed;
-        this.pos = pos;
-        this.turns = path;
-        nextPos = null;
-        playerRect = new Rectangle(pos.getX(),pos.getY(),20,20);
-    }
-
-
-    public boolean getReachedGoal() {
-        return reachedGoal;
-    }
-
-    private void setReachedGoal(boolean b) {
-        this.reachedGoal = b;
+        this.directionSign = directionSign;
     }
 
     public int getHealth() {
@@ -57,66 +44,43 @@ abstract class Attacker {
         this.moveSpeed = newSpeed;
     }
 
-    protected void inflictDamage(int dmg) {
-        int currentHP = this.getHealth();
-        int newHP = currentHP - dmg;
-
-        if (newHP <= 0) {
-            //TODO: KILL the attacker somehow
-            System.out.println("DEAD");
-        } else {
-            this.setHealth(newHP);
-        }
-    }
-
     private boolean isAlive() {
         return this.health > 0;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public Position getPos() {
+        return pos;
+    }
+
+    public void setPos(Position pos) {
+        this.pos = pos;
+    }
+
+    public LinkedList<Block> getDirectionSign() {
+        return directionSign;
+    }
 
     /**
      * move
      * abstract method for moving Attacker
      */
-    public void getTurn() {
-        if (!reachedGoal && isAlive()) {
-            for (int i = 0; i < turns.size(); i++) {
-                if(playerRect.intersects(turns.get(i).getBound()) && turns.get(i).getBlockType() == BlockType.GOALPOSITION) {
-                    System.out.println("Attacker " + this.ID + "IS in goal!!!");
-                }
-                else if (playerRect.intersects(turns.get(i).getBound()) && turns.get(i).getBlockType() == BlockType.TURNWEST) {
-                    turn = "WEST";
-                } else if (playerRect.intersects(turns.get(i).getBound()) && turns.get(i).getBlockType() == BlockType.TURNSOUTH) {
-                    turn = "SOUTH";
-                } else if (playerRect.intersects(turns.get(i).getBound()) && turns.get(i).getBlockType() == BlockType.TURNNORTH) {
-                    turn = "NORTH";
-                } else if (playerRect.intersects(turns.get(i).getBound()) && turns.get(i).getBlockType() == BlockType.TURNEAST) {
-                    turn = "EAST";
-                }
-            }
-        } else {
-            System.out.println("DONT MOVE");
-        }
-    }
+    abstract public void getTurn();
 
-    public void update() {
 
-        getTurn();
+    abstract public void update();
 
-        if (turn.equals("WEST")) {
-            playerRect.x--;
+    abstract public void render(Graphics g);
 
-        } else if (turn.equals("SOUTH")) {
-            playerRect.y++;
-        } else if (turn.equals("NORTH")) {
-            playerRect.y--;
-        } else if (turn.equals("EAST")) {
-            playerRect.x++;
-        }
-    }
+    abstract public void inflictDamage(int dmg);
 
-    public void render(Graphics g){
-        g.setColor(Color.BLUE);
-        g.fillRect(playerRect.x,playerRect.y,playerRect.width,playerRect.height);
-    }
+    abstract public Rectangle getBound();
+
 }
