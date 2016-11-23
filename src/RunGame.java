@@ -137,6 +137,9 @@ public class RunGame implements Runnable{
                 Window gui=new Window(TITLE,WIDTH,HEIGHT);
                 gui.add(gamePanel);
                 gui.setVisible(true);
+                
+                Store store = new Store();
+                gui.add(store.buildStore(),BorderLayout.EAST);
 
                 //starta tråden
                 if(!gameRunning){
