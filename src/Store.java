@@ -23,8 +23,12 @@ public class Store {
 	private int wallet;
 	private int normalAttackerPrice;
 	private int specialAttackerPrice;
-	
-	public Store(){
+	private WorldHandler worldHandler;
+    private StoreListener storeListener;
+
+	public Store(WorldHandler worldHandler){
+		this.worldHandler = worldHandler;
+        storeListener = new StoreListener(this,worldHandler);
 		this.loader = new LoadImage();
 	}
 	
@@ -73,7 +77,7 @@ public class Store {
     	specialAttacker.setForeground(Color.white);
     	specialAttackerPanel.add(specialAttacker,BorderLayout.WEST);
     	btnBuySpecial = new JButton("Buy Special Attacker");
-        btnBuySpecial.addActionListener(new StoreListener(this));
+        btnBuySpecial.addActionListener(storeListener);
         specialAttackerPanel.add(btnBuySpecial,BorderLayout.EAST);
     	
     	return specialAttackerPanel;
@@ -88,7 +92,7 @@ public class Store {
     	normalAttackerPanel.add(normalAttacker, BorderLayout.WEST);
         
         btnBuyNormal = new JButton("Buy Normal Attacker");
-        btnBuyNormal.addActionListener(new StoreListener(this));
+        btnBuyNormal.addActionListener(storeListener);
         normalAttackerPanel.add(btnBuyNormal,BorderLayout.EAST);
     	return normalAttackerPanel;
     }

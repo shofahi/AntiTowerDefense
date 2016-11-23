@@ -6,13 +6,13 @@ import java.awt.image.BufferedImage;
 
 public class RunGame implements Runnable{
 
-    PlayerTMP playerTMP;
 
     //GUI information
     private final int WIDTH;
     private final int HEIGHT;
     private final String TITLE;
     private JPanel gamePanel;
+    private Store store;
 
     //This class will run on its own thread
     private Thread gameThread;
@@ -23,7 +23,7 @@ public class RunGame implements Runnable{
     private BufferedImage gameImg;
 
     //Load the level
-    private WorldHandler theLvl;
+    private WorldHandler worldHandler;
 
     public RunGame(String title, int width,int height) {
 
@@ -34,7 +34,8 @@ public class RunGame implements Runnable{
         gamePanel = new JPanel();
         gamePanel.setPreferredSize(new Dimension(WIDTH,HEIGHT));
 
-        theLvl = new WorldHandler(20);
+        worldHandler = new WorldHandler(20);
+        store = new Store(worldHandler);
     }
 
     /**
@@ -54,9 +55,8 @@ public class RunGame implements Runnable{
         gameImg = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
         graphics = gameImg.getGraphics();
 
-        theLvl.loadAllImages();
-        theLvl.loadImageLevel(0);
-        playerTMP = new PlayerTMP(theLvl.getStartPosition(),theLvl.getTurns());
+        worldHandler.loadAllImages();
+        worldHandler.loadImageLevel(0);
     }
 
     /**
@@ -98,7 +98,7 @@ public class RunGame implements Runnable{
     }
 
     public void update(){
-        playerTMP.update();
+        worldHandler.update();
     }
 
     public void render(){
@@ -108,8 +108,7 @@ public class RunGame implements Runnable{
 
         //********************************Draw here***********************/
 
-        theLvl.render(graphics);
-        playerTMP.render(graphics);
+        worldHandler.render(graphics);
         //*************************************************************
         drawGameImage();
 
@@ -136,10 +135,10 @@ public class RunGame implements Runnable{
             public void run() {
                 Window gui=new Window(TITLE,WIDTH,HEIGHT);
                 gui.add(gamePanel);
+                gui.add(store.buildStore(),BorderLayout.EAST);
                 gui.setVisible(true);
                 
-                //Store store = new Store();
-                //gui.add(store.buildStore(),BorderLayout.EAST);
+
 
                 //starta tråden
                 if(!gameRunning){

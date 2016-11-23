@@ -13,20 +13,20 @@ public class WorldHandler {
     private LinkedList<BufferedImage> listOfLevels = null;
 
     private Position startPosition;
-    private Position goalPosition;
-    private Rectangle goalRect;
+    private Rectangle goalPosition;
     private LinkedList<Block> turns = new LinkedList<>();
 
+    private LinkedList<PlayerTMP> tmpPlayerList = new LinkedList<>();
 
     public WorldHandler(int blockSize){
 
         blocks = new LinkedList<>();
         this.blockSize = blockSize;
-        //path = new LinkedList<>();
 
     }
 
     public void loadAllImages(){
+
         listOfLevels = new LinkedList<>();
 
         File  directory = new File("Levels");
@@ -47,11 +47,21 @@ public class WorldHandler {
         for (int i = 0; i < blocks.size();i++){
             blocks.get(i).render(g);
         }
+        for (int i = 0; i < tmpPlayerList.size(); i++){
+            tmpPlayerList.get(i).render(g);
+        }
 
     }
 
     public void update(){
 
+        for (int i = 0; i < tmpPlayerList.size(); i++){
+            tmpPlayerList.get(i).update();
+            if(tmpPlayerList.get(i).getBound().intersects(goalPosition)){
+                tmpPlayerList.remove(i);
+            }
+
+        }
     }
 
     public void loadImageLevel(int levelSelect){
@@ -81,14 +91,13 @@ public class WorldHandler {
 
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.PATH));
-
                 }
 
                 if (red == 251 && green == 0 && blue == 7){
 
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.GOALPOSITION));
-                    goalPosition = pos;
+                    goalPosition = new Rectangle(pos.getX(),pos.getY(),blockSize,blockSize);
                 }
 
                 if (red == 27 && green == 209 && blue == 30){
@@ -119,7 +128,6 @@ public class WorldHandler {
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNWEST));
                     turns.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNWEST));
-
                 }
             }
         }
@@ -135,15 +143,18 @@ public class WorldHandler {
         return startPosition;
     }
 
-    public Position getGoalPosition() {
+    public Rectangle getGoalPosition() {
         return goalPosition;
     }
 
-    /*public LinkedList<Position> getPath() {
-        return path;
-    }*/
 
     public LinkedList<Block> getTurns() {
         return turns;
+    }
+
+    public void createNewAttacker(AttackerType type){
+
+        tmpPlayerList.add(new PlayerTMP(startPosition,blocks));
+
     }
 }
