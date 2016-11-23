@@ -55,8 +55,6 @@ public class PlayerTMP {
 
         String turn = getTurn();
 
-
-
         if(nextPos != null){
 
             if(turn.equals("LEFT")){
