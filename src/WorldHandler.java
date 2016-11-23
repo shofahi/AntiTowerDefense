@@ -14,15 +14,15 @@ public class WorldHandler {
 
     private Position startPosition;
     private Position goalPosition;
-    private LinkedList<Position> path;
-
+    //private LinkedList<Position> path;
+    private LinkedList<Block> turns = new LinkedList<>();
 
 
     public WorldHandler(int blockSize){
 
         blocks = new LinkedList<>();
         this.blockSize = blockSize;
-        path = new LinkedList<>();
+        //path = new LinkedList<>();
 
     }
 
@@ -83,13 +83,15 @@ public class WorldHandler {
 
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.PATH));
-                    for (int i = 0; i < blockSize; i++){
+
+                    //path.add(pos);
+
+                   /* for (int i = 0; i < blockSize; i++){
                         for (int j = 0; j < blockSize; j++){
                             Position tmp  = new Position(pos.getX()+i,pos.getY()+j);
                             System.out.println("X: "+tmp.getX() + " Y: " + tmp.getY());
-                            path.add(tmp);
                         }
-                    }
+                    }*/
                 }
 
                 if (red == 251 && green == 0 && blue == 7){
@@ -105,6 +107,32 @@ public class WorldHandler {
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.STARTPOSITION));
                     startPosition = pos;
                 }
+
+                //Get the turns
+                if(red == 0 && green == 0 && blue == 255){
+                    Position pos = new Position(xx*blockSize,yy*blockSize);
+                    blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNSOUTH));
+                    turns.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNSOUTH));
+                }
+                if(red == 255 && green == 255 && blue == 0){
+                    Position pos = new Position(xx*blockSize,yy*blockSize);
+                    blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNEAST));
+                    turns.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNEAST));
+                }
+                if(red == 128 && green == 0 && blue == 128){
+                    Position pos = new Position(xx*blockSize,yy*blockSize);
+                    blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNNORTH));
+                    turns.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNNORTH));
+
+                }
+                if(red == 0 && green == 255 && blue == 255){
+                    Position pos = new Position(xx*blockSize,yy*blockSize);
+                    blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNWEST));
+                    turns.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNWEST));
+
+                }
+
+
 
             }
         }
@@ -124,9 +152,11 @@ public class WorldHandler {
         return goalPosition;
     }
 
-    public LinkedList<Position> getPath() {
+    /*public LinkedList<Position> getPath() {
         return path;
+    }*/
+
+    public LinkedList<Block> getTurns() {
+        return turns;
     }
-
-
 }

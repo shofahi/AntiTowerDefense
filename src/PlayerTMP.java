@@ -6,84 +6,58 @@ public class PlayerTMP {
 
     Position pos;
     Position nextPos;
+    String turn = "EAST";
 
-    private LinkedList<Position> visitedPosition = new LinkedList<>();
-    private LinkedList<Position> path;
+    private LinkedList<Block> turns;
+    private Rectangle playerRect;
 
-    public PlayerTMP(Position pos, LinkedList <Position> path){
+    public PlayerTMP(Position pos, LinkedList <Block> path){
         this.pos = pos;
-        this.path = path;
-        visitedPosition.add(pos);
+        this.turns = path;
         nextPos = null;
+        playerRect = new Rectangle(pos.getX(),pos.getY(),20,20);
     }
 
     public void render(Graphics g){
         g.setColor(Color.pink);
-        g.fillRect(pos.getX(),pos.getY(),20,20);
+        g.fillRect(playerRect.x,playerRect.y,playerRect.width,playerRect.height);
     }
 
-    public boolean isMovable(Position pos) {
-        return path.contains(pos);
-    }
 
-    public boolean posVisited(Position pos){
+    public void getTurn(){
+        for (int i = 0; i < turns.size();i++){
 
-        return visitedPosition.contains(pos);
-    }
-
-    public String getTurn(){
-
-        if(isMovable(pos.getPostoNorth()) && !posVisited(pos.getPostoNorth())){
-           System.out.println("NORTH");
-           nextPos = pos.getPosToEast();
-           return "NORTH";
-        }
-        else if(isMovable(pos.getPosToEast()) && !posVisited(pos.getPosToEast())){
-            nextPos = pos.getPosToEast();
-            return "LEFT";
-        }
-        else if(isMovable(pos.getPosToSouth()) && !posVisited(pos.getPosToSouth())){
-            System.out.println("South");
-
-            nextPos = pos.getPosToSouth();
-            return "SOUTH";
-        }
-
-        return "null";
-    }
-    public void update() {
-
-        String turn = getTurn();
-
-        if(nextPos != null){
-
-            if(turn.equals("LEFT")){
-                int tmpX = pos.getX();
-                tmpX++;
-                pos.setX(tmpX);
-                visitedPosition.add(pos);
-
+            if(playerRect.intersects(turns.get(i).getBound()) && turns.get(i).getBlockType() == BlockType.TURNWEST){
+                turn = "WEST";
             }
-            else if(turn.equals("SOUTH")){
-                int tmpY = pos.getY();
-                tmpY++;
-                pos.setY(tmpY);
-                visitedPosition.add(pos);
-
+            else if(playerRect.intersects(turns.get(i).getBound()) && turns.get(i).getBlockType() == BlockType.TURNSOUTH){
+                turn = "SOUTH";
             }
-            else if(turn.equals(("NORTH"))){
-                int tmpY = pos.getY();
-                tmpY--;
-                pos.setY(tmpY);
-                visitedPosition.add(pos);
-
+            else if(playerRect.intersects(turns.get(i).getBound()) && turns.get(i).getBlockType() == BlockType.TURNNORTH){
+                turn = "NORTH";
             }
-            else{
-                nextPos = null;
+            else if(playerRect.intersects(turns.get(i).getBound()) && turns.get(i).getBlockType() == BlockType.TURNEAST){
+                turn = "EAST";
             }
         }
+    }
+    public void update(){
 
+        getTurn();
+
+        if(turn.equals("WEST")){
+            playerRect.x--;
+
+        }
+        else if(turn.equals("SOUTH")){
+            playerRect.y++;
+        }
+        else if(turn.equals("NORTH")){
+            playerRect.y--;
+        }
+        else if(turn.equals("EAST")){
+            playerRect.x++;
+        }
 
     }
-
 }

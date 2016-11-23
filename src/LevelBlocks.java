@@ -27,4 +27,9 @@ public class LevelBlocks extends Block {
 
     }
 
+    @Override
+    public Rectangle getBound() {
+        return new Rectangle(getPos().getX(),getPos().getY(),getWidth(),getHeight());
+    }
+
 }
