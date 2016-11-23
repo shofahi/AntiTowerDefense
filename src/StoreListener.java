@@ -11,8 +11,8 @@ public class StoreListener  implements ActionListener  {
 		this.store = store;
 	}
 
-	public void newAttacker(){
-		worldHandler.createNewAttacker(AttackerType.NORMALATTACKER);
+	public void newAttacker(AttackerType type){
+		worldHandler.createNewAttacker(type);
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class StoreListener  implements ActionListener  {
 			System.out.println("Buying Normal Attacker & Subtracting Money");
 		} else if(e.getSource() == store.getBtnBuySpecial()) {
 			System.out.println("Buying Special Attacker & Subtracting Money");
-			newAttacker();
+			newAttacker(AttackerType.SPECIALATTACKER);
 		}
 	}
 

@@ -34,6 +34,7 @@ public class RunGame implements Runnable{
         gamePanel = new JPanel();
         gamePanel.setPreferredSize(new Dimension(WIDTH,HEIGHT));
 
+        //20 is the size of a block, this is just temporary
         worldHandler = new WorldHandler(20);
         store = new Store(worldHandler);
     }
@@ -97,10 +98,16 @@ public class RunGame implements Runnable{
         }
     }
 
+    /**
+     * The purpose of this method is to update the game logic
+     */
     public void update(){
         worldHandler.update();
     }
 
+    /**
+     * Method will render all the objects
+     */
     public void render(){
 
         //Clear the clear
