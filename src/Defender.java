@@ -1,67 +1,94 @@
-/**
- * Defender blabla (NOT done, not even close)
- * Original interface by saby
- */
-public abstract class Defender {
-
-    /* COMMENTED CAUSE THIS IS JUST THE OLD INTERACE METHODBODYS.
-       CANNOT COMPILE IF ITS NOT COMMENTED OUT
+public class Defender {
 
     private Integer ID;
-    private Position position;
-    private Integer damage;
+    private Position pos;
+    private Integer dmg;
     private Integer range;
-    private Integer FireRate;
+    private Integer fireRate;
 
-    public Defender()
+    public Defender(Integer ID, Position pos, Integer dmg, Integer range, Integer fireRate){
+    	this.ID = ID;
+    	this.pos = pos;
+    	this.dmg = dmg;
+    	this.range = range;
+    	this.fireRate = fireRate;
+    }
 
-    //Create a Defender (x/y pos)
-    public create();
+    public void setID(Integer ID){
+    	this.ID = ID;
+    }
 
-    //Set a unique id for the Defender
-    void setID();
+    public Integer getID(){
+    	return ID;
+    }
 
-    //Get unique id for the Defender
-    void getID();
+    public void setPos(int x, int y){
+    	this.pos.setX(x);
+    	this.pos.setY(y);
+    }
 
-    //Set current X Position of Defender
-    void setXPosition();
+    public Position getPos(){
+    	return pos;
+    }
 
-    //Get current X Position of Defender
-    void getXPosition();
+    public void setFireRate(Integer fireRate){
+    	this.fireRate = fireRate;
+    }
 
-    //Set current Y Position of Defender
-    void setYPosition();
+    public Integer getFireRate(){
+    	return fireRate;
+    }
 
-    //Get current Y Position of Defender
-    void getYPosition();
+    public void setDmg(Integer dmg){
+    	this.dmg = dmg;    	
+    }
 
-    //Specify how fast the tower should attack (float/integer?)
-    void setFireRate();
+    public Integer getDmg(){
+    	return dmg;
+    }
+    
+    public double getDPS(){
+    	return dmg * fireRate;
+    }
 
-    //Get the fire rate from Defender
-    void getFireRate();
+    public void setRange(Integer range){
+    	this.range = range;
+    }
 
-    //Set damage of current Defender
-    void setDamage();
-
-    //Get damage from current Defender
-    void getDamage();
-
-    //Set max attack range to Defender
-    void setMaxRange();
-
-    //Get max attack range from Defender
-    void getMaxRange();
-
-    //Check the distance to Attacker. Pythagoras Theorem ??
-    void getDistanceTo();
-
-    //Fire a projectile (On attacker id or position?)
-    void fireProjectile();
-
-    //Destroy Defender (id)
-    void destroy();
-    */
-
+    public Integer getRange(){
+    	return range;
+    }
+    
+    public Position[] getReachableBlocks(){
+    	Position[] reach = new Position[range*range*4];
+    	Position pos = getPos();
+    	int k = 1;
+    	
+    	pos.setX(pos.getX()-range);
+    	System.out.println("startX: "+pos.getX());
+    	pos.setY(pos.getY()-range);
+    	int startY = pos.getY();
+    	System.out.println("startY: "+startY);
+    	
+    	System.out.println("length:"+reach.length);
+    	reach[0] = pos;
+    	
+    	for(int i = 0; i < this.range*2; i++){
+    		pos.setX(pos.getX()+1);
+    		pos.setY(startY);
+    		for(int j = 0; j < this.range*2; j++){
+    			pos.setY(pos.getY()+1);
+    			
+    			reach[k] = pos;
+    			System.out.println("X: " + pos.getX() + ", Y: " + pos.getY());
+    			k++;
+    		}
+    	}
+    	
+    	for (int x = 0; x < reach.length; x++){
+    		System.out.println(x+" - "+"X:" + reach[x].getX() + " Y:" + reach[x].getY());
+    	}
+    	
+    	return reach;
+    }
 }
