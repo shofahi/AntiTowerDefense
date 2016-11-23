@@ -10,8 +10,11 @@ import org.junit.Test;
 
 public class TestStore {
 
+	//private Store store; 
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		
 	}
 
 	@AfterClass
@@ -30,5 +33,4 @@ public class TestStore {
 	public void test() {
 		fail("Not yet implemented");
 	}
-
 }
