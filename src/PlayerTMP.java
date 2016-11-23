@@ -41,6 +41,7 @@ public class PlayerTMP {
             }
         }
     }
+
     public void update(){
 
         getTurn();

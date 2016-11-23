@@ -14,8 +14,13 @@ public class WorldHandler {
 
     private Position startPosition;
     private Rectangle goalPosition;
+
+    //This list will store the directions sign for the level
     private LinkedList<Block> turns = new LinkedList<>();
 
+    private LinkedList<Attacker> attackersList = new LinkedList<>();
+
+    //This is just temporary and should be replaced with Attack class
     private LinkedList<PlayerTMP> tmpPlayerList = new LinkedList<>();
 
     public WorldHandler(int blockSize){
