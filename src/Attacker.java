@@ -20,7 +20,7 @@ abstract class Attacker {
 
     //Spawns an Attacker.
     Attacker(Position pos, LinkedList <Block> directionSign, int health, int moveSpeed, int width, int height) {
-        this.pos = pos;
+        this.pos = new Position(pos.getX(),pos.getY());
         this.width = width;
         this.height = height;
         this.health = health;
