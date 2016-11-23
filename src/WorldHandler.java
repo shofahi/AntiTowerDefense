@@ -21,7 +21,6 @@ public class WorldHandler {
     private LinkedList<Attacker> attackersList = new LinkedList<>();
 
     //This is just temporary and should be replaced with Attack class
-    private LinkedList<PlayerTMP> tmpPlayerList = new LinkedList<>();
 
     public WorldHandler(int blockSize){
 
@@ -52,18 +51,18 @@ public class WorldHandler {
         for (int i = 0; i < blocks.size();i++){
             blocks.get(i).render(g);
         }
-        for (int i = 0; i < tmpPlayerList.size(); i++){
-            tmpPlayerList.get(i).render(g);
+        for (int i = 0; i < attackersList.size(); i++){
+            attackersList.get(i).render(g);
         }
 
     }
 
     public void update(){
 
-        for (int i = 0; i < tmpPlayerList.size(); i++){
-            tmpPlayerList.get(i).update();
-            if(tmpPlayerList.get(i).getBound().intersects(goalPosition)){
-                tmpPlayerList.remove(i);
+        for (int i = 0; i < attackersList.size(); i++){
+            attackersList.get(i).update();
+            if(attackersList.get(i).getBound().intersects(goalPosition)){
+                attackersList.remove(i);
             }
         }
     }
@@ -158,7 +157,9 @@ public class WorldHandler {
 
     public void createNewAttacker(AttackerType type){
 
-        tmpPlayerList.add(new PlayerTMP(startPosition,blocks));
+        if(type.equals(AttackerType.NORMALATTACKER)){
+            attackersList.add(new NormalAttacker(startPosition,turns));
+        }
 
     }
 }
