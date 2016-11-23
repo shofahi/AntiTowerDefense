@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.Hashtable;
 import java.util.LinkedList;
 
 
@@ -33,7 +32,8 @@ public class PlayerTMP {
     }
 
     public String getTurn(){
-       if(isMovable(pos.getPostoNorth()) && !posVisited(pos.getPostoNorth())){
+
+        if(isMovable(pos.getPostoNorth()) && !posVisited(pos.getPostoNorth())){
            System.out.println("NORTH");
            nextPos = pos.getPosToEast();
            return "NORTH";
