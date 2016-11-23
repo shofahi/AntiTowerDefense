@@ -17,7 +17,6 @@ public class WorldHandler {
 
     //This list will store the directions sign for the level
     private LinkedList<Block> turns = new LinkedList<>();
-
     private LinkedList<Attacker> attackersList = new LinkedList<>();
 
     //This is just temporary and should be replaced with Attack class

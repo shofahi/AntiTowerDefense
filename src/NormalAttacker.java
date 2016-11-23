@@ -1,6 +1,7 @@
 import javafx.geometry.Pos;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 /**
@@ -13,32 +14,41 @@ public class NormalAttacker extends Attacker {
     static private final int ATTACKER_WIDTH = 20;
     static private final int ATTACKER_HEIGHT = 20;
 
+    private BufferedImage normatAttackerImg;
+    private LoadImage loadImage = new LoadImage();
     public NormalAttacker(Position pos, LinkedList<Block> directionSign){
         super(pos, directionSign, START_HEALTH, SPEED,ATTACKER_WIDTH,ATTACKER_HEIGHT);
+        normatAttackerImg = loadImage.loadTheImage("Monster1.png");
     }
 
     public void render(Graphics g){
-        g.setColor(Color.BLUE);
-        //Ändra till en bild
-        g.fillRect(getPos().getX(),getPos().getY(),getWidth(),getHeight());
+        g.drawImage(normatAttackerImg,getPos().getX(),getPos().getY(),getWidth(),getHeight(),null);
+        g.setColor(Color.blue);
+        g.drawOval(getPos().getX(),getPos().getY(),200,200);
     }
 
     public void getTurn() {
 
         for (int i = 0; i < getDirectionSign().size(); i++) {
 
-            if (getBound().intersects(getDirectionSign().get(i).getBound()) && getDirectionSign().get(i).getBlockType() == BlockType.TURNWEST) {
+            if (getBound().intersects(getDirectionSign().get(i).getBound()) &&
+                    getDirectionSign().get(i).getBlockType() == BlockType.TURNWEST) {
+
                 turn = "WEST";
-            } else if (getBound().intersects(getDirectionSign().get(i).getBound()) && getDirectionSign().get(i).getBlockType() == BlockType.TURNSOUTH) {
+            } else if (getBound().intersects(getDirectionSign().get(i).getBound())
+                    && getDirectionSign().get(i).getBlockType() == BlockType.TURNSOUTH) {
+
                 turn = "SOUTH";
-            } else if (getBound().intersects(getDirectionSign().get(i).getBound()) && getDirectionSign().get(i).getBlockType() == BlockType.TURNNORTH) {
+            } else if (getBound().intersects(getDirectionSign().get(i).getBound())
+                    && getDirectionSign().get(i).getBlockType() == BlockType.TURNNORTH) {
+
                 turn = "NORTH";
-            } else if (getBound().intersects(getDirectionSign().get(i).getBound()) && getDirectionSign().get(i).getBlockType() == BlockType.TURNEAST) {
+            } else if (getBound().intersects(getDirectionSign().get(i).getBound())
+                    && getDirectionSign().get(i).getBlockType() == BlockType.TURNEAST) {
+
                 turn = "EAST";
             }
         }
-
-
     }
     public void update() {
 
