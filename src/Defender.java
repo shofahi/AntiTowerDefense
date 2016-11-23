@@ -71,6 +71,7 @@ public class Defender {
     		}
     	}
     	
+    	
     	return reach;
     }
 }
