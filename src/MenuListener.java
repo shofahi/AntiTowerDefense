@@ -11,43 +11,43 @@ import javax.swing.JOptionPane;
 
 public class MenuListener implements ActionListener  {
 
+	private Window win;
+    public MenuListener (Window win){
+       this.win = win;
+    }
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String clicked = e.getActionCommand();
-		
-		switch (clicked) {
-			case "Pause":
-				System.out.println("Pausar ..");
-				break;
-			case "Start Game":
-				System.out.println("Start Game ..");
-				break;
-			case "Restart Level":
-				System.out.println("Restart level ..");
-				break;
-			case "Quit":
-				System.out.println("Quitting ..");
-				break;
-			case "About":
-				System.out.println("About ..");
-				JOptionPane.showMessageDialog(null, "Authors:\n\nAmanda Dahlin\n"
-						+ "Gustav Nordlander\nSamuel Bylund Felixson\nMasoud Shofahi\n\n\u00a9 2016");
-				break;
-			case "Help":
-				System.out.println("Helping ..");
-				JOptionPane.showMessageDialog(null, "Help:\n\n Play by adding attackers to the\n"
-						+ "field. Different attackers have different \nprices. ETC.");
-				break;
-			case "Level 1":
-				System.out.println("Starting level 1 ..");
-				break;	
-			case "Level 2":
-				System.out.println("Starting level 2 ..");
-				break;
-			default:
-				System.out.println("Do nothing?");
-				break;
-		}
+
+        if(e.getSource() == win.getPause()){
+            System.out.println("Pausar ..");
+        }
+        else if(e.getSource() == win.getStart()){
+            System.out.println("Start Game ..");
+
+        }
+        else if(e.getSource() == win.getRestart()){
+            System.out.println("Restart level ..");
+        }
+        else if(e.getSource() == win.getQuit()){
+            System.out.println("Quitting ..");
+
+        }
+        else if(e.getSource() == win.getAbout()){
+            System.out.println("About ..");
+            JOptionPane.showMessageDialog(null, "Authors:\n\nAmanda Dahlin\n"
+                    + "Gustav Nordlander\nSamuel Bylund Felixson\nMasoud Shofahi\n\n\u00a9 2016");
+        }
+        else if(e.getSource() == win.getHelp()){
+            System.out.println("Helping ..");
+            JOptionPane.showMessageDialog(null, "Help:\n\n Play by adding attackers to the\n"
+                    + "field. Different attackers have different \nprices. ETC.");
+        }
+        else if(e.getSource() == win.getChangeLevel()){
+            System.out.println("Changing Level ..");
+
+        }
+
 	}
 
 }

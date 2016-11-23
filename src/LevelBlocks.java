@@ -1,8 +1,6 @@
 import java.awt.*;
 
-/**
- * Created by MasoudMac on 21/11/16.
- */
+
 public class LevelBlocks extends Block {
 
     public LevelBlocks(Position pos, int width, int height, BlockType blockType) {

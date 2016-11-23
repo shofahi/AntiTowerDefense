@@ -1,14 +1,12 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 
 public class RunGame implements Runnable{
 
-    PlayerTMP playerTMP = new PlayerTMP();
+    PlayerTMP playerTMP;
 
     //GUI information
     private final int WIDTH;
@@ -25,11 +23,7 @@ public class RunGame implements Runnable{
     private BufferedImage gameImg;
 
     //Load the level
-    private LevelLoader theLvl;
-    
-    //Parameters used for GameLoop
-	final int TARGET_FPS = 60;
-	final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
+    private WorldHandler theLvl;
 
     public RunGame(String title, int width,int height) {
 
@@ -40,14 +34,11 @@ public class RunGame implements Runnable{
         gamePanel = new JPanel();
         gamePanel.setPreferredSize(new Dimension(WIDTH,HEIGHT));
 
-        gameImg = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
-        graphics = gameImg.getGraphics();
-
-        theLvl = new LevelLoader(1,20);
+        theLvl = new WorldHandler(20);
     }
 
     /**
-     * This
+     * This method starts the game loop thread, which is used for rendering and updating the game logic
      */
     public synchronized void start() {
         System.out.println("Start Tread");
@@ -57,40 +48,52 @@ public class RunGame implements Runnable{
             gameRunning = true;
         }
     }
-   
+
+    public void init(){
+
+        gameImg = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
+        graphics = gameImg.getGraphics();
+
+        theLvl.loadAllImages();
+        theLvl.loadImageLevel(0);
+        playerTMP = new PlayerTMP(theLvl.getStartPosition(),theLvl.getPath());
+    }
+
+    /**
+     * Method overrides the thread method run
+     */
     @Override
     public void run() {
-    	//Set the lastLoopTime to system time when program starts.
-    	long lastLoopTime = System.nanoTime();
-    	long lastFpsTime = 0;
-    	int fps = 0;
-    	
-        while (gameRunning){
-            long time = System.nanoTime();
-            long updateLength = time - lastLoopTime;
-            lastLoopTime = time;
 
-            lastFpsTime += updateLength;
-            fps++;
+        init();
 
-            //Update update variables if more than a second passed
-            if (lastFpsTime >= 1000000000)
-            {
-               System.out.println("FPS: "+fps);
-               lastFpsTime = 0;
-               fps = 0;
+        final double TARGET_FPS = 60.0;
+        final double OPTIMAL_TIME= 1000000000 / TARGET_FPS;
+        long lastTime = System.nanoTime();
+
+        double delta = 0;
+        long timer = System.currentTimeMillis();
+        int updates = 0;
+        int frames = 0;
+
+        while(gameRunning){
+            long now = System.nanoTime();
+            delta += (now - lastTime) / OPTIMAL_TIME;
+            lastTime = now;
+            while(delta >= 1){
+                update();
+                updates++;
+                delta--;
             }
-        	
-            update();
             render();
-            
-            //Make the thread sleep long enough to reach our TARGET_DPS
-            try {
-				Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000 );
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+            frames++;
+
+            if(System.currentTimeMillis() - timer > 1000){
+                timer += 1000;
+                System.out.println("FPS: " + frames + " TICKS: " + updates);
+                frames = 0;
+                updates = 0;
+            }
         }
     }
 
@@ -100,7 +103,7 @@ public class RunGame implements Runnable{
 
     public void render(){
 
-        //ta bort allt från skärmen("gameImg")
+        //Clear the clear
         graphics.clearRect(0,0,WIDTH,HEIGHT);
 
         //********************************Draw here***********************/
@@ -112,9 +115,11 @@ public class RunGame implements Runnable{
 
     }
 
+    /**
+     * Method draws the Buffered image, which is used to draw the objects on to the screen
+     */
     public void drawGameImage(){
         Graphics g =  gamePanel.getGraphics();
-        //Om gameImg existerar inte
         if (gameImg != null){
             g.drawImage(gameImg,0,0,null);
         }
@@ -124,6 +129,7 @@ public class RunGame implements Runnable{
 
     public void startGame(){
 
+
         SwingUtilities.invokeLater(new Runnable() {
 
             @Override
@@ -131,11 +137,15 @@ public class RunGame implements Runnable{
                 Window gui=new Window(TITLE,WIDTH,HEIGHT);
                 gui.add(gamePanel);
                 gui.setVisible(true);
-                theLvl.loadImageLevel("tmpLevel.png");
 
                 //starta tråden
-                start();
+                if(!gameRunning){
+                    start();
+
+                }
             }});
+
+
     }
 
 }
