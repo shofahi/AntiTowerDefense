@@ -12,7 +12,6 @@ abstract public class Block {
     private int height;
     private BlockType blockType;
 
-
     public Block(Position pos, int width, int height,BlockType blockType){
         this.pos = pos;
         this.width = width;
@@ -41,6 +40,6 @@ abstract public class Block {
      * @param g - Graphics
      */
     public abstract void render(Graphics g);
-
+    public abstract Rectangle getBound();
 }
 

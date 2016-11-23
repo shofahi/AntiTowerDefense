@@ -56,7 +56,7 @@ public class RunGame implements Runnable{
 
         theLvl.loadAllImages();
         theLvl.loadImageLevel(0);
-        playerTMP = new PlayerTMP(theLvl.getStartPosition(),theLvl.getPath());
+        playerTMP = new PlayerTMP(theLvl.getStartPosition(),theLvl.getTurns());
     }
 
     /**

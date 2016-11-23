@@ -5,7 +5,6 @@ public class Position {
 
     /**
      * Creates a position which is made up of a x value and an y value.
-     *
      * @param x The x value of the position.
      * @param y The y value of the position.
      */
@@ -16,7 +15,6 @@ public class Position {
 
     /**
      * Returns the x value of the position.
-     *
      * @return The x value of the position.
      */
     public int getX() {
