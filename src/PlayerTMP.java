@@ -19,12 +19,12 @@ public class PlayerTMP {
     }
 
     public void render(Graphics g){
-        g.setColor(Color.pink);
+        g.setColor(Color.BLUE);
         g.fillRect(playerRect.x,playerRect.y,playerRect.width,playerRect.height);
     }
 
-
     public void getTurn(){
+
         for (int i = 0; i < turns.size();i++){
 
             if(playerRect.intersects(turns.get(i).getBound()) && turns.get(i).getBlockType() == BlockType.TURNWEST){

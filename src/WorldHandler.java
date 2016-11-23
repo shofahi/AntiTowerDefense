@@ -14,7 +14,7 @@ public class WorldHandler {
 
     private Position startPosition;
     private Position goalPosition;
-    //private LinkedList<Position> path;
+    private Rectangle goalRect;
     private LinkedList<Block> turns = new LinkedList<>();
 
 
@@ -50,10 +50,9 @@ public class WorldHandler {
 
     }
 
-    public void tick(){
+    public void update(){
 
     }
-
 
     public void loadImageLevel(int levelSelect){
 
@@ -76,7 +75,6 @@ public class WorldHandler {
                 //hur mycket blå färg på pixel
                 int blue = (pixel) & 0xff;
 
-
                 //*********Kommer göra XML för alla färger**************
                 //Path          Color = orange
                 if (red == 253 && green == 135 && blue == 26){
@@ -84,14 +82,6 @@ public class WorldHandler {
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.PATH));
 
-                    //path.add(pos);
-
-                   /* for (int i = 0; i < blockSize; i++){
-                        for (int j = 0; j < blockSize; j++){
-                            Position tmp  = new Position(pos.getX()+i,pos.getY()+j);
-                            System.out.println("X: "+tmp.getX() + " Y: " + tmp.getY());
-                        }
-                    }*/
                 }
 
                 if (red == 251 && green == 0 && blue == 7){
@@ -131,9 +121,6 @@ public class WorldHandler {
                     turns.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNWEST));
 
                 }
-
-
-
             }
         }
 
