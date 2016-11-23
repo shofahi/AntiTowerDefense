@@ -60,7 +60,6 @@ public class WorldHandler {
             if(tmpPlayerList.get(i).getBound().intersects(goalPosition)){
                 tmpPlayerList.remove(i);
             }
-
         }
     }
 
