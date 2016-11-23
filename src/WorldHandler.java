@@ -29,7 +29,7 @@ public class WorldHandler {
     public void loadAllImages(){
         listOfLevels = new LinkedList<>();
 
-        File  directory = new File("Images");
+        File  directory = new File("Levels");
 
         for (File file : directory.listFiles())
         {
