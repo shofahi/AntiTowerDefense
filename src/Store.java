@@ -48,7 +48,7 @@ public class Store {
         return storePanel;
     }
     
-    private JPanel headerPanel(){
+    public JPanel headerPanel(){
     	JPanel headerPanel = new JPanel();
     	headerPanel.setPreferredSize(new Dimension(155,125));
     	headerPanel.setBackground(Color.BLACK);
@@ -68,7 +68,7 @@ public class Store {
     	return headerPanel;
     }
     
-    private JPanel specialAttackerPanel(){
+    public JPanel specialAttackerPanel(){
     	JPanel specialAttackerPanel = new JPanel();
     	specialAttackerPanel.setBackground(Color.BLACK);
     	specialAttackerPanel.setPreferredSize(new Dimension(175,60));
@@ -83,7 +83,7 @@ public class Store {
     	return specialAttackerPanel;
     }
     
-    private JPanel normalAttackerPanel(){
+    public JPanel normalAttackerPanel(){
     	JPanel normalAttackerPanel = new JPanel();
     	normalAttackerPanel.setPreferredSize(new Dimension(175,100));
     	normalAttackerPanel.setBackground(Color.BLACK);
@@ -107,7 +107,7 @@ public class Store {
     public void setWallet(int money){
     	this.wallet = money;
     }
-    public int setWallet(){
+    public int getWallet(){
     	return this.wallet;
     }
     
