@@ -2,5 +2,6 @@
 public enum AttackerType {
 
     NORMALATTACKER,
-    SPECIALATTACKER;
+    SPECIALATTACKER,
+    MUSCLEATTACKER;
 }

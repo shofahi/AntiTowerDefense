@@ -22,6 +22,10 @@ public class StoreListener  implements ActionListener  {
 			newAttacker(AttackerType.NORMALATTACKER);
 		} else if(e.getSource() == store.getBtnBuySpecial()) {
 			System.out.println("Buying Special Attacker & Subtracting Money");
+			newAttacker(AttackerType.SPECIALATTACKER);
+		} else if(e.getSource() == store.getBtnBuyMuscle()) {
+			System.out.println("Buying Muscle Attacker & Subtracting Money");
+			newAttacker(AttackerType.SPECIALATTACKER);
 		}
 	}
 

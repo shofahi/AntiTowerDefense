@@ -20,7 +20,8 @@ public class Store {
 	public LoadImage loader;
 	private JButton btnBuyNormal;
 	private JButton btnBuySpecial; 
-	private int wallet;
+	private JButton btnBuyMuscle; 
+	private int wallet = 25;
 	private int normalAttackerPrice;
 	private int specialAttackerPrice;
 	private WorldHandler worldHandler;
@@ -44,7 +45,7 @@ public class Store {
     	storePanel.add(headerPanel());
     	storePanel.add(specialAttackerPanel());
     	storePanel.add(normalAttackerPanel());
-		//attacker = this.loader.loadTheImage("tmpLevel.png");
+    	storePanel.add(muscleAttackerPanel());
         return storePanel;
     }
     
@@ -85,7 +86,7 @@ public class Store {
     
     public JPanel normalAttackerPanel(){
     	JPanel normalAttackerPanel = new JPanel();
-    	normalAttackerPanel.setPreferredSize(new Dimension(175,100));
+    	normalAttackerPanel.setPreferredSize(new Dimension(175,60));
     	normalAttackerPanel.setBackground(Color.BLACK);
     	JLabel normalAttacker = new JLabel("Normal Attacker, $10");
     	normalAttacker.setForeground(Color.white);
@@ -97,11 +98,28 @@ public class Store {
     	return normalAttackerPanel;
     }
     
+    public JPanel muscleAttackerPanel(){
+    	JPanel muscleAttackerPanel = new JPanel();
+    	muscleAttackerPanel.setPreferredSize(new Dimension(175,100));
+    	muscleAttackerPanel.setBackground(Color.BLACK);
+    	JLabel normalAttacker = new JLabel("Normal Attacker, $75");
+    	normalAttacker.setForeground(Color.white);
+    	muscleAttackerPanel.add(normalAttacker, BorderLayout.WEST);
+        
+        btnBuyMuscle = new JButton("Buy Muscle Attacker");
+        btnBuyMuscle.addActionListener(storeListener);
+        muscleAttackerPanel.add(btnBuyMuscle,BorderLayout.EAST);
+    	return muscleAttackerPanel;
+    }
+    
     public JButton getBtnBuySpecial() {
         return btnBuySpecial;
     }
     public JButton getBtnBuyNormal() {
         return btnBuyNormal;
+    }
+    public JButton getBtnBuyMuscle() {
+        return btnBuyMuscle;
     }
     
     public void setWallet(int money){

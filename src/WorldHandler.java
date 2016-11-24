@@ -1,5 +1,5 @@
 
-import javafx.geometry.Pos;
+//import javafx.geometry.Pos;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -189,6 +189,10 @@ public class WorldHandler {
 
         if(type.equals(AttackerType.NORMALATTACKER)){
             attackersList.add(new NormalAttacker(startPosition,turns));
+        } else if(type.equals(AttackerType.SPECIALATTACKER)){
+            attackersList.add(new SpecialAttacker(startPosition,turns));
+        }  else if(type.equals(AttackerType.MUSCLEATTACKER)){
+            attackersList.add(new MuscleAttacker(startPosition,turns));
         }
 
     }
