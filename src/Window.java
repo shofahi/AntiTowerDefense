@@ -3,22 +3,22 @@ import java.awt.*;
 
 public class Window extends JFrame{
 
-    private MenuListener menuListener;
+    private ButtonListener buttonListener;
 
 
-    private JMenuItem start;
-    private JMenuItem pause;
-    private JMenuItem restart;
-    private JMenuItem quit;
-    private JMenuItem about;
-    private JMenuItem help;
-    private JRadioButtonMenuItem getChangeLevel;
+    static JMenuItem start;
+    static JMenuItem pause;
+    static JMenuItem restart;
+    static JMenuItem quit;
+    static JMenuItem about;
+    static JMenuItem help;
+    static JRadioButtonMenuItem changeLevel;
 
     public Window(String title, int width,int height){
 
         super(title);
 
-        menuListener = new MenuListener(this);
+        buttonListener = new ButtonListener();
 
         setSize(new Dimension(width,height));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,13 +43,13 @@ public class Window extends JFrame{
 
         // Group of JMenuItems & ActionListeners
         start = new JMenuItem("Start Game");
-        start.addActionListener(menuListener);
+        start.addActionListener(buttonListener);
         menu.add(start);
         restart = new JMenuItem("Restart Level");
-        restart.addActionListener(menuListener);
+        restart.addActionListener(buttonListener);
         menu.add(restart);
         pause = new JMenuItem("Pause");
-        pause.addActionListener(menuListener);
+        pause.addActionListener(buttonListener);
         menu.add(pause);
 
         // Separator for style
@@ -57,26 +57,26 @@ public class Window extends JFrame{
 
         // Radiobutton for choosing level + ActionListeners
         ButtonGroup group = new ButtonGroup();
-        getChangeLevel = new JRadioButtonMenuItem("Change Level");
-        getChangeLevel.setSelected(false);
-        getChangeLevel.addActionListener(menuListener);
-        group.add(getChangeLevel);
-        menu.add(getChangeLevel);
+        changeLevel = new JRadioButtonMenuItem("Change Level");
+        changeLevel.setSelected(false);
+        changeLevel.addActionListener(buttonListener);
+        group.add(changeLevel);
+        menu.add(changeLevel);
 
 
         // Separator for style
         menu.addSeparator();
 
         quit = new JMenuItem("Quit");
-        quit.addActionListener(menuListener);
+        quit.addActionListener(buttonListener);
         menu.add(quit);
 
         // Second menu in the MenuBar.
         secondMenu = new JMenu("Information");
         about = new JMenuItem();
         help = new JMenuItem("Help");
-        about.addActionListener(menuListener);
-        help.addActionListener(menuListener);
+        about.addActionListener(buttonListener);
+        help.addActionListener(buttonListener);
         secondMenu.add(about);
         secondMenu.add(help);
 
@@ -112,6 +112,6 @@ public class Window extends JFrame{
     }
 
     public JRadioButtonMenuItem getChangeLevel() {
-        return getChangeLevel;
+        return changeLevel;
     }
 }

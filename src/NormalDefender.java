@@ -21,7 +21,6 @@ public class NormalDefender extends Defender {
     @Override
     void update() {
 
-
         for(int i = 0; i< getAttackersList().size(); i++){
 
             if(getRageBound().intersects(getAttackersList().get(i).getBound()) && !enemyList.contains(getAttackersList().get(i))) {

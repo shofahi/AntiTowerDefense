@@ -1,6 +1,7 @@
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 
 
@@ -36,7 +37,7 @@ public class RunGame implements Runnable{
 
         //20 is the size of a block, this is just temporary
         worldHandler = new WorldHandler(20);
-        store = new Store(worldHandler);
+        store = new Store();
     }
 
     /**
@@ -91,7 +92,7 @@ public class RunGame implements Runnable{
 
             if(System.currentTimeMillis() - timer > 1000){
                 timer += 1000;
-                System.out.println("FPS: " + frames + " TICKS: " + updates);
+                //System.out.println("FPS: " + frames + " TICKS: " + updates);
                 frames = 0;
                 updates = 0;
             }
@@ -155,4 +156,8 @@ public class RunGame implements Runnable{
 
     }
 
+
+    public void getActionList (ActionEvent e) {
+        System.out.println("Update method");
+    }
 }

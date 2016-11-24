@@ -18,18 +18,17 @@ public class Store {
 
 	public BufferedImage attacker;// = new BufferedImage(null, null, false, null);
 	public LoadImage loader;
-	private JButton btnBuyNormal;
-	private JButton btnBuySpecial; 
-	private JButton btnBuyMuscle; 
-	private int wallet = 25;
+
+	static JButton btnBuyNormal;
+    static JButton btnBuySpecial;
+
+	private int wallet;
 	private int normalAttackerPrice;
 	private int specialAttackerPrice;
-	private WorldHandler worldHandler;
-    private StoreListener storeListener;
+    private ButtonListener buttonListener;
 
-	public Store(WorldHandler worldHandler){
-		this.worldHandler = worldHandler;
-        storeListener = new StoreListener(this,worldHandler);
+	public Store(){
+        buttonListener = new ButtonListener();
 		this.loader = new LoadImage();
 	}
 	
@@ -45,7 +44,7 @@ public class Store {
     	storePanel.add(headerPanel());
     	storePanel.add(specialAttackerPanel());
     	storePanel.add(normalAttackerPanel());
-    	storePanel.add(muscleAttackerPanel());
+		//attacker = this.loader.loadTheImage("tmpLevel.png");
         return storePanel;
     }
     
@@ -70,6 +69,7 @@ public class Store {
     }
     
     public JPanel specialAttackerPanel(){
+
     	JPanel specialAttackerPanel = new JPanel();
     	specialAttackerPanel.setBackground(Color.BLACK);
     	specialAttackerPanel.setPreferredSize(new Dimension(175,60));
@@ -78,38 +78,27 @@ public class Store {
     	specialAttacker.setForeground(Color.white);
     	specialAttackerPanel.add(specialAttacker,BorderLayout.WEST);
     	btnBuySpecial = new JButton("Buy Special Attacker");
-        btnBuySpecial.addActionListener(storeListener);
+        btnBuySpecial.addActionListener(buttonListener);
         specialAttackerPanel.add(btnBuySpecial,BorderLayout.EAST);
     	
     	return specialAttackerPanel;
     }
     
     public JPanel normalAttackerPanel(){
+
     	JPanel normalAttackerPanel = new JPanel();
-    	normalAttackerPanel.setPreferredSize(new Dimension(175,60));
+    	normalAttackerPanel.setPreferredSize(new Dimension(175,100));
     	normalAttackerPanel.setBackground(Color.BLACK);
     	JLabel normalAttacker = new JLabel("Normal Attacker, $10");
     	normalAttacker.setForeground(Color.white);
     	normalAttackerPanel.add(normalAttacker, BorderLayout.WEST);
         
         btnBuyNormal = new JButton("Buy Normal Attacker");
-        btnBuyNormal.addActionListener(storeListener);
+        btnBuyNormal.addActionListener(buttonListener);
         normalAttackerPanel.add(btnBuyNormal,BorderLayout.EAST);
-    	return normalAttackerPanel;
-    }
-    
-    public JPanel muscleAttackerPanel(){
-    	JPanel muscleAttackerPanel = new JPanel();
-    	muscleAttackerPanel.setPreferredSize(new Dimension(175,100));
-    	muscleAttackerPanel.setBackground(Color.BLACK);
-    	JLabel normalAttacker = new JLabel("Normal Attacker, $75");
-    	normalAttacker.setForeground(Color.white);
-    	muscleAttackerPanel.add(normalAttacker, BorderLayout.WEST);
-        
-        btnBuyMuscle = new JButton("Buy Muscle Attacker");
-        btnBuyMuscle.addActionListener(storeListener);
-        muscleAttackerPanel.add(btnBuyMuscle,BorderLayout.EAST);
-    	return muscleAttackerPanel;
+
+
+        return normalAttackerPanel;
     }
     
     public JButton getBtnBuySpecial() {
@@ -117,9 +106,6 @@ public class Store {
     }
     public JButton getBtnBuyNormal() {
         return btnBuyNormal;
-    }
-    public JButton getBtnBuyMuscle() {
-        return btnBuyMuscle;
     }
     
     public void setWallet(int money){
