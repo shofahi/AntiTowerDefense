@@ -10,7 +10,7 @@ import java.util.LinkedList;
  */
 public class NormalAttacker extends Attacker {
     static private final int SPEED = 10;            //Default speed for Normal
-    static private final int START_HEALTH = 1000;    //Default health for Normal
+    static private final int START_HEALTH = 100;    //Default health for Normal
     static private final int ATTACKER_WIDTH = 20;
     static private final int ATTACKER_HEIGHT = 20;
 
@@ -30,7 +30,7 @@ public class NormalAttacker extends Attacker {
         g.setColor(Color.RED);
         g.drawRect(getPos().getX(),getPos().getY()-10,getHealthBar().width-1,getHealthBar().height-1);
         g.setColor(Color.GREEN);
-        g.fillRect(getPos().getX(),getPos().getY()-getWidth()/2,getHealthBar().width*(getHealth()/START_HEALTH),getHealthBar().height);
+        g.fillRect(getPos().getX(),getPos().getY()-getWidth()/2,getHealthBar().width*getHealth()/START_HEALTH,getHealthBar().height);
     }
 
     public void getTurn() {

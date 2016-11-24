@@ -51,16 +51,21 @@ public class WorldHandler {
 
     public void render(Graphics g){
 
+
+
         for (int i = 0; i < blocks.size();i++){
             blocks.get(i).render(g);
-        }
-        for (int i = 0; i < attackersList.size(); i++){
-            attackersList.get(i).render(g);
         }
 
         for (int i = 0; i < defendersList.size(); i++){
             defendersList.get(i).render(g);
         }
+
+        for (int i = 0; i < attackersList.size(); i++){
+            attackersList.get(i).render(g);
+        }
+
+
     }
 
     /**
@@ -69,17 +74,20 @@ public class WorldHandler {
     public void update(){
 
 
-        for (int i = 0; i < attackersList.size(); i++){
-            attackersList.get(i).update();
-            if(attackersList.get(i).getBound().intersects(goalPosition)){
-                attackersList.remove(i);
-            }
-        }
-
         //defender
         for (int i = 0; i < defendersList.size(); i++){
             defendersList.get(i).update();
         }
+
+        for (int i = 0; i < attackersList.size(); i++){
+            attackersList.get(i).update();
+            if(attackersList.get(i).getBound().intersects(goalPosition) || attackersList.get(i).getHealth() < 0){
+                attackersList.remove(i);
+            }
+
+        }
+
+
 
     }
 
