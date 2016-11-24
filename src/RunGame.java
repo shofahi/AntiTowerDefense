@@ -36,7 +36,10 @@ public class RunGame implements Runnable{
 
         //20 is the size of a block, this is just temporary
         worldHandler = new WorldHandler(20);
+        
         store = new Store(worldHandler);
+        ChangeAdapter listener = new ChangeAdapter(this);
+        store.addChangeListener(listener);
     }
 
     /**
@@ -153,6 +156,10 @@ public class RunGame implements Runnable{
             }});
 
 
+    }
+    
+    public void updateStore(int wallet){
+        System.out.println("UPDATE GUI WALLET WITH VALUE: " + wallet);
     }
 
 }

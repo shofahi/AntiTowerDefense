@@ -108,10 +108,10 @@ public class TestStore {
     }
     
 	@Test
-    public void testSetAndGetWallet(){
+    /*public void testSetAndGetWallet(){
     	store.setWallet(10);
     	assertTrue(store.getWallet() == 10);
-    }
+    }*/
     
     public void testSetAndGetNormalAttackerPrice(){
     	store.setNormalAttackerPrice(50);
