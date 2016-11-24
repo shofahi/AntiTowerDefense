@@ -35,6 +35,14 @@ public abstract class Defender {
         return fireRate;
     }
 
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
+    }
+
     public LinkedList<Attacker> getAttackersList() {
         return attackersList;
     }
