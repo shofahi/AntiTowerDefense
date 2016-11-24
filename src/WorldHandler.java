@@ -51,7 +51,7 @@ public class WorldHandler {
 
     public void render(Graphics g){
 
-
+    	
 
         for (int i = 0; i < blocks.size();i++){
             blocks.get(i).render(g);
@@ -186,7 +186,6 @@ public class WorldHandler {
     }
 
     public void createNewAttacker(AttackerType type){
-
         if(type.equals(AttackerType.NORMALATTACKER)){
             attackersList.add(new NormalAttacker(startPosition,turns));
         } else if(type.equals(AttackerType.SPECIALATTACKER)){
@@ -194,6 +193,5 @@ public class WorldHandler {
         }  else if(type.equals(AttackerType.MUSCLEATTACKER)){
             attackersList.add(new MuscleAttacker(startPosition,turns));
         }
-
     }
 }
