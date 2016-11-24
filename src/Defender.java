@@ -7,6 +7,7 @@ public abstract class Defender {
     private int damage;
     private int range;
     private int fireRate;
+
     private LinkedList<Attacker> attackersList;
 
     public Defender(Position pos, int damage, int range, int fireRate,LinkedList<Attacker> attackersList){
