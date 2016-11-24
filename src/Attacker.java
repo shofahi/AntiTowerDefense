@@ -13,6 +13,7 @@ abstract class Attacker {
     private int width;
     private int height;
     private Position pos;
+    private Rectangle healthBar;
 
     String turn = "EAST";
 
@@ -26,6 +27,8 @@ abstract class Attacker {
         this.health = health;
         this.moveSpeed = moveSpeed;
         this.directionSign = directionSign;
+        healthBar = new Rectangle(pos.getX(),pos.getY()+10,width,height/10);
+
     }
 
     public int getHealth() {
@@ -66,6 +69,11 @@ abstract class Attacker {
 
     public LinkedList<Block> getDirectionSign() {
         return directionSign;
+    }
+
+
+    public Rectangle getHealthBar() {
+        return healthBar;
     }
 
     /**
