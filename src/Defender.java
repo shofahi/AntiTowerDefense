@@ -1,77 +1,50 @@
+import java.awt.*;
+import java.util.LinkedList;
 
-public class Defender {
+public abstract class Defender {
 
-    private Integer ID;
     private Position pos;
-    private Integer dmg;
-    private Integer range;
-    private Integer fireRate;
+    private int damage;
+    private int range;
+    private int fireRate;
 
-    public Defender(Integer ID, Position pos, Integer dmg, Integer range, Integer fireRate){
-    	this.ID = ID;
-    	this.pos = pos;
-    	this.dmg = dmg;
+    private LinkedList<Attacker> attackersList;
+
+    public Defender(Position pos, int damage, int range, int fireRate,LinkedList<Attacker> attackersList){
+
+        this.pos = new Position(pos.getX(),pos.getY());
+    	this.damage = damage;
     	this.range = range;
     	this.fireRate = fireRate;
+        this.attackersList = attackersList;
     }
 
-    public void setID(Integer ID){
-    	this.ID = ID;
+    public Position getPos() {
+        return pos;
     }
 
-    public Integer getID(){
-    	return ID;
+    public int getDamage() {
+        return damage;
     }
 
-    public void setPos(int x, int y){
-    	this.pos.setX(x);
-    	this.pos.setY(y);
+    public int getRange() {
+        return range;
     }
 
-    public Position getPos(){
-    	return pos;
+    public int getFireRate() {
+        return fireRate;
     }
 
-    public void setFireRate(Integer fireRate){
-    	this.fireRate = fireRate;
+    public LinkedList<Attacker> getAttackersList() {
+        return attackersList;
     }
 
-    public Integer getFireRate(){
-    	return fireRate;
-    }
+    abstract void update();
 
-    public void setDmg(Integer dmg){
-    	this.dmg = dmg;    	
-    }
+    abstract void render(Graphics g);
 
-    public Integer getDmg(){
-    	return dmg;
-    }
-    
-    public double getDPS(){
-    	return dmg * fireRate;
-    }
+    abstract public Rectangle getBound();
 
-    public void setRange(Integer range){
-    	this.range = range;
-    }
+    abstract public Rectangle getRageBound();
 
-    public Integer getRange(){
-    	return range;
-    }
-    
-    public Position[] getReachableBlocks(){
-    	Position[] reach = new Position[range*range*4];
-    	int k = 0;
-
-    	for(int i = this.pos.getX()-range; i < this.pos.getX()+range; i++){
-    		for(int j = this.pos.getY()-range; j < this.pos.getY()+range; j++){
-    			reach[k] = new Position(i,j);
-    			k++;
-    		}
-    	}
-    	
-    	
-    	return reach;
-    }
 }

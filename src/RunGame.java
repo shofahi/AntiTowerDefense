@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 public class RunGame implements Runnable{
 
 
-    //GUI information
+    //Jpanel/GUI information
     private final int WIDTH;
     private final int HEIGHT;
     private final String TITLE;
@@ -144,8 +144,6 @@ public class RunGame implements Runnable{
                 gui.add(gamePanel);
                 gui.add(store.buildStore(),BorderLayout.EAST);
                 gui.setVisible(true);
-                
-
 
                 //starta tråden
                 if(!gameRunning){
