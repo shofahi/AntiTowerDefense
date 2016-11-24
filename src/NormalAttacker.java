@@ -15,6 +15,7 @@ public class NormalAttacker extends Attacker {
     static private final int ATTACKER_HEIGHT = 20;
 
     private BufferedImage normatAttackerImg;
+
     private LoadImage loadImage = new LoadImage();
     public NormalAttacker(Position pos, LinkedList<Block> directionSign){
         super(pos, directionSign, START_HEALTH, SPEED,ATTACKER_WIDTH,ATTACKER_HEIGHT);
@@ -23,8 +24,6 @@ public class NormalAttacker extends Attacker {
 
     public void render(Graphics g){
         g.drawImage(normatAttackerImg,getPos().getX(),getPos().getY(),getWidth(),getHeight(),null);
-        g.setColor(Color.blue);
-        g.drawOval(getPos().getX(),getPos().getY(),200,200);
     }
 
     public void getTurn() {

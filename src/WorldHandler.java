@@ -1,4 +1,6 @@
 
+import javafx.geometry.Pos;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,9 +19,10 @@ public class WorldHandler {
 
     //This list will store the directions sign for the level
     private LinkedList<Block> turns = new LinkedList<>();
+
     private LinkedList<Attacker> attackersList = new LinkedList<>();
 
-    //This is just temporary and should be replaced with Attack class
+    private LinkedList<Defender> defendersList = new LinkedList<>();
 
     public WorldHandler(int blockSize){
 
@@ -45,6 +48,7 @@ public class WorldHandler {
         }
     }
 
+
     public void render(Graphics g){
 
         for (int i = 0; i < blocks.size();i++){
@@ -54,9 +58,16 @@ public class WorldHandler {
             attackersList.get(i).render(g);
         }
 
+        for (int i = 0; i < defendersList.size(); i++){
+            defendersList.get(i).render(g);
+        }
     }
 
+    /**
+     * 60frames per second
+     */
     public void update(){
+
 
         for (int i = 0; i < attackersList.size(); i++){
             attackersList.get(i).update();
@@ -64,6 +75,12 @@ public class WorldHandler {
                 attackersList.remove(i);
             }
         }
+
+        //defender
+        for (int i = 0; i < defendersList.size(); i++){
+            defendersList.get(i).update();
+        }
+
     }
 
     public void loadImageLevel(int levelSelect){
@@ -107,6 +124,12 @@ public class WorldHandler {
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.STARTPOSITION));
                     startPosition = pos;
+                }
+
+                //DEFENDER
+                if(red == 223 && green == 0 && blue == 255){
+                    Position pos = new Position(xx*blockSize,yy*blockSize);
+                    defendersList.add(new NormalDefender(pos,attackersList));
                 }
 
                 //Get the turns
