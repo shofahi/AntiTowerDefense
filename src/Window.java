@@ -6,19 +6,19 @@ public class Window extends JFrame{
     private ButtonListener buttonListener;
 
 
-    static JMenuItem start;
-    static JMenuItem pause;
-    static JMenuItem restart;
-    static JMenuItem quit;
-    static JMenuItem about;
-    static JMenuItem help;
-    static JRadioButtonMenuItem changeLevel;
+    private JMenuItem start;
+    private JMenuItem pause;
+    private JMenuItem restart;
+    private JMenuItem quit;
+    private JMenuItem about;
+    private JMenuItem help;
+    private JRadioButtonMenuItem changeLevel;
 
-    public Window(String title, int width,int height){
+    public Window(String title, int width,int height,ButtonListener buttonListener){
 
         super(title);
 
-        buttonListener = new ButtonListener();
+        this.buttonListener = buttonListener;
 
         setSize(new Dimension(width,height));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

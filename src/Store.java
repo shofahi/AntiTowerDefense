@@ -24,15 +24,12 @@ public class Store {
 	private int normalAttackerPrice = 10;
 	private int specialAttackerPrice = 50;
 	private int muscleAttackerPrice = 75;
-	private WorldHandler worldHandler;
-    private StoreListener storeListener;
     private int wallet = 150;
-    
-    public ChangeListener listener;
-
-	public Store(WorldHandler worldHandler){
-		this.worldHandler = worldHandler;
-        storeListener = new StoreListener(this,worldHandler);
+	private JLabel lblMoney;
+	private ButtonListener buttonListener;
+    JPanel headerPanel;
+	public Store(ButtonListener buttonListener){
+        this.buttonListener = buttonListener;
 		this.loader = new LoadImage();
 	}
 	
@@ -52,7 +49,8 @@ public class Store {
     }
     
     public JPanel headerPanel(){
-    	JPanel headerPanel = new JPanel();
+
+	    headerPanel = new JPanel();
     	headerPanel.setPreferredSize(new Dimension(155,125));
     	headerPanel.setBackground(Color.BLACK);
     	JLabel store = new JLabel("STORE");
@@ -64,13 +62,22 @@ public class Store {
     	lblTitle.setForeground(Color.white);
     	lblTitle.setFont(new Font("Sans-Serif", Font.PLAIN, 20));
     	headerPanel.add(lblTitle,BorderLayout.WEST);
-    	JLabel lblMoney = new JLabel("$" + getWallet());
+		lblMoney = new JLabel("$" + getWallet());
+
     	lblMoney.setFont(new Font("Sans-Serif", Font.PLAIN, 28));
     	lblMoney.setForeground(Color.white);
     	headerPanel.add(lblMoney,BorderLayout.EAST);
     	return headerPanel;
     }
-    
+
+    public void updateWallet(){
+        lblMoney = new JLabel("$" + getWallet());
+        lblMoney.setFont(new Font("Sans-Serif", Font.PLAIN, 28));
+        lblMoney.setForeground(Color.white);
+        headerPanel.add(lblMoney,BorderLayout.EAST);
+
+    }
+
     public JPanel specialAttackerPanel(){
     	JPanel specialAttackerPanel = new JPanel();
     	specialAttackerPanel.setBackground(Color.BLACK);
@@ -79,7 +86,7 @@ public class Store {
     	specialAttacker.setForeground(Color.white);
     	specialAttackerPanel.add(specialAttacker,BorderLayout.WEST);
     	btnBuySpecial = new JButton("Buy Special Attacker");
-        btnBuySpecial.addActionListener(storeListener);
+        btnBuySpecial.addActionListener(buttonListener);
         specialAttackerPanel.add(btnBuySpecial,BorderLayout.EAST);
         if(wallet < 50) {
         	btnBuySpecial.setEnabled(false);
@@ -100,7 +107,7 @@ public class Store {
     	normalAttackerPanel.add(normalAttacker, BorderLayout.WEST);
         
         btnBuyNormal = new JButton("Buy Normal Attacker");
-        btnBuyNormal.addActionListener(storeListener);
+        btnBuyNormal.addActionListener(buttonListener);
         normalAttackerPanel.add(btnBuyNormal,BorderLayout.EAST);
         if(wallet < getNormalAttackerPrice()) {
         	btnBuyNormal.setEnabled(false);
@@ -119,7 +126,7 @@ public class Store {
     	muscleAttackerPanel.add(normalAttacker, BorderLayout.WEST);
         
         btnBuyMuscle = new JButton("Buy Muscle Attacker");
-        btnBuyMuscle.addActionListener(storeListener);
+        btnBuyMuscle.addActionListener(buttonListener);
         muscleAttackerPanel.add(btnBuyMuscle,BorderLayout.EAST);
         if(wallet < getMuscleAttackerPrice()) {
         	btnBuyMuscle.setEnabled(false);
@@ -129,17 +136,7 @@ public class Store {
         
     	return muscleAttackerPanel;
     }
-    
-    public void addChangeListener(ChangeListener l) {
-    	System.out.println("CHANGELISTENER ADDED");
-        this.listener = l;
-    }
-    
-    protected void notifyListeners() {
-    	if(!(listener == null)) {
-    		listener.dataChanged(this.wallet);	
-    	}
-    }
+
     
     public JButton getBtnBuySpecial() {
         return btnBuySpecial;
@@ -176,6 +173,7 @@ public class Store {
 
     public void setWallet(int money) {
     	this.wallet = money;
+        headerPanel();
     }
     public int getWallet(){
     	return this.wallet;

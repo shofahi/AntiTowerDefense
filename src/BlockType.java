@@ -1,7 +1,7 @@
 /**
  *
  */
-public enum BlockType {
+ enum BlockType {
 
     PATH,
 

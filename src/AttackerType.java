@@ -1,5 +1,5 @@
 
-public enum AttackerType {
+enum AttackerType {
 
     NORMALATTACKER,
     SPECIALATTACKER,

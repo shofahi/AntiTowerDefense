@@ -5,17 +5,16 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestStore {
 
 	//private Store store; 
 	
-	@BeforeClass
+	/*org.junit.BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		
-	}
+	}*/
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {

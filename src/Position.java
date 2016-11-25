@@ -39,48 +39,6 @@ public class Position {
     }
 
     /**
-     * The method returns the new Position for going one step down
-     * @return return the new Position
-     */
-    public Position getPosToSouth(){
-
-        return new Position(x,y+20);
-
-    }
-    /**
-     * Method returns the new position for going one step up
-     * @return  the new position
-     */
-    public Position getPostoNorth(){
-
-        return new Position(x,y-20);
-
-    }
-    /**
-     * This method return the new Position for going one step to the left
-     * @return the new position
-     */
-    public Position getPosToWest(){
-        return new Position(x-20,y);
-
-    }
-    /**
-     * The method returns the new position for going one step to the right
-     * @return the new position
-     */
-    public Position getPosToEast(){
-        return new Position (x+20,y);
-
-    }
-
-
-
-
-
-
-
-
-    /**
      *Determines whether two positions are the same or not.
      * @param o An Object
      * @return True if the given position has the same coordinates as the

@@ -13,7 +13,7 @@ public class RunGame implements Runnable{
     private final String TITLE;
     private JPanel gamePanel;
     private Store store;
-
+    Window gui;
     //This class will run on its own thread
     private Thread gameThread;
     private boolean gameRunning;
@@ -24,6 +24,11 @@ public class RunGame implements Runnable{
 
     //Load the level
     private WorldHandler worldHandler;
+
+    boolean updateGui = false;
+
+    //NEW - skickar till store och window
+    private ButtonListener buttonListener = new ButtonListener();
 
     public RunGame(String title, int width,int height) {
 
@@ -37,9 +42,7 @@ public class RunGame implements Runnable{
         //20 is the size of a block, this is just temporary
         worldHandler = new WorldHandler(20);
         
-        store = new Store(worldHandler);
-        ChangeAdapter listener = new ChangeAdapter(this);
-        store.addChangeListener(listener);
+        store = new Store(buttonListener);
     }
 
     /**
@@ -106,6 +109,7 @@ public class RunGame implements Runnable{
      */
     public void update(){
         worldHandler.update();
+        checkActionListenerList();
     }
 
     /**
@@ -138,28 +142,83 @@ public class RunGame implements Runnable{
 
     public void startGame(){
 
-
         SwingUtilities.invokeLater(new Runnable() {
 
             @Override
             public void run() {
-                Window gui=new Window(TITLE,WIDTH,HEIGHT);
+                gui=new Window(TITLE,WIDTH,HEIGHT,buttonListener);
                 gui.add(gamePanel);
                 gui.add(store.buildStore(),BorderLayout.EAST);
+
+                if(updateGui){
+                    gui.revalidate();
+                    //gui.repaint();
+                    updateGui = false;
+                }
                 gui.setVisible(true);
+
 
                 //starta tråden
                 if(!gameRunning){
                     start();
-
                 }
             }});
-
-
     }
-    
-    public void updateStore(int wallet){
-        System.out.println("UPDATE GUI WALLET WITH VALUE: " + wallet);
+
+
+
+    public void checkActionListenerList(){
+
+        if(!buttonListener.getListOfActions().isEmpty()){
+
+            for(int i = 0; i < buttonListener.getListOfActions().size(); i++){
+                if(buttonListener.getListOfActions().get(i).getSource() == store.getBtnBuyNormal()){
+                    System.out.println("Buying Normal Attacker & Subtracting Money");
+                    worldHandler.createNewAttacker(AttackerType.NORMALATTACKER);
+                    store.setWallet(store.getWallet()-100);
+                    updateGui = true;
+                    buttonListener.getListOfActions().remove(i);
+                }
+                else if(buttonListener.getListOfActions().get(i).getSource() == gui.getAbout()){
+
+                }
+            }
+        }
+
+
+
+       /* else if(e.getSource() == Store.btnBuySpecial) {
+            System.out.println("Buying Special Attacker & Subtracting Money");
+        }
+        //WINDOW BUTTONS
+        else if(e.getSource() == Window.pause){
+            System.out.println("Pausar ..");
+        }
+        else if(e.getSource() == Window.start){
+            System.out.println("Start Game ..");
+
+        }
+        else if(e.getSource() == Window.restart){
+            System.out.println("Restart level ..");
+        }
+        else if(e.getSource() == Window.quit){
+            System.out.println("Quitting ..");
+
+        }
+        else if(e.getSource() == Window.about){
+            System.out.println("About ..");
+            JOptionPane.showMessageDialog(null, "Authors:\n\nAmanda Dahlin\n"
+                    + "Gustav Nordlander\nSamuel Bylund Felixson\nMasoud Shofahi\n\n\u00a9 2016");
+        }
+        else if(e.getSource() == Window.about){
+            System.out.println("Helping ..");
+            JOptionPane.showMessageDialog(null, "Help:\n\n Play by adding attackers to the\n"
+                    + "field. Different attackers have different \nprices. ETC.");
+        }
+        else if(e.getSource() == Window.changeLevel){
+            System.out.println("Changing Level ..");
+
+        }*/
     }
 
 }

@@ -17,7 +17,7 @@ public class TestStore {
 	@Before
 	public void setUp() throws Exception {
 		this.wh = new WorldHandler(20);
-		this.store = new Store();
+		//this.store = new Store(wh);
 	}
 
 	@After
