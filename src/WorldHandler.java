@@ -128,6 +128,11 @@ public class WorldHandler {
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     defendersList.add(new NormalDefender(pos,attackersList));
                 }
+                if(red == 255 && green == 50 && blue == 255){
+                    Position pos = new Position(xx*blockSize,yy*blockSize);
+                    defendersList.add(new NuclearDefender(pos,attackersList));
+                }
+                
 
                 //Get the turns
                 if(red == 0 && green == 0 && blue == 255){
