@@ -103,7 +103,6 @@ public class WorldHandler {
                 //hur mycket blå färg på pixel
                 int blue = (pixel) & 0xff;
 
-
                 //Path          Color = orange
                 if (red == 255 && green == 128 && blue == 0){
                     Position pos = new Position(xx*blockSize,yy*blockSize);
