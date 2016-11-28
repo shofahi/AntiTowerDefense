@@ -179,6 +179,20 @@ public class RunGame implements Runnable{
                     buttonListener.getListOfActions().remove(i);
 
                 }
+                else if(buttonListener.getListOfActions().get(i).getSource() == store.getBtnBuySpecial()){
+                	System.out.println("Buying Special Attacker & Subtracting Money");
+                    worldHandler.createNewAttacker(AttackerType.SPECIALATTACKER);
+                    store.setWallet(store.getWallet()-store.getSpecialAttackerPrice());
+                    store.getLblMoney().setText(String.valueOf(store.getWallet()));
+                    buttonListener.getListOfActions().remove(i);
+                }
+                else if(buttonListener.getListOfActions().get(i).getSource() == store.getBtnBuyMuscle()){
+                	System.out.println("Buying Muscle Attacker & Subtracting Money");
+                    worldHandler.createNewAttacker(AttackerType.MUSCLEATTACKER);
+                    store.setWallet(store.getWallet()-store.getMuscleAttackerPrice());
+                    store.getLblMoney().setText(String.valueOf(store.getWallet()));
+                    buttonListener.getListOfActions().remove(i);
+                }
                 else if(buttonListener.getListOfActions().get(i).getSource() == gui.getAbout()){
 
                 }
