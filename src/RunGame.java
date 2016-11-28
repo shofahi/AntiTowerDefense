@@ -3,6 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import static java.awt.BorderLayout.CENTER;
+
 
 public class RunGame implements Runnable{
 
@@ -110,6 +112,9 @@ public class RunGame implements Runnable{
     public void update(){
         worldHandler.update();
         checkActionListenerList();
+
+        store.canAfford();
+
     }
 
     /**
@@ -147,16 +152,11 @@ public class RunGame implements Runnable{
             @Override
             public void run() {
                 gui=new Window(TITLE,WIDTH,HEIGHT,buttonListener);
-                gui.add(gamePanel);
+
+                gui.add(gamePanel,BorderLayout.CENTER);
                 gui.add(store.buildStore(),BorderLayout.EAST);
 
-                if(updateGui){
-                    gui.revalidate();
-                    //gui.repaint();
-                    updateGui = false;
-                }
                 gui.setVisible(true);
-
 
                 //starta tråden
                 if(!gameRunning){
@@ -165,26 +165,25 @@ public class RunGame implements Runnable{
             }});
     }
 
-
-
     public void checkActionListenerList(){
 
         if(!buttonListener.getListOfActions().isEmpty()){
 
             for(int i = 0; i < buttonListener.getListOfActions().size(); i++){
+
                 if(buttonListener.getListOfActions().get(i).getSource() == store.getBtnBuyNormal()){
                     System.out.println("Buying Normal Attacker & Subtracting Money");
                     worldHandler.createNewAttacker(AttackerType.NORMALATTACKER);
-                    store.setWallet(store.getWallet()-100);
-                    updateGui = true;
+                    store.setWallet(store.getWallet()-store.getNormalAttackerPrice());
+                    store.getLblMoney().setText(String.valueOf(store.getWallet()));
                     buttonListener.getListOfActions().remove(i);
+
                 }
                 else if(buttonListener.getListOfActions().get(i).getSource() == gui.getAbout()){
 
                 }
             }
         }
-
 
 
        /* else if(e.getSource() == Store.btnBuySpecial) {

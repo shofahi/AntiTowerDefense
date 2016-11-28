@@ -1,6 +1,4 @@
 
-//import javafx.geometry.Pos;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -8,7 +6,6 @@ import java.util.LinkedList;
 
 public class WorldHandler {
 
-    private LinkedList<Block> blocks;
     private int blockSize;
 
     private LoadImage lvlLoad = new LoadImage();
@@ -18,11 +15,12 @@ public class WorldHandler {
     private Rectangle goalPosition;
 
     //This list will store the directions sign for the level
-    private LinkedList<Block> turns = new LinkedList<>();
+    private LinkedList<Block> directionList = new LinkedList<>();
 
+    //List of game objects
     private LinkedList<Attacker> attackersList = new LinkedList<>();
-
     private LinkedList<Defender> defendersList = new LinkedList<>();
+    private LinkedList<Block> blocks;
 
     public WorldHandler(int blockSize){
 
@@ -51,8 +49,6 @@ public class WorldHandler {
 
     public void render(Graphics g){
 
-    	
-
         for (int i = 0; i < blocks.size();i++){
             blocks.get(i).render(g);
         }
@@ -64,15 +60,12 @@ public class WorldHandler {
         for (int i = 0; i < attackersList.size(); i++){
             attackersList.get(i).render(g);
         }
-
-
     }
 
     /**
      * 60frames per second
      */
     public void update(){
-
 
         //defender
         for (int i = 0; i < defendersList.size(); i++){
@@ -86,12 +79,9 @@ public class WorldHandler {
             }
 
         }
-
-
-
     }
 
-    public void loadImageLevel(int levelSelect){
+    public void loadImageLevel(int levelSelect){/*ska vi döpa om detta till generateLevel?*/
 
         //läs in banan
         BufferedImage lvl = listOfLevels.get(levelSelect);
@@ -105,6 +95,7 @@ public class WorldHandler {
             for (int yy = 0; yy < w; yy++) {
 
                 int pixel = lvl.getRGB(xx,yy);
+
                 //hur mycket röd färg på pixel
                 int red = (pixel >> 16) & 0xff;
                 //hur mycket grön färg på pixel
@@ -112,10 +103,9 @@ public class WorldHandler {
                 //hur mycket blå färg på pixel
                 int blue = (pixel) & 0xff;
 
-                //*********Kommer göra XML för alla färger**************
-                //Path          Color = orange
-                if (red == 253 && green == 135 && blue == 26){
 
+                //Path          Color = orange
+                if (red == 255 && green == 128 && blue == 0){
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.PATH));
                 }
@@ -144,23 +134,23 @@ public class WorldHandler {
                 if(red == 0 && green == 0 && blue == 255){
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNSOUTH));
-                    turns.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNSOUTH));
+                    directionList.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNSOUTH));
                 }
                 if(red == 255 && green == 255 && blue == 0){
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNEAST));
-                    turns.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNEAST));
+                    directionList.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNEAST));
                 }
                 if(red == 128 && green == 0 && blue == 128){
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNNORTH));
-                    turns.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNNORTH));
+                    directionList.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNNORTH));
 
                 }
                 if(red == 0 && green == 255 && blue == 255){
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNWEST));
-                    turns.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNWEST));
+                    directionList.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNWEST));
                 }
             }
         }
@@ -182,16 +172,16 @@ public class WorldHandler {
 
 
     public LinkedList<Block> getTurns() {
-        return turns;
+        return directionList;
     }
 
     public void createNewAttacker(AttackerType type){
         if(type.equals(AttackerType.NORMALATTACKER)){
-            attackersList.add(new NormalAttacker(startPosition,turns));
+            attackersList.add(new NormalAttacker(startPosition,directionList));
         } else if(type.equals(AttackerType.SPECIALATTACKER)){
-            attackersList.add(new SpecialAttacker(startPosition,turns));
+            attackersList.add(new SpecialAttacker(startPosition,directionList));
         }  else if(type.equals(AttackerType.MUSCLEATTACKER)){
-            attackersList.add(new MuscleAttacker(startPosition,turns));
+            attackersList.add(new MuscleAttacker(startPosition,directionList));
         }
     }
 }
