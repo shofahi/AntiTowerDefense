@@ -195,7 +195,6 @@ public class RunGame implements Runnable{
                 }
                 else if(buttonListener.getListOfActions().get(i).getSource() == gui.getAbout()){
 
-                	
                 }
             }
         }
