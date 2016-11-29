@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.util.*;
 
@@ -9,6 +10,8 @@ public class NuclearDefender extends Defender {
     private BufferedImage towerImg;
     private LoadImage loadImage = new LoadImage();
 
+    private BufferedImage nuceImg;
+    
     private Queue <Attacker> enemyList = new LinkedList<>();
 
 
@@ -16,6 +19,9 @@ public class NuclearDefender extends Defender {
         super(pos, DAMAGE, RANGE, FIRE_RATE,attackersList);
 
         towerImg = loadImage.loadTheImage("NuclearTower.png");
+        
+        nuceImg = loadImage.loadTheImage("nuce.gif");
+        
     }
 
     @Override
@@ -29,7 +35,9 @@ public class NuclearDefender extends Defender {
         }
 
         if(!enemyList.isEmpty()){
-            enemyList.peek().inflictDamage(DAMAGE);
+        	for (Attacker a : enemyList) {
+        	    a.inflictDamage(DAMAGE);
+        	}
         }
         if(!enemyList.isEmpty() && !enemyList.peek().getBound().intersects(getRageBound())) {
             enemyList.remove();
@@ -45,11 +53,15 @@ public class NuclearDefender extends Defender {
     void render(Graphics g) {
         g.drawImage(towerImg,getPos().getX(),getPos().getY(),towerImg.getWidth(),towerImg.getHeight(),null);
 
-        g.setColor(Color.blue);
-        g.drawRect(getPos().getX()-(getRange()/2)+(towerImg.getWidth()/2),getPos().getY()-(getRange()/2)+(towerImg.getHeight()/2),getRange(),getRange());
-
         if(!enemyList.isEmpty()){
-            g.drawLine(getPos().getX(),getPos().getY(),enemyList.peek().getPos().getX()+10,enemyList.peek().getPos().getY()+10);
+        	g.setColor(new Color(0, 255, 0, 80));
+        	g.fillOval(getPos().getX()-(getRange()/5)+(towerImg.getWidth()/5),getPos().getY()-(getRange()/5)+(towerImg.getHeight()/5),getRange()/2,getRange()/2);
+        	
+        	g.setColor(new Color(0, 255, 0, 60));
+        	g.fillOval(getPos().getX()-(getRange()/2)+(towerImg.getWidth()/2),getPos().getY()-(getRange()/2)+(towerImg.getHeight()/2),getRange(),getRange());
+        	
+        	g.setColor(new Color(0, 255, 0, 40));
+        	g.fillOval(getPos().getX()-(getRange())+(towerImg.getWidth())+40,(getPos().getY()-(getRange())+(towerImg.getHeight())+40),getRange()+80,getRange()+80);
         }
     }
 
