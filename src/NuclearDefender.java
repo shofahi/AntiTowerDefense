@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.util.*;
 
@@ -9,19 +8,13 @@ public class NuclearDefender extends Defender {
     static private final int FIRE_RATE = 2;
     private BufferedImage towerImg;
     private LoadImage loadImage = new LoadImage();
-
-    private BufferedImage nuceImg;
     
     private Queue <Attacker> enemyList = new LinkedList<>();
-
 
     public NuclearDefender(Position pos, LinkedList<Attacker> attackersList) {
         super(pos, DAMAGE, RANGE, FIRE_RATE,attackersList);
 
         towerImg = loadImage.loadTheImage("NuclearTower.png");
-        
-        nuceImg = loadImage.loadTheImage("nuce.gif");
-        
     }
 
     @Override

@@ -28,7 +28,7 @@ public class MuscleAttacker extends Attacker {
         g.setColor(Color.RED);
         g.drawRect(getPos().getX(),getPos().getY()-10,getHealthBar().width-1,getHealthBar().height-1);
         g.setColor(Color.GREEN);
-        g.fillRect(getPos().getX(),getPos().getY()-getWidth()/2,getHealthBar().width*getHealth()/START_HEALTH,getHealthBar().height);
+        g.fillRect(getPos().getX(),getPos().getY()-getWidth()/2+2,getHealthBar().width*getHealth()/START_HEALTH,getHealthBar().height);
     }
 
     public void getTurn() {
