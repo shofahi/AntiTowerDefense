@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.LinkedList;
 
+import javax.swing.JOptionPane;
+
 public class WorldHandler {
 
     private int blockSize;
@@ -132,7 +134,6 @@ public class WorldHandler {
                     Position pos = new Position(xx*blockSize,yy*blockSize);
                     defendersList.add(new NuclearDefender(pos,attackersList));
                 }
-                
 
                 //Get the turns
                 if(red == 0 && green == 0 && blue == 255){
@@ -187,5 +188,9 @@ public class WorldHandler {
         }  else if(type.equals(AttackerType.MUSCLEATTACKER)){
             attackersList.add(new MuscleAttacker(startPosition,directionList));
         }
+    }
+    
+    public LinkedList<Attacker> getAttackersList(){
+    	return attackersList;
     }
 }

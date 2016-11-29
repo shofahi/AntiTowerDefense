@@ -65,7 +65,7 @@ public class RunGame implements Runnable{
         graphics = gameImg.getGraphics();
 
         worldHandler.loadAllImages();
-        worldHandler.loadImageLevel(0);
+        worldHandler.loadImageLevel(2);
     }
 
     /**
@@ -102,6 +102,12 @@ public class RunGame implements Runnable{
                 System.out.println("FPS: " + frames + " TICKS: " + updates);
                 frames = 0;
                 updates = 0;
+                
+                // NEW
+                if(isGameOver()){
+                	JOptionPane.showMessageDialog(null, "GAME OVER");
+                	gameRunning = false;
+                }
             }
         }
     }
@@ -164,7 +170,18 @@ public class RunGame implements Runnable{
                 }
             }});
     }
-
+    
+    
+    // NEW
+    public boolean isGameOver(){
+    	if(worldHandler.getAttackersList().isEmpty() && store.getWallet() < 10){
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+    }
+    
     public void checkActionListenerList(){
 
         if(!buttonListener.getListOfActions().isEmpty()){
