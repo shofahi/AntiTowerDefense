@@ -4,8 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.LinkedList;
 
-import javax.swing.JOptionPane;
-
 public class WorldHandler {
 
     private int blockSize;
@@ -23,6 +21,9 @@ public class WorldHandler {
     private LinkedList<Attacker> attackersList = new LinkedList<>();
     private LinkedList<Defender> defendersList = new LinkedList<>();
     private LinkedList<Block> blocks;
+    
+    private int bonus;
+    private int nrOfAttackerToGoal;
 
     public WorldHandler(int blockSize){
 
@@ -76,10 +77,17 @@ public class WorldHandler {
 
         for (int i = 0; i < attackersList.size(); i++){
             attackersList.get(i).update();
-            if(attackersList.get(i).getBound().intersects(goalPosition) || attackersList.get(i).getHealth() < 0){
+            
+            if(attackersList.get(i).getHealth() < 0){
                 attackersList.remove(i);
             }
-
+            else if(attackersList.get(i).getBound().intersects(goalPosition)){
+            	// Add money to wallet
+            	bonus += attackersList.get(i).getHealth() * 5;
+            	nrOfAttackerToGoal++;
+                System.out.println("Adding money to wallet here");
+                attackersList.remove(i);
+            }
         }
     }
 
@@ -192,5 +200,19 @@ public class WorldHandler {
     
     public LinkedList<Attacker> getAttackersList(){
     	return attackersList;
+    }
+    
+    public int getBonus(){
+    	return bonus;
+    }
+    public void resetBonus(){
+    	bonus = 0;
+    }
+    
+    public int getNrOfAttackersToGoal(){
+    	return nrOfAttackerToGoal;
+    }
+    public void resetNrOfAttackersToGoal(){
+    	this.nrOfAttackerToGoal = 0;
     }
 }

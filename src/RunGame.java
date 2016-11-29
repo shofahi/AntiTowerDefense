@@ -8,7 +8,9 @@ import static java.awt.BorderLayout.CENTER;
 
 public class RunGame implements Runnable{
 
-
+	// TEMPORARY (SHOULD COME FROM XML-FILE)
+	private final int VICTORY = 2;
+	
     //Jpanel/GUI information
     private final int WIDTH;
     private final int HEIGHT;
@@ -108,6 +110,18 @@ public class RunGame implements Runnable{
                 	JOptionPane.showMessageDialog(null, "GAME OVER");
                 	gameRunning = false;
                 }
+             // NEW
+                if(didFinishLevel()){
+                	int dialogButton = JOptionPane.YES_NO_OPTION;
+                	int dialogResult = JOptionPane.showConfirmDialog(null, "Continue to next level?", "LEVEL COMPLETED", dialogButton);
+                	if(dialogResult == 0) {
+                	  System.out.println("Continue to next level here");
+                	} else {
+                	  System.out.println("Handle no option");
+                	} 
+                	worldHandler.resetNrOfAttackersToGoal();
+                	gameRunning = false;
+                }
             }
         }
     }
@@ -119,8 +133,11 @@ public class RunGame implements Runnable{
         worldHandler.update();
         checkActionListenerList();
 
+        store.setWallet(store.getWallet()+worldHandler.getBonus());
+        store.getLblMoney().setText(String.valueOf(store.getWallet()));
+        worldHandler.resetBonus();
+        
         store.canAfford();
-
     }
 
     /**
@@ -171,7 +188,6 @@ public class RunGame implements Runnable{
             }});
     }
     
-    
     // NEW
     public boolean isGameOver(){
     	if(worldHandler.getAttackersList().isEmpty() && store.getWallet() < 10){
@@ -180,6 +196,9 @@ public class RunGame implements Runnable{
     	else {
     		return false;
     	}
+    }
+    public boolean didFinishLevel(){
+    	return worldHandler.getNrOfAttackersToGoal() > VICTORY;
     }
     
     public void checkActionListenerList(){
