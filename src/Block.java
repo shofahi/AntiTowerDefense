@@ -19,6 +19,14 @@ abstract public class Block {
         this.blockType = blockType;
     }
 
+    public Block (int xPos, int yPos, int width,int height, BlockType blockType){
+
+        pos = new Position(xPos,yPos);
+        this.width = width;
+        this.height = height;
+        this.blockType = blockType;
+    }
+
     public Position getPos() {
         return pos;
     }

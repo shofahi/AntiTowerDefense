@@ -21,9 +21,12 @@ public class WorldHandler {
     private LinkedList<Attacker> attackersList = new LinkedList<>();
     private LinkedList<Defender> defendersList = new LinkedList<>();
     private LinkedList<Block> blocks;
-    
+
     private int bonus;
     private int nrOfAttackerToGoal;
+
+    XmlReader xmlReader = new XmlReader();
+
 
     public WorldHandler(int blockSize){
 
@@ -52,6 +55,8 @@ public class WorldHandler {
 
     public void render(Graphics g){
 
+        //for (Block block : blocks)
+
         for (int i = 0; i < blocks.size();i++){
             blocks.get(i).render(g);
         }
@@ -77,7 +82,7 @@ public class WorldHandler {
 
         for (int i = 0; i < attackersList.size(); i++){
             attackersList.get(i).update();
-            
+
             if(attackersList.get(i).getHealth() < 0){
                 attackersList.remove(i);
             }
@@ -93,81 +98,20 @@ public class WorldHandler {
 
     public void loadImageLevel(int levelSelect){/*ska vi döpa om detta till generateLevel?*/
 
-        //läs in banan
-        BufferedImage lvl = listOfLevels.get(levelSelect);
+        xmlReader.generateXML();
+        xmlReader.loadLevelXML(levelSelect);
+        blocks = xmlReader.getBlocks();
 
-        //Hämtar bildens storlek
-        int w = lvl.getWidth();
-        int h = lvl.getHeight();
+        for (int i = 0; i < blocks.size(); i++){
 
-        //Looppar genom alla pixlar i bilden
-        for (int xx = 0; xx < h; xx++) {
-            for (int yy = 0; yy < w; yy++) {
+            if(blocks.get(i).getBlockType().equals(BlockType.GOALPOSITION)){
+                goalPosition = new Rectangle(blocks.get(i).getPos().getX(),blocks.get(i).getPos().getY(),blockSize,blockSize);
+            }
 
-                int pixel = lvl.getRGB(xx,yy);
-
-                //hur mycket röd färg på pixel
-                int red = (pixel >> 16) & 0xff;
-                //hur mycket grön färg på pixel
-                int green = (pixel >> 8) & 0xff;
-                //hur mycket blå färg på pixel
-                int blue = (pixel) & 0xff;
-
-                //Path          Color = orange
-                if (red == 255 && green == 128 && blue == 0){
-                    Position pos = new Position(xx*blockSize,yy*blockSize);
-                    blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.PATH));
-                }
-
-                if (red == 251 && green == 0 && blue == 7){
-
-                    Position pos = new Position(xx*blockSize,yy*blockSize);
-                    blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.GOALPOSITION));
-                    goalPosition = new Rectangle(pos.getX(),pos.getY(),blockSize,blockSize);
-                }
-
-                if (red == 27 && green == 209 && blue == 30){
-
-                    Position pos = new Position(xx*blockSize,yy*blockSize);
-                    blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.STARTPOSITION));
-                    startPosition = pos;
-                }
-
-                //DEFENDER
-                if(red == 223 && green == 0 && blue == 255){
-                    Position pos = new Position(xx*blockSize,yy*blockSize);
-                    defendersList.add(new NormalDefender(pos,attackersList));
-                }
-                if(red == 255 && green == 50 && blue == 255){
-                    Position pos = new Position(xx*blockSize,yy*blockSize);
-                    defendersList.add(new NuclearDefender(pos,attackersList));
-                }
-
-                //Get the turns
-                if(red == 0 && green == 0 && blue == 255){
-                    Position pos = new Position(xx*blockSize,yy*blockSize);
-                    blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNSOUTH));
-                    directionList.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNSOUTH));
-                }
-                if(red == 255 && green == 255 && blue == 0){
-                    Position pos = new Position(xx*blockSize,yy*blockSize);
-                    blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNEAST));
-                    directionList.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNEAST));
-                }
-                if(red == 128 && green == 0 && blue == 128){
-                    Position pos = new Position(xx*blockSize,yy*blockSize);
-                    blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNNORTH));
-                    directionList.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNNORTH));
-
-                }
-                if(red == 0 && green == 255 && blue == 255){
-                    Position pos = new Position(xx*blockSize,yy*blockSize);
-                    blocks.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNWEST));
-                    directionList.add(new LevelBlocks(pos,blockSize,blockSize,BlockType.TURNWEST));
-                }
+            if(blocks.get(i).getBlockType().equals(BlockType.STARTPOSITION)){
+                startPosition = new Position(blocks.get(i).getPos().getX(),blocks.get(i).getPos().getY());
             }
         }
-
     }
 
     public void addStaicBlock(Block obj){
@@ -190,25 +134,25 @@ public class WorldHandler {
 
     public void createNewAttacker(AttackerType type){
         if(type.equals(AttackerType.NORMALATTACKER)){
-            attackersList.add(new NormalAttacker(startPosition,directionList));
+            attackersList.add(new NormalAttacker(startPosition,blocks));
         } else if(type.equals(AttackerType.SPECIALATTACKER)){
-            attackersList.add(new SpecialAttacker(startPosition,directionList));
+            attackersList.add(new SpecialAttacker(startPosition,blocks));
         }  else if(type.equals(AttackerType.MUSCLEATTACKER)){
-            attackersList.add(new MuscleAttacker(startPosition,directionList));
+            attackersList.add(new MuscleAttacker(startPosition,blocks));
         }
     }
-    
+
     public LinkedList<Attacker> getAttackersList(){
     	return attackersList;
     }
-    
+
     public int getBonus(){
     	return bonus;
     }
     public void resetBonus(){
     	bonus = 0;
     }
-    
+
     public int getNrOfAttackersToGoal(){
     	return nrOfAttackerToGoal;
     }

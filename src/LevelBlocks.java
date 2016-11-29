@@ -7,6 +7,12 @@ public class LevelBlocks extends Block {
         super(pos, width, height, blockType);
     }
 
+    public LevelBlocks(int xPos, int yPos, int width, int height, BlockType blockType) {
+        super(xPos,yPos, width, height, blockType);
+    }
+
+
+
     @Override
     public void render(Graphics g) {
 
