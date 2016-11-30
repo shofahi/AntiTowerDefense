@@ -23,7 +23,8 @@ public class XmlReader {
     }
 
     public XmlReader(){
-        path = "/Users/MasoudMac/Desktop/xmlTestLevel.xml";
+
+        path = "XmlFiles/levels.xml";
         blocks = new LinkedList<>();
     }
 

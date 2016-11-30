@@ -1,4 +1,3 @@
-import java.awt.image.BufferedImage;
 import java.awt.*;
 import java.util.LinkedList;
 
@@ -81,7 +80,6 @@ abstract class Attacker {
      * abstract method for moving Attacker
      */
     abstract public void getTurn();
-
 
     abstract public void update();
 

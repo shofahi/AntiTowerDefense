@@ -49,7 +49,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/xmlFiles" />
+          <root url="file://$MODULE_DIR$/XmlFiles" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

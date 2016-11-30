@@ -1,8 +1,5 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,7 +8,6 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.io.IOException;
 
 public class XmlLevelWriter {
 
@@ -23,7 +19,7 @@ public class XmlLevelWriter {
 
     public XmlLevelWriter(String outputFile){
         this.outputFile = outputFile;
-        this.outputFile = "/Users/MasoudMac/Desktop/xmlTestLevel.xml";
+        this.outputFile = "XmlFiles/levels.xml";
     }
     /**
      * Write xml
