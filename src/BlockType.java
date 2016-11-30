@@ -11,5 +11,10 @@
     TURNWEST,
     TURNEAST,
     TURNSOUTH,
-    TURNNORTH;
+    TURNNORTH,
+
+   DEFENDER,
+
+
+   INVALID;
 }

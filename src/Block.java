@@ -49,5 +49,13 @@ abstract public class Block {
      */
     public abstract void render(Graphics g);
     public abstract Rectangle getBound();
+
+    public boolean getTypeByPosition(Position pos){
+
+        if (this.pos == pos && blockType.equals(BlockType.DEFENDER)){
+            return true;
+        }
+        return false;
+    }
 }
 

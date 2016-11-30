@@ -3,13 +3,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class WorldHandler {
 
     private int blockSize;
-
-    private LoadImage lvlLoad = new LoadImage();
-    private LinkedList<BufferedImage> listOfLevels = null;
 
     private Position startPosition;
     private Rectangle goalPosition;
@@ -34,24 +32,6 @@ public class WorldHandler {
         this.blockSize = blockSize;
 
     }
-
-    public void loadAllImages(){
-
-        listOfLevels = new LinkedList<>();
-
-        File  directory = new File("Levels");
-
-        for (File file : directory.listFiles())
-        {
-            // could also use a FileNameFilter
-            if(file.getName().toLowerCase().endsWith(".png"))
-            {
-                BufferedImage tmp = lvlLoad.loadTheImage(file.getName());
-                listOfLevels.add(tmp);
-            }
-        }
-    }
-
 
     public void render(Graphics g){
 
@@ -112,6 +92,37 @@ public class WorldHandler {
                 startPosition = new Position(blocks.get(i).getPos().getX(),blocks.get(i).getPos().getY());
             }
         }
+        for (int i = 0; i < 100; i++)
+            createDefenders();
+    }
+
+
+    private void createDefenders(){
+
+        boolean isCreatable = true;
+        Random r = new Random();
+        int randomNum = r.nextInt(xmlReader.getZoneList().size());
+        Block tmpBlock = xmlReader.getZoneList().get(randomNum);
+        NormalDefender tmp = new NormalDefender(tmpBlock.getPos(),attackersList);
+
+        for (int i = 0; i < blocks.size(); i++){
+
+            if (tmp.getBound().intersects(blocks.get(i).getBound())){
+                isCreatable = false;
+            }
+        }
+
+        for (int i = 0; i < defendersList.size(); i++){
+
+            if (tmp.getBound().intersects(defendersList.get(i).getBound())){
+                isCreatable = false;
+            }
+        }
+
+        if(isCreatable){
+            defendersList.add(tmp);
+        }
+
     }
 
     public void addStaicBlock(Block obj){

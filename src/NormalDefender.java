@@ -39,6 +39,10 @@ public class NormalDefender extends Defender {
             enemyList.peek().inflictDamage(1);
             enemyList.remove();
         }
+
+        if(!enemyList.isEmpty() && !getAttackersList().contains(enemyList.peek())){
+            enemyList.remove();
+        }
     }
 
     @Override
@@ -49,13 +53,15 @@ public class NormalDefender extends Defender {
         g.drawRect(getPos().getX()-(getRange()/2)+(towerImg.getWidth()/2),getPos().getY()-(getRange()/2)+(towerImg.getHeight()/2),getRange(),getRange());
 
         if(!enemyList.isEmpty()){
+            g.setColor(Color.green);
             g.drawLine(getPos().getX(),getPos().getY(),enemyList.peek().getPos().getX()+10,enemyList.peek().getPos().getY()+10);
         }
     }
 
     @Override
     public Rectangle getBound() {
-        return null;
+
+        return new Rectangle(getPos().getX(),getPos().getY(),towerImg.getWidth(),towerImg.getHeight());
     }
 
     @Override

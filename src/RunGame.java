@@ -66,8 +66,7 @@ public class RunGame implements Runnable{
         gameImg = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
         graphics = gameImg.getGraphics();
 
-        worldHandler.loadAllImages();
-        worldHandler.loadImageLevel(2);
+        worldHandler.loadImageLevel(1);
     }
 
     /**

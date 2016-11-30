@@ -1,4 +1,3 @@
-import jdk.internal.org.xml.sax.SAXException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -12,7 +11,7 @@ import java.util.LinkedList;
 
 public class XmlReader {
 
-    private LinkedList<Block> zoneBlock = new LinkedList<>(); //??????
+    private LinkedList<Block> zoneList = new LinkedList<>();
 
     private LinkedList<Block> blocks;
     private String path;
@@ -26,7 +25,6 @@ public class XmlReader {
     public XmlReader(){
         path = "/Users/MasoudMac/Desktop/xmlTestLevel.xml";
         blocks = new LinkedList<>();
-
     }
 
     public void generateXML(){
@@ -73,39 +71,41 @@ public class XmlReader {
                   int yPos = Integer.parseInt(ele.getElementsByTagName("yPos").item(0).getTextContent());
                   String type = ele.getAttribute("type");
 
-                  if(type.equals("start")){
+                  if(type.equals(BlockType.STARTPOSITION.toString())){
                     addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.STARTPOSITION));
                   }
 
-                  if(type.equals("goal")){
+                  if(type.equals(BlockType.GOALPOSITION.toString())){
                       addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.GOALPOSITION));
                   }
 
-                  if(type.equals("turnSouth")){
+                  if(type.equals(BlockType.TURNSOUTH.toString())){
                       addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.TURNSOUTH));
                   }
 
-                  if(type.equals("turnNorth")){
+                  if(type.equals(BlockType.TURNNORTH.toString())){
                       addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.TURNNORTH));
                   }
 
-                  if(type.equals("turnWest")){
+                  if(type.equals(BlockType.TURNWEST.toString())){
                       addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.TURNWEST));
                   }
 
-                  if(type.equals("turnEast")){
+                  if(type.equals(BlockType.TURNEAST.toString())){
                       addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.TURNEAST));
                   }
 
-                  if(type.equals("path")){
+                  if(type.equals(BlockType.PATH.toString())){
                       addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.PATH));
                   }
 
+                  if(type.equals(BlockType.DEFENDER.toString())){
+                      zoneList.add(new LevelBlocks(xPos,yPos,20,20,BlockType.DEFENDER));
+                  }
               }
           }
 
-
-        }
+      }
     }
 
 
@@ -113,6 +113,10 @@ public class XmlReader {
         blocks.add(obj);
     }
 
+
+    public LinkedList<Block> getZoneList() {
+        return zoneList;
+    }
 
     public LinkedList<Block> getBlocks() {
         return blocks;
