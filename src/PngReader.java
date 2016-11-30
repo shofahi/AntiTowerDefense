@@ -1,6 +1,6 @@
-import javax.sql.rowset.spi.XmlWriter;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -36,10 +36,12 @@ public class PngReader {
 
 
     public void loadImageLevel(){/*ska vi döpa om detta till generateLevel?*/
-
+        HashMap<DefenderType, Integer> tmp = new HashMap<>();
+        tmp.put(DefenderType.NORMAL, 3);
+        tmp.put(DefenderType.NUCLEAR,1);
         XmlLevelWriter xmlWriter = new XmlLevelWriter("Dfdf");
         xmlWriter.writeXML("levelList");
-        xmlWriter.addLevel(1);
+        xmlWriter.addLevel(1, 500,tmp, 2);
 
         //läs in banan
         BufferedImage lvl = listOfLevels.get(0);

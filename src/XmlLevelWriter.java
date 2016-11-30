@@ -8,6 +8,8 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class XmlLevelWriter {
 
@@ -38,6 +40,14 @@ public class XmlLevelWriter {
         //LevelList
         rootElement = xmlLevels.createElement(rootName);
         xmlLevels.appendChild(rootElement);
+        //Rules
+    }
+
+    /**
+     * add rules for the specific level
+     */
+    private void writeRules(){
+
     }
 
     private BlockType getType(int rgbPixel[]){
@@ -74,7 +84,13 @@ public class XmlLevelWriter {
         return BlockType.INVALID;
     }
 
-    public void addLevel(int levelNumber){
+    /**
+     * defender[0] = normalDefender
+     * defender[1] = nuclearDefender
+     */
+    public void addLevel(int levelNumber, int startGold,
+                         HashMap<DefenderType, Integer> defenders,
+                         int attackersToCompleteLvl){
         //Level
         Element newLevel = xmlLevels.createElement("level");
         String levelNum = String.valueOf(levelNumber);
@@ -85,6 +101,26 @@ public class XmlLevelWriter {
         blockList = xmlLevels.createElement("blockList");
         newLevel.appendChild(blockList);
 
+        //RuleList
+        Element ruleList = xmlLevels.createElement("rules");
+        newLevel.appendChild(ruleList);
+
+        //add startGold
+        Element startGoldElement = xmlLevels.createElement("startGold");
+        startGoldElement.appendChild(xmlLevels.createTextNode(Integer.toString(startGold)));
+        ruleList.appendChild(startGoldElement);
+
+        //add defenders
+        for (Map.Entry<DefenderType, Integer> entry : defenders.entrySet()) {
+            Element defender = xmlLevels.createElement(entry.getKey().toString());
+            defender.appendChild(xmlLevels.createTextNode(entry.getValue().toString()));
+            ruleList.appendChild(defender);
+        }
+
+        //add amount of attackers required to finish
+        Element attackersToFinish = xmlLevels.createElement("attackersToFinish");
+        attackersToFinish.appendChild(xmlLevels.createTextNode(Integer.toString(attackersToCompleteLvl)));
+        ruleList.appendChild(attackersToFinish);
     }
 
     public void addElement(int rgbValue[],Position pos){
@@ -95,24 +131,12 @@ public class XmlLevelWriter {
         BlockType theType = getType(rgbValue);
 
         if(theType.equals(BlockType.INVALID)){
-            //System.out.println("Invalid");
             return;
         }
 
         block.setAttribute("type",theType.toString());
         blockList.appendChild(block);
 
-        //
-       /* Element redValue = xmlLevels.createElement("redValue");
-        redValue.appendChild(xmlLevels.createTextNode(Integer.toString(rgbValue[0])));
-        block.appendChild(redValue);
-        Element greenValue = xmlLevels.createElement("greenValue");
-        greenValue.appendChild(xmlLevels.createTextNode(Integer.toString(rgbValue[1])));
-        block.appendChild(greenValue);
-
-        Element blueValue = xmlLevels.createElement("blueValue");
-        blueValue.appendChild(xmlLevels.createTextNode(Integer.toString(rgbValue[2])));
-        block.appendChild(blueValue);*/
 
         Element xPos = xmlLevels.createElement("xPos");
         xPos.appendChild(xmlLevels.createTextNode(Integer.toString(pos.getX())));
