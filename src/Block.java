@@ -5,7 +5,7 @@ import java.awt.*;
  */
 
 
-abstract public class Block {
+abstract public class Block implements RenderBlock {
 
     private Position pos;
     private int width;
