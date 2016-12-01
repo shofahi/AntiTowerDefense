@@ -22,7 +22,7 @@ public class NuclearDefender extends Defender {
 
         for(int i = 0; i< getAttackersList().size(); i++){
 
-            if(getRageBound().intersects(getAttackersList().get(i).getBound()) && !enemyList.contains(getAttackersList().get(i))) {
+            if(getRangeBound().intersects(getAttackersList().get(i).getBound()) && !enemyList.contains(getAttackersList().get(i))) {
                 enemyList.add(getAttackersList().get(i));
             }
         }
@@ -32,7 +32,7 @@ public class NuclearDefender extends Defender {
         	    a.inflictDamage(DAMAGE);
         	}
         }
-        if(!enemyList.isEmpty() && !enemyList.peek().getBound().intersects(getRageBound())) {
+        if(!enemyList.isEmpty() && !enemyList.peek().getBound().intersects(getRangeBound())) {
             enemyList.remove();
         }
         if(!enemyList.isEmpty() && enemyList.peek().getHealth() == 0){
@@ -64,7 +64,7 @@ public class NuclearDefender extends Defender {
     }
 
     @Override
-    public Rectangle getRageBound() {
+    public Rectangle getRangeBound() {
         return new Rectangle(getPos().getX()-(getRange()/2)+(towerImg.getWidth()/2),getPos().getY()-(getRange()/2)+
                     (towerImg.getHeight()/2),getRange(),getRange());
     }
