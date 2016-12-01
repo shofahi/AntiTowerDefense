@@ -1,3 +1,6 @@
+import java.io.IOException;
+
+import org.xml.sax.SAXException;
 
 public class CompleteTest {
 
@@ -7,9 +10,24 @@ public class CompleteTest {
         game.startGame();*/
 
 
-        PngReader pngReader = new PngReader();
+        /*PngReader pngReader = new PngReader();
         pngReader.loadAllImages();
-        pngReader.loadImageLevel();
+        pngReader.loadImageLevel();*/
+    	
+    	
+    	String xml = "XmlFiles/levels.xml";
+    	String xsd = "XmlFiles/levelList.xsd";
+    	Boolean bool = true;
+    	
+    	try {
+			XmlReader.validateXMLFile(xml, xsd);
+		} catch (SAXException e) {
+			bool = false;
+			
+		} catch (IOException e) {
+			bool = false;
+		}
+    	System.out.println(bool);
 
     }
 
