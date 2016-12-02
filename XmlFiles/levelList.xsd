@@ -5,24 +5,28 @@
             <xsd:all>
                 <xsd:element name = "level"> <!--Start: level-->
                     <xsd:complexType>
-                        <xsd:sequence>
+                        <xsd:all>
                             <xsd:element name = "blockList"> <!--Start: blockList-->
 
                                 <xsd:complexType>
                                     <xsd:sequence>
-                                        <xsd:element name = "block" minOccurs="1" maxOccurs="unbounded"><!--Start: block-->
+                                        <xsd:element name = "block" minOccurs="2" maxOccurs="unbounded"><!--Start: block-->
                                             <xsd:complexType>
                                                 <xsd:all>
-                                                    <xsd:element name = "yPos" type = "xsd:positiveInteger"/>
-                                                    <xsd:element name = "xPos" type = "xsd:positiveInteger"/>
+                                                    <xsd:element name = "yPos" type = "xsd:nonNegativeInteger"/>
+                                                    <xsd:element name = "xPos" type = "xsd:nonNegativeInteger"/>
                                                 </xsd:all>
                                                 <xsd:attribute name='type' use='required'>
                                                     <xsd:simpleType>
                                                         <xsd:restriction base="xsd:string">
                                                             <!--List all the valid blocks here-->
-                                                            <xsd:enumeration value="STARTPOSITION"/>
+                                                            <xsd:enumeration value="STARTPOSITION"/> <!--??????????-->
                                                             <xsd:enumeration value="PATH"/>
-                                                            <xsd:enumeration value="GOALPOSITION"/>
+                                                            <xsd:enumeration value="GOALPOSITION"/> <!--??????????-->
+                                                            <xsd:enumeration value="TURNNORTH"/>
+                                                            <xsd:enumeration value="TURNWEST"/>
+                                                            <xsd:enumeration value="TURNEAST"/>
+                                                            <xsd:enumeration value="TURNSOUTH"/>
                                                             <xsd:enumeration value="DEFENDER"/>
                                                         </xsd:restriction>
                                                     </xsd:simpleType>
@@ -37,16 +41,22 @@
 
                             </xsd:element><!--END: blockList-->
 
-                        </xsd:sequence>
+                            <xsd:element name="rules"><!--Start: rules-->
 
-                        <xsd:attribute name='number' use='required' type='xsd:int'/>
-
+                                <xsd:complexType>
+                                    <xsd:all>
+                                        <xsd:element name = 'startGold' type = 'xsd:positiveInteger'/>
+                                        <xsd:element name = 'NORMAL' type = 'xsd:nonNegativeInteger'/>
+                                        <xsd:element name = 'NUCLEAR' type = 'xsd:nonNegativeInteger'/>
+                                        <xsd:element name = 'attackersToFinish' type = 'xsd:positiveInteger'/>
+                                    </xsd:all>
+                                </xsd:complexType>
+                            </xsd:element><!--END: rules-->
+                        </xsd:all>
+                        <xsd:attribute name='number' use='required' type='xsd:positiveInteger'/>
                     </xsd:complexType>
-
                 </xsd:element> <!--End: level-->
-
             </xsd:all>
-
         </xsd:complexType>
 
     </xsd:element> <!--End of levelList -->

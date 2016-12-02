@@ -28,6 +28,8 @@ public class Store {
 	private JLabel lblMoney;
 	private ButtonListener buttonListener;
     private JPanel headerPanel;
+	private final int STORE_WIDTH = 180;
+	private final int STORE_HEIGHT = 600;
 
 	public Store(ButtonListener buttonListener){
         this.buttonListener = buttonListener;
@@ -40,7 +42,7 @@ public class Store {
     	storePanel.setBackground(Color.BLACK);
     	storePanel.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, Color.WHITE));
     	
-    	storePanel.setPreferredSize(new Dimension(180,600));
+    	storePanel.setPreferredSize(new Dimension(STORE_WIDTH,STORE_HEIGHT));
     	
     	storePanel.add(headerPanel());
     	storePanel.add(normalAttackerPanel());
@@ -185,4 +187,12 @@ public class Store {
     public JLabel getLblMoney() {
         return lblMoney;
     }
+
+	public int getSTORE_WIDTH() {
+		return STORE_WIDTH;
+	}
+
+	public int getSTORE_HEIGHT() {
+		return STORE_HEIGHT;
+	}
 }

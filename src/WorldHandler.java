@@ -5,7 +5,7 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class WorldHandler {
+public class WorldHandler implements RenderBlock {
 
     private int blockSize;
 
@@ -92,8 +92,11 @@ public class WorldHandler {
                 startPosition = new Position(blocks.get(i).getPos().getX(),blocks.get(i).getPos().getY());
             }
         }
-        for (int i = 0; i < 100; i++)
-            createDefenders();
+
+        if(!xmlReader.getZoneList().isEmpty()){
+            for (int i = 0; i < 100; i++)
+                createDefenders();
+        }
     }
 
 
@@ -169,5 +172,12 @@ public class WorldHandler {
     }
     public void resetNrOfAttackersToGoal(){
     	this.nrOfAttackerToGoal = 0;
+    }
+
+
+
+    @Override
+    public void landOn() {
+
     }
 }

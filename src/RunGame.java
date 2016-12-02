@@ -41,7 +41,8 @@ public class RunGame implements Runnable{
         HEIGHT = height;
 
         gamePanel = new JPanel();
-        gamePanel.setPreferredSize(new Dimension(WIDTH,HEIGHT));
+        gamePanel.setSize(new Dimension(WIDTH,HEIGHT));
+        gamePanel.setBackground(Color.black);
 
         //20 is the size of a block, this is just temporary
         worldHandler = new WorldHandler(20);
@@ -145,7 +146,7 @@ public class RunGame implements Runnable{
     public void render(){
 
         //Clear the clear
-        graphics.clearRect(0,0,WIDTH,HEIGHT);
+        graphics.clearRect(0,0,WIDTH+store.getSTORE_WIDTH(),HEIGHT);
 
         //********************************Draw here***********************/
 
