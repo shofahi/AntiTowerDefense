@@ -4,8 +4,12 @@
     <blockList>
       <block type="STARTPOSITION">
         <xPos>0</xPos>
-        <yPos>400</yPos>
+          <yPos>400</yPos>
       </block>
+        <block type="PATH">
+            <xPos>1</xPos>
+            <yPos>400</yPos>
+        </block>
     </blockList>
   </level>
 </levelList>

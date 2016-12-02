@@ -55,7 +55,7 @@ public class XmlReader {
     }
 
     public static void validateXMLFile(String xml, String xsd) throws SAXException, IOException{
-    	SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+    	SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
     	((schemaFactory.newSchema(new File(xsd))).newValidator()).validate(new StreamSource(new File (xml)));
     }
 

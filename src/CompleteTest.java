@@ -18,16 +18,19 @@ public class CompleteTest {
     	String xml = "XmlFiles/levels.xml";
     	String xsd = "XmlFiles/levelList.xsd";
     	Boolean bool = true;
-    	
-    	try {
-			XmlReader.validateXMLFile(xml, xsd);
-		} catch (SAXException e) {
-			bool = false;
-			
-		} catch (IOException e) {
-			bool = false;
-		}
-    	System.out.println(bool);
+
+
+        try {
+            XmlReader.validateXMLFile(xml, xsd);
+        } catch (SAXException e) {
+            bool = false;
+            e.printStackTrace();
+        } catch (IOException e) {
+            bool = false;
+            e.printStackTrace();
+        }
+
+        System.out.println(bool);
 
     }
 

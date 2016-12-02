@@ -1,43 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-   <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
-         <xsd:element name="levelList">
-               <xsd:complexType>
-                     <xsd:sequence>
-                           <xsd:element name="level">
-                                 <xsd:complexType>
-                                       <xsd:sequence>
-                                             <xsd:element name="blockList">
-                                                   <xsd:complexType>
-                                                         <xsd:sequence>
-                                                               <xsd:element name="block" minOccurs="1" maxOccurs="unbounded">
-                                                                     <xsd:complexType>
-                                                                           <xsd:all>
-                                                                                 <xsd:element name="xPos" type="xsd:int" minOccurs="1" maxOccurs="1"></xsd:element>
-                                                                                 <xsd:element name="yPos" type="xsd:int" minOccurs="1" maxOccurs="1"></xsd:element>
-                                                                           </xsd:all>
-                                                                     </xsd:complexType>
-                                                                     <xsd:simpleType>
-                                                                           <xsd:restriction base = "xsd:string">
-                                                                                 <xsd:enumeration value="STARTPOSITION"/>
-                                                                                 <xsd:enumeration value = "GOALPOSITION"/>
-                                                                                 <xsd:enumeration value = "PATH" />
-                                                                                 <xsd:enumeration value = "TURNNORTH"/>
-                                                                                 <xsd:enumeration value = "TURNSOUTH"/>
-                                                                                 <xsd:enumeration value = "TURNEAST"/>
-                                                                                 <xsd:enumeration value = "TURNWEST"/>
-                                                                                 <xsd:enumeration value = "DEFENDER"/>
-                                                                           </xsd:restriction>
-                                                                     </xsd:simpleType>
-                                                               </xsd:element>
-                                                         </xsd:sequence>
-                                                   </xsd:complexType>
-                                             </xsd:element>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:element name="levelList"> <!--Start of levelList -->
+        <xsd:complexType>
+            <xsd:all>
+                <xsd:element name = "level"> <!--Start: level-->
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name = "blockList"> <!--Start: blockList-->
 
-                                       </xsd:sequence>
-                                       <xsd:attribute name="number" type="xsd:int"></xsd:attribute>
-                                 </xsd:complexType>
-                           </xsd:element>
-                     </xsd:sequence>
-               </xsd:complexType>
-         </xsd:element>
-   </xsd:schema>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name = "block" minOccurs="1" maxOccurs="unbounded"><!--Start: block-->
+                                            <xsd:complexType>
+                                                <xsd:all>
+                                                    <xsd:element name = "yPos" type = "xsd:positiveInteger"/>
+                                                    <xsd:element name = "xPos" type = "xsd:positiveInteger"/>
+                                                </xsd:all>
+                                                <xsd:attribute name='type' use='required'>
+                                                    <xsd:simpleType>
+                                                        <xsd:restriction base="xsd:string">
+                                                            <!--List all the valid blocks here-->
+                                                            <xsd:enumeration value="STARTPOSITION"/>
+                                                            <xsd:enumeration value="PATH"/>
+                                                            <xsd:enumeration value="GOALPOSITION"/>
+                                                            <xsd:enumeration value="DEFENDER"/>
+                                                        </xsd:restriction>
+                                                    </xsd:simpleType>
+                                                </xsd:attribute>
+                                            </xsd:complexType>
+
+                                        </xsd:element> <!--End: block-->
+
+                                    </xsd:sequence>
+
+                                </xsd:complexType>
+
+                            </xsd:element><!--END: blockList-->
+
+                        </xsd:sequence>
+
+                        <xsd:attribute name='number' use='required' type='xsd:int'/>
+
+                    </xsd:complexType>
+
+                </xsd:element> <!--End: level-->
+
+            </xsd:all>
+
+        </xsd:complexType>
+
+    </xsd:element> <!--End of levelList -->
+</xsd:schema>
+
+
