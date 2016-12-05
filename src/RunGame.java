@@ -18,6 +18,7 @@ public class RunGame implements Runnable{
     private JPanel gamePanel;
     private Store store;
     Window gui;
+
     //This class will run on its own thread
     private Thread gameThread;
     private boolean gameRunning;
@@ -109,34 +110,6 @@ public class RunGame implements Runnable{
                 System.out.println("FPS: " + frames + " TICKS: " + updates);
                 frames = 0;
                 updates = 0;
-
-                // NEW
-                if(isGameOver()){
-                    pause = true;
-                    JDialog.setDefaultLookAndFeelDecorated(true);
-                    int response = JOptionPane.showConfirmDialog(null, "Restart level?\n", "GAME OVER",
-                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                    if (response == JOptionPane.NO_OPTION) {
-                        System.out.println("No button clicked");
-                    } else if (response == JOptionPane.YES_OPTION) {
-                        restartLevel();
-                        pause = false;
-                    } else if (response == JOptionPane.CLOSED_OPTION) {
-                        System.out.println("JOptionPane closed");
-                    }
-                }
-                // NEW
-                if(didFinishLevel()){
-                    int dialogButton = JOptionPane.YES_NO_OPTION;
-                    int dialogResult = JOptionPane.showConfirmDialog(null, "Continue to next level?", "LEVEL COMPLETED", dialogButton);
-                    if(dialogResult == 0) {
-                        System.out.println("Continue to next level here");
-                    } else {
-                        System.out.println("Handle no option");
-                    }
-                    worldHandler.resetNrOfAttackersToGoal();
-                    gameRunning = false;
-                }
             }
         }
     }
@@ -159,6 +132,41 @@ public class RunGame implements Runnable{
             worldHandler.resetBonus();
 
             store.canAfford();
+            checkIfFinished();
+            checkIfGameOver();
+        }
+    }
+
+    public void checkIfGameOver(){
+        // NEW
+        if(isGameOver()){
+            pause = true;
+            JDialog.setDefaultLookAndFeelDecorated(true);
+            int response = JOptionPane.showConfirmDialog(null, "Restart level?\n", "GAME OVER",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.NO_OPTION) {
+                System.out.println("No button clicked");
+            } else if (response == JOptionPane.YES_OPTION) {
+                restartLevel();
+                pause = false;
+            } else if (response == JOptionPane.CLOSED_OPTION) {
+                System.out.println("JOptionPane closed");
+            }
+        }
+    }
+
+    public void checkIfFinished(){
+        // NEW
+        if(didFinishLevel()){
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Continue to next level?", "LEVEL COMPLETED", dialogButton);
+            if(dialogResult == 0) {
+                System.out.println("Continue to next level here");
+            } else {
+                System.out.println("Handle no option");
+            }
+            worldHandler.resetNrOfAttackersToGoal();
+            gameRunning = false;
         }
     }
 
@@ -171,8 +179,9 @@ public class RunGame implements Runnable{
         graphics.clearRect(0,0,WIDTH+store.getSTORE_WIDTH(),HEIGHT);
 
         //********************************Draw here***********************/
-
         worldHandler.render(graphics);
+
+
         //*************************************************************
         drawGameImage();
 
@@ -210,7 +219,6 @@ public class RunGame implements Runnable{
             }});
     }
     
-    // NEW
     public boolean isGameOver(){
     	if(generateLvl.getAttackersList().isEmpty() && store.getWallet() < 10){
     		return true;
