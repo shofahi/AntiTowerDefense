@@ -34,6 +34,9 @@ public class RunGame implements Runnable{
     //NEW - skickar till store och window
     private ButtonListener buttonListener = new ButtonListener();
 
+    GenerateLevel generateLvl = new GenerateLevel(20);
+
+
     public RunGame(String title, int width,int height) {
 
         TITLE = title;
@@ -45,7 +48,7 @@ public class RunGame implements Runnable{
         gamePanel.setBackground(Color.black);
 
         //20 is the size of a block, this is just temporary
-        worldHandler = new WorldHandler(20);
+        worldHandler = new WorldHandler(generateLvl);
         
         store = new Store(buttonListener);
     }
@@ -67,7 +70,7 @@ public class RunGame implements Runnable{
         gameImg = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
         graphics = gameImg.getGraphics();
 
-        worldHandler.loadImageLevel(1);
+        generateLvl.loadLevel(1);
     }
 
     /**
@@ -190,7 +193,7 @@ public class RunGame implements Runnable{
     
     // NEW
     public boolean isGameOver(){
-    	if(worldHandler.getAttackersList().isEmpty() && store.getWallet() < 10){
+    	if(generateLvl.getAttackersList().isEmpty() && store.getWallet() < 10){
     		return true;
     	}
     	else {
@@ -229,7 +232,8 @@ public class RunGame implements Runnable{
                     store.getLblMoney().setText(String.valueOf(store.getWallet()));
                     buttonListener.getListOfActions().remove(i);
                 }
-                else if(buttonListener.getListOfActions().get(i).getSource() == gui.getAbout()){
+                else if(buttonListener.getListOfActions().get(i).getSource() == gui.getPause()){
+
 
                 }
             }

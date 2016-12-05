@@ -38,9 +38,6 @@ public class LevelBlocks extends Block {
         return new Rectangle(getPos().getX(),getPos().getY(),getWidth(),getHeight());
     }
 
-    @Override
-    public void landOn(Graphics g){
-        //Do something here......
-    }
+
 
 }

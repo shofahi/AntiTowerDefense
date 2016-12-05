@@ -4,7 +4,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,25 +12,23 @@ import javax.xml.validation.SchemaFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
 
-public class XmlReader {
+public class XmlReader{
 
-    private LinkedList<Block> zoneList = new LinkedList<>();
-
-    private LinkedList<Block> blocks;
     private String path;
     private NodeList nodeList;
 
-    public XmlReader(String path){
+    private GenerateLevel generateLvl;
+
+    public XmlReader(String path,GenerateLevel generateLevel){
         this.path = path;
-        blocks = new LinkedList<>();
+        generateLvl= generateLevel;
     }
 
-    public XmlReader(){
+    public XmlReader(GenerateLevel generateLevel){
 
         path = "XmlFiles/levels.xml";
-        blocks = new LinkedList<>();
+        generateLvl= generateLevel;
     }
 
     public void generateXML(){
@@ -79,56 +76,11 @@ public class XmlReader {
                   int yPos = Integer.parseInt(ele.getElementsByTagName("yPos").item(0).getTextContent());
                   String type = ele.getAttribute("type");
 
-                  if(type.equals(BlockType.STARTPOSITION.toString())){
-                    addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.STARTPOSITION));
-                  }
+                  generateLvl.landOn(xPos,yPos,type);
 
-                  if(type.equals(BlockType.GOALPOSITION.toString())){
-                      addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.GOALPOSITION));
-                  }
-
-                  if(type.equals(BlockType.TURNSOUTH.toString())){
-                      addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.TURNSOUTH));
-                  }
-
-                  if(type.equals(BlockType.TURNNORTH.toString())){
-                      addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.TURNNORTH));
-                  }
-
-                  if(type.equals(BlockType.TURNWEST.toString())){
-                      addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.TURNWEST));
-                  }
-
-                  if(type.equals(BlockType.TURNEAST.toString())){
-                      addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.TURNEAST));
-                  }
-
-                  if(type.equals(BlockType.PATH.toString())){
-                      addBlocksToList(new LevelBlocks(xPos,yPos,20,20,BlockType.PATH));
-                  }
-
-                  if(type.equals(BlockType.DEFENDER.toString())){
-                      zoneList.add(new LevelBlocks(xPos,yPos,20,20,BlockType.DEFENDER));
-                  }
               }
           }
 
       }
     }
-
-
-    public void addBlocksToList(Block obj){
-        blocks.add(obj);
-    }
-
-
-    public LinkedList<Block> getZoneList() {
-        return zoneList;
-    }
-
-    public LinkedList<Block> getBlocks() {
-        return blocks;
-    }
-
-
 }

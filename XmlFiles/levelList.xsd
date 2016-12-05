@@ -28,6 +28,7 @@
                                                             <xsd:enumeration value="TURNEAST"/>
                                                             <xsd:enumeration value="TURNSOUTH"/>
                                                             <xsd:enumeration value="DEFENDER"/>
+
                                                         </xsd:restriction>
                                                     </xsd:simpleType>
                                                 </xsd:attribute>

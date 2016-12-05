@@ -6,8 +6,8 @@ public class CompleteTest {
 
     public static void main(String[] args) {
 
-        /*RunGame game = new RunGame("Anti Tower Defense Beta",800,600);
-        game.startGame();*/
+        RunGame game = new RunGame("Anti Tower Defense Beta",800,600);
+        game.startGame();
 
 
         /*PngReader pngReader = new PngReader();
@@ -15,7 +15,7 @@ public class CompleteTest {
         pngReader.loadImageLevel();*/
     	
     	
-    	String xml = "XmlFiles/levels.xml";
+    	/*String xml = "XmlFiles/levels.xml";
     	String xsd = "XmlFiles/levelList.xsd";
     	Boolean bool = true;
 
@@ -30,7 +30,7 @@ public class CompleteTest {
             e.printStackTrace();
         }
 
-        System.out.println(bool);
+        System.out.println(bool);*/
 
     }
 
