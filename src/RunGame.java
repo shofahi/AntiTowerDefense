@@ -21,6 +21,7 @@ public class RunGame implements Runnable{
     //This class will run on its own thread
     private Thread gameThread;
     private boolean gameRunning;
+    private boolean pause;
 
     //We will need these two objects to render
     private Graphics graphics;
@@ -91,6 +92,7 @@ public class RunGame implements Runnable{
         int frames = 0;
 
         while(gameRunning){
+
             long now = System.nanoTime();
             delta += (now - lastTime) / OPTIMAL_TIME;
             lastTime = now;
@@ -107,23 +109,33 @@ public class RunGame implements Runnable{
                 System.out.println("FPS: " + frames + " TICKS: " + updates);
                 frames = 0;
                 updates = 0;
-                
+
                 // NEW
                 if(isGameOver()){
-                	JOptionPane.showMessageDialog(null, "GAME OVER");
-                	gameRunning = false;
+                    pause = true;
+                    JDialog.setDefaultLookAndFeelDecorated(true);
+                    int response = JOptionPane.showConfirmDialog(null, "Restart level?\n", "GAME OVER",
+                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                    if (response == JOptionPane.NO_OPTION) {
+                        System.out.println("No button clicked");
+                    } else if (response == JOptionPane.YES_OPTION) {
+                        restartLevel();
+                        pause = false;
+                    } else if (response == JOptionPane.CLOSED_OPTION) {
+                        System.out.println("JOptionPane closed");
+                    }
                 }
-             // NEW
+                // NEW
                 if(didFinishLevel()){
-                	int dialogButton = JOptionPane.YES_NO_OPTION;
-                	int dialogResult = JOptionPane.showConfirmDialog(null, "Continue to next level?", "LEVEL COMPLETED", dialogButton);
-                	if(dialogResult == 0) {
-                	  System.out.println("Continue to next level here");
-                	} else {
-                	  System.out.println("Handle no option");
-                	} 
-                	worldHandler.resetNrOfAttackersToGoal();
-                	gameRunning = false;
+                    int dialogButton = JOptionPane.YES_NO_OPTION;
+                    int dialogResult = JOptionPane.showConfirmDialog(null, "Continue to next level?", "LEVEL COMPLETED", dialogButton);
+                    if(dialogResult == 0) {
+                        System.out.println("Continue to next level here");
+                    } else {
+                        System.out.println("Handle no option");
+                    }
+                    worldHandler.resetNrOfAttackersToGoal();
+                    gameRunning = false;
                 }
             }
         }
@@ -133,14 +145,21 @@ public class RunGame implements Runnable{
      * The purpose of this method is to update the game logic
      */
     public void update(){
-        worldHandler.update();
-        checkActionListenerList();
+        if(pause){
+            checkActionListenerList();
+            store.getBtnBuyMuscle().setEnabled(false);
+            store.getBtnBuyNormal().setEnabled(false);
+            store.getBtnBuySpecial().setEnabled(false);
+        }
+        else {
+            worldHandler.update();
+            checkActionListenerList();
+            store.setWallet(store.getWallet()+worldHandler.getBonus());
+            store.getLblMoney().setText(String.valueOf(store.getWallet()));
+            worldHandler.resetBonus();
 
-        store.setWallet(store.getWallet()+worldHandler.getBonus());
-        store.getLblMoney().setText(String.valueOf(store.getWallet()));
-        worldHandler.resetBonus();
-        
-        store.canAfford();
+            store.canAfford();
+        }
     }
 
     /**
@@ -203,7 +222,7 @@ public class RunGame implements Runnable{
     public boolean didFinishLevel(){
     	return worldHandler.getNrOfAttackersToGoal() > VICTORY;
     }
-    
+
     public void checkActionListenerList(){
 
         if(!buttonListener.getListOfActions().isEmpty()){
@@ -216,62 +235,67 @@ public class RunGame implements Runnable{
                     store.setWallet(store.getWallet()-store.getNormalAttackerPrice());
                     store.getLblMoney().setText(String.valueOf(store.getWallet()));
                     buttonListener.getListOfActions().remove(i);
-
                 }
                 else if(buttonListener.getListOfActions().get(i).getSource() == store.getBtnBuySpecial()){
-                	System.out.println("Buying Special Attacker & Subtracting Money");
+                    System.out.println("Buying Special Attacker & Subtracting Money");
                     worldHandler.createNewAttacker(AttackerType.SPECIALATTACKER);
                     store.setWallet(store.getWallet()-store.getSpecialAttackerPrice());
                     store.getLblMoney().setText(String.valueOf(store.getWallet()));
                     buttonListener.getListOfActions().remove(i);
                 }
                 else if(buttonListener.getListOfActions().get(i).getSource() == store.getBtnBuyMuscle()){
-                	System.out.println("Buying Muscle Attacker & Subtracting Money");
+                    System.out.println("Buying Muscle Attacker & Subtracting Money");
                     worldHandler.createNewAttacker(AttackerType.MUSCLEATTACKER);
                     store.setWallet(store.getWallet()-store.getMuscleAttackerPrice());
                     store.getLblMoney().setText(String.valueOf(store.getWallet()));
                     buttonListener.getListOfActions().remove(i);
                 }
-                else if(buttonListener.getListOfActions().get(i).getSource() == gui.getPause()){
-
-
+                else if(buttonListener.getListOfActions().get(i).getSource() == gui.getAbout()){
+                    JOptionPane.showMessageDialog(null, "Authors:\n\nAmanda Dahlin\n"
+                            + "Gustav Nordlander\nSamuel Bylund Felixson\nMasoud Shofahi\n\n\u00a9 2016");
+                    buttonListener.getListOfActions().remove(i);
+                }
+                else if(buttonListener.getListOfActions().get(i).getSource() == gui.getQuit()) {
+                    gameRunning = false;
+                    buttonListener.getListOfActions().remove(i);
+                    System.exit(0);
+                }
+                else if(buttonListener.getListOfActions().get(i).getSource() == gui.getPause()) {
+                    if (!pause) {
+                        System.out.println("PAUSING GAME");
+                        pause = true;
+                        store.getBtnBuyMuscle().setEnabled(false);
+                        store.getBtnBuyNormal().setEnabled(false);
+                        store.getBtnBuySpecial().setEnabled(false);
+                        gui.updateButtonText();
+                        buttonListener.getListOfActions().remove(i);
+                    }
+                    else {
+                        System.out.println("RESUMING GAME");
+                        store.getBtnBuyMuscle().setEnabled(true);
+                        store.getBtnBuyNormal().setEnabled(true);
+                        store.getBtnBuySpecial().setEnabled(true);
+                        gui.updateButtonText();
+                        pause = false;
+                        buttonListener.getListOfActions().remove(i);
+                    }
+                }
+                else if(buttonListener.getListOfActions().get(i).getSource() == gui.getRestart()) {
+                    restartLevel();
+                    buttonListener.getListOfActions().remove(i);
+                }
+                else if(buttonListener.getListOfActions().get(i).getSource() == gui.getHelp()) {
+                    JOptionPane.showMessageDialog(null, "Help:\n\n Play by adding attackers to the\n"
+                            + "field. Different attackers have different \nprices. ETC.");
+                    buttonListener.getListOfActions().remove(i);
                 }
             }
         }
+    }
 
-
-       /* else if(e.getSource() == Store.btnBuySpecial) {
-            System.out.println("Buying Special Attacker & Subtracting Money");
-        }
-        //WINDOW BUTTONS
-        else if(e.getSource() == Window.pause){
-            System.out.println("Pausar ..");
-        }
-        else if(e.getSource() == Window.start){
-            System.out.println("Start Game ..");
-
-        }
-        else if(e.getSource() == Window.restart){
-            System.out.println("Restart level ..");
-        }
-        else if(e.getSource() == Window.quit){
-            System.out.println("Quitting ..");
-
-        }
-        else if(e.getSource() == Window.about){
-            System.out.println("About ..");
-            JOptionPane.showMessageDialog(null, "Authors:\n\nAmanda Dahlin\n"
-                    + "Gustav Nordlander\nSamuel Bylund Felixson\nMasoud Shofahi\n\n\u00a9 2016");
-        }
-        else if(e.getSource() == Window.about){
-            System.out.println("Helping ..");
-            JOptionPane.showMessageDialog(null, "Help:\n\n Play by adding attackers to the\n"
-                    + "field. Different attackers have different \nprices. ETC.");
-        }
-        else if(e.getSource() == Window.changeLevel){
-            System.out.println("Changing Level ..");
-
-        }*/
+    private void restartLevel(){
+        System.out.println("RESET EVERYTHING AND RESTART LEVEL HERE");
+        store.setWallet(100); // TODO SET TO LEVEL VALUE
     }
 
 }

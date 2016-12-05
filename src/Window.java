@@ -114,4 +114,13 @@ public class Window extends JFrame{
     public JRadioButtonMenuItem getChangeLevel() {
         return changeLevel;
     }
+
+    public void updateButtonText(){
+        if(pause.getText().equals("Pause")){
+            pause.setText("Resume");
+        }
+        else {
+            pause.setText("Pause");
+        }
+    }
 }
