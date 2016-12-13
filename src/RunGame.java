@@ -158,6 +158,9 @@ public class RunGame implements Runnable{
     public void checkIfFinished(){
         // NEW
         if(didFinishLevel()){
+        	
+        	checkIfHighScore();
+        	
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(null, "Continue to next level?", "LEVEL COMPLETED", dialogButton);
             if(dialogResult == 0) {
@@ -305,5 +308,22 @@ public class RunGame implements Runnable{
         System.out.println("RESET EVERYTHING AND RESTART LEVEL HERE");
         store.setWallet(100); // TODO SET TO LEVEL VALUE
     }
+    
+    private void checkIfHighScore(){
+		// Check against database instead of store??
+		if(store.getWallet() > store.getThirdPlace()){
+		    String name = JOptionPane.showInputDialog("NEW HIGH SCORE\nEnter name:\n");
+		    System.out.printf("The user's name is '%s'.\n", name);
+		    // Get from database instead of store label?
+		    if(store.getWallet() > store.getFirstPlace()) {
+		    	store.setFirstPlace(name, store.getWallet());
+		    } else if (store.getWallet() > store.getSecondPlace()) {
+		    	store.setSecondPlace(name, store.getWallet());
+		    } else {
+		    	store.setThirdPlace(name, store.getWallet());
+		    }
+		    // SEND NAME TO DATABASE
+		}
+	}
 
 }
