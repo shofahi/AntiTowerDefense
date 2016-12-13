@@ -31,6 +31,14 @@ public class Store {
 	private final int STORE_WIDTH = 180;
 	private final int STORE_HEIGHT = 600;
 
+	private JLabel firstPlace = new JLabel();
+	private JLabel secondPlace = new JLabel();
+	private JLabel thirdPlace = new JLabel();
+	
+	private int firstHighScore = 0;
+	private int secondHighScore = 0;
+	private int thirdHighScore = 0;
+
 	public Store(ButtonListener buttonListener){
         this.buttonListener = buttonListener;
 		this.loader = new LoadImage();
@@ -194,5 +202,28 @@ public class Store {
 
 	public int getSTORE_HEIGHT() {
 		return STORE_HEIGHT;
+	}
+	
+	public void setFirstPlace(String first, int points){
+		firstHighScore = points;
+		firstPlace.setText(first + ": " + points);
+	}
+	public void setSecondPlace(String second, int points){
+		secondHighScore = points;
+		secondPlace.setText(second + points);
+	}
+	public void setThirdPlace(String third, int points){
+		this.thirdHighScore = points;
+		thirdPlace.setText(third + points);
+	}
+	
+	public int getFirstPlace(){
+		return firstHighScore;
+	}
+	public int getSecondPlace(){
+		return secondHighScore;
+	}
+	public int getThirdPlace(){
+		return thirdHighScore;
 	}
 }
