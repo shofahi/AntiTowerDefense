@@ -56,6 +56,7 @@ public class Store {
     	storePanel.add(normalAttackerPanel());
     	storePanel.add(specialAttackerPanel());
     	storePanel.add(muscleAttackerPanel());
+    	storePanel.add(highScorePanel());
         return storePanel;
     }
 
@@ -132,6 +133,27 @@ public class Store {
     	return muscleAttackerPanel;
     }
 
+    public JPanel highScorePanel(){
+    	JPanel highScorePanel = new JPanel();
+    	highScorePanel.setPreferredSize(new Dimension(175,100));
+    	highScorePanel.setBackground(Color.BLACK);
+    	JLabel highScore = new JLabel("High score:\n");
+    	firstPlace = new JLabel("1. Gretchen " + 280);
+    	secondPlace = new JLabel("2. Johannes " + 220);
+    	thirdPlace = new JLabel("3. Stephanie " + 180);
+    	highScore.setForeground(Color.white);
+    	firstPlace.setForeground(Color.white);
+    	secondPlace.setForeground(Color.white);
+    	thirdPlace.setForeground(Color.white);
+    	
+    	highScorePanel.add(highScore);
+    	highScorePanel.add(firstPlace);
+    	highScorePanel.add(secondPlace);
+    	highScorePanel.add(thirdPlace);
+    	
+    	return highScorePanel;
+    }
+    
     public void canAfford(){
         if(wallet < getNormalAttackerPrice()) {
             btnBuyNormal.setEnabled(false);
