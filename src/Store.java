@@ -33,6 +33,14 @@ public class Store {
 	private final int STORE_WIDTH = 180;
 	private final int STORE_HEIGHT = 600;
 
+	private JLabel firstPlace = new JLabel();
+	private JLabel secondPlace = new JLabel();
+	private JLabel thirdPlace = new JLabel();
+	
+	private int firstHighScore = 0;
+	private int secondHighScore = 0;
+	private int thirdHighScore = 0;
+
 	public Store(ButtonListener buttonListener){
         this.buttonListener = buttonListener;
 		this.loader = new LoadImage();
@@ -51,7 +59,9 @@ public class Store {
     	storePanel.add(specialAttackerPanel());
     	storePanel.add(teleportPanel());
     	storePanel.add(muscleAttackerPanel());
-    	
+	
+    	storePanel.add(highScorePanel());
+
         return storePanel;
     }
 
@@ -151,6 +161,27 @@ public class Store {
       	return telepanel;
     }
 
+    public JPanel highScorePanel(){
+    	JPanel highScorePanel = new JPanel();
+    	highScorePanel.setPreferredSize(new Dimension(175,100));
+    	highScorePanel.setBackground(Color.BLACK);
+    	JLabel highScore = new JLabel("High score:\n");
+    	firstPlace = new JLabel("1. Gretchen " + 280);
+    	secondPlace = new JLabel("2. Johannes " + 220);
+    	thirdPlace = new JLabel("3. Stephanie " + 180);
+    	highScore.setForeground(Color.white);
+    	firstPlace.setForeground(Color.white);
+    	secondPlace.setForeground(Color.white);
+    	thirdPlace.setForeground(Color.white);
+    	
+    	highScorePanel.add(highScore);
+    	highScorePanel.add(firstPlace);
+    	highScorePanel.add(secondPlace);
+    	highScorePanel.add(thirdPlace);
+    	
+    	return highScorePanel;
+    }
+    
     public void canAfford(){
         if(wallet < getNormalAttackerPrice()) {
             btnBuyNormal.setEnabled(false);
@@ -227,5 +258,28 @@ public class Store {
 
 	public int getSTORE_HEIGHT() {
 		return STORE_HEIGHT;
+	}
+	
+	public void setFirstPlace(String first, int points){
+		firstHighScore = points;
+		firstPlace.setText(first + ": " + points);
+	}
+	public void setSecondPlace(String second, int points){
+		secondHighScore = points;
+		secondPlace.setText(second + points);
+	}
+	public void setThirdPlace(String third, int points){
+		this.thirdHighScore = points;
+		thirdPlace.setText(third + points);
+	}
+	
+	public int getFirstPlace(){
+		return firstHighScore;
+	}
+	public int getSecondPlace(){
+		return secondHighScore;
+	}
+	public int getThirdPlace(){
+		return thirdHighScore;
 	}
 }
