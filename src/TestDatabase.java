@@ -54,5 +54,7 @@ public class TestDatabase {
         myDB.setHighScore("anka", 2, 355);
         myDB.setHighScore("tjalle", 2, 1337);
         myDB.printHighScore(myDB.getAllHighscores());
+        System.out.println("BELOW IS TOP THREE!!!");
+        myDB.printHighScore(myDB.getThreeHighscores());
     }
 }

@@ -1,9 +1,7 @@
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
-import static java.awt.BorderLayout.CENTER;
+import java.sql.SQLException;
 
 
 public class RunGame implements Runnable{
@@ -17,6 +15,7 @@ public class RunGame implements Runnable{
     private final String TITLE;
     private JPanel gamePanel;
     private Store store;
+    private Database database;
     Window gui;
 
     //This class will run on its own thread
@@ -55,6 +54,12 @@ public class RunGame implements Runnable{
         worldHandler = new WorldHandler(generateLvl);
         
         store = new Store(buttonListener);
+
+        try {
+            database = new Database();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

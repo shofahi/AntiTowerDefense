@@ -105,7 +105,6 @@ public class Database {
 
     public synchronized ArrayList<DatabaseModel> getAllHighscores(){
         ArrayList<DatabaseModel> highscoreList = new ArrayList<DatabaseModel>();
-
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(SQL_GETALLSCORES);
@@ -116,6 +115,31 @@ public class Database {
                 tmpModel.setLevel(resultSet.getInt("level"));
                 tmpModel.setScore(resultSet.getInt("score"));
                 highscoreList.add(tmpModel);
+            }
+            statement.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return highscoreList;
+
+    }
+
+    public synchronized ArrayList<DatabaseModel> getThreeHighscores(){
+        ArrayList<DatabaseModel> highscoreList = new ArrayList<DatabaseModel>();
+        int i = 0;
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(SQL_GETALLSCORES);
+            while(resultSet.next() && i < 3){
+                DatabaseModel tmpModel = new DatabaseModel();
+                tmpModel.setId(resultSet.getInt("id"));
+                tmpModel.setName(resultSet.getString("name"));
+                tmpModel.setLevel(resultSet.getInt("level"));
+                tmpModel.setScore(resultSet.getInt("score"));
+                highscoreList.add(tmpModel);
+                i++;
             }
             statement.close();
             resultSet.close();
