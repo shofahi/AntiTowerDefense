@@ -21,6 +21,8 @@ public class Store {
 	private JButton btnBuyNormal;
 	private JButton btnBuySpecial; 
 	private JButton btnBuyMuscle; 
+	private JButton setTeleporterStart;
+	private JButton setTeleporterEnd;
 	private int normalAttackerPrice = 10;
 	private int specialAttackerPrice = 50;
 	private int muscleAttackerPrice = 75;
@@ -47,7 +49,9 @@ public class Store {
     	storePanel.add(headerPanel());
     	storePanel.add(normalAttackerPanel());
     	storePanel.add(specialAttackerPanel());
+    	storePanel.add(teleportPanel());
     	storePanel.add(muscleAttackerPanel());
+    	
         return storePanel;
     }
 
@@ -123,6 +127,29 @@ public class Store {
 
     	return muscleAttackerPanel;
     }
+    
+    public JPanel teleportPanel(){
+      	JPanel telepanel = new JPanel();
+      	telepanel.setPreferredSize(new Dimension(175,100));
+      	telepanel.setBackground(Color.BLACK);
+      	JLabel normalAttacker = new JLabel("place the teleporter");
+      	normalAttacker.setForeground(Color.white);
+      	telepanel.add(normalAttacker, BorderLayout.NORTH);
+          
+      	setTeleporterStart = new JButton("start");
+      	setTeleporterStart.addActionListener(buttonListener);
+          telepanel.add(setTeleporterStart,BorderLayout.WEST);
+        setTeleporterStart.setEnabled(false);
+      	
+      	
+      	setTeleporterEnd = new JButton("end");
+      	setTeleporterEnd.addActionListener(buttonListener);
+          telepanel.add(setTeleporterEnd,BorderLayout.EAST);
+        setTeleporterEnd.setEnabled(false);
+
+
+      	return telepanel;
+    }
 
     public void canAfford(){
         if(wallet < getNormalAttackerPrice()) {
@@ -152,6 +179,12 @@ public class Store {
     }
     public JButton getBtnBuyMuscle() {
         return btnBuyMuscle;
+    }
+    public JButton getBtnSetTeleporterStart() {
+        return setTeleporterStart;
+    }
+    public JButton getBtnSetTeleporterEnd() {
+        return setTeleporterEnd;
     }
     
     public void setNormalAttackerPrice(int newPrice){

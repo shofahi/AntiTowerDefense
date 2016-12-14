@@ -38,7 +38,9 @@ public class RunGame implements Runnable{
 
     GenerateLevel generateLvl = new GenerateLevel(20);
 
-
+    public static boolean hasTeleporter = false;
+    private String teleporterDirection;
+    
     public RunGame(String title, int width,int height) {
 
         TITLE = title;
@@ -107,7 +109,7 @@ public class RunGame implements Runnable{
 
             if(System.currentTimeMillis() - timer > 1000){
                 timer += 1000;
-                System.out.println("FPS: " + frames + " TICKS: " + updates);
+//                System.out.println("FPS: " + frames + " TICKS: " + updates);
                 frames = 0;
                 updates = 0;
             }
@@ -249,6 +251,10 @@ public class RunGame implements Runnable{
                     worldHandler.createNewAttacker(AttackerType.SPECIALATTACKER);
                     store.setWallet(store.getWallet()-store.getSpecialAttackerPrice());
                     store.getLblMoney().setText(String.valueOf(store.getWallet()));
+                    
+                    store.getBtnBuySpecial().setEnabled(false);
+                    store.getBtnSetTeleporterStart().setEnabled(true);
+                	store.getBtnSetTeleporterEnd().setEnabled(false);
                     buttonListener.getListOfActions().remove(i);
                 }
                 else if(buttonListener.getListOfActions().get(i).getSource() == store.getBtnBuyMuscle()){
@@ -297,6 +303,31 @@ public class RunGame implements Runnable{
                             + "field. Different attackers have different \nprices. ETC.");
                     buttonListener.getListOfActions().remove(i);
                 }
+                else if(buttonListener.getListOfActions().get(i).getSource() == store.getBtnSetTeleporterStart()){
+//                	Position pos = generateLvl.getAttackersList().get(i).getPos();
+                	Position pos = new Position(generateLvl.getAttackersList().get(generateLvl.getAttackersList().indexOf(worldHandler.getSpecialID())).getPos().getX(),generateLvl.getAttackersList().get(generateLvl.getAttackersList().indexOf(worldHandler.getSpecialID())).getPos().getY());
+                	generateLvl.setTeleporterStartPosition(pos);
+                	
+                	System.out.println(pos.getX()+", "+pos.getY());
+                	
+                	
+                	store.getBtnSetTeleporterStart().setEnabled(false);
+                	store.getBtnSetTeleporterEnd().setEnabled(true);
+                	buttonListener.getListOfActions().remove(i);
+                }
+                else if(buttonListener.getListOfActions().get(i).getSource() == store.getBtnSetTeleporterEnd()){
+                	Position pos = new Position(generateLvl.getAttackersList().get(generateLvl.getAttackersList().indexOf(worldHandler.getSpecialID())).getPos().getX(),generateLvl.getAttackersList().get(generateLvl.getAttackersList().indexOf(worldHandler.getSpecialID())).getPos().getY());
+                	generateLvl.setTeleporterEndPosition(pos);
+                	
+                	generateLvl.setTeleporterDirection(generateLvl.getAttackersList().get(generateLvl.getAttackersList().indexOf(worldHandler.getSpecialID())).getTurnValue());
+                	
+                	
+                	System.out.println(pos.getX()+", "+pos.getY());
+                	hasTeleporter = true;
+                	store.getBtnSetTeleporterEnd().setEnabled(false);
+                	buttonListener.getListOfActions().remove(i);
+
+                }
             }
         }
     }
@@ -304,6 +335,10 @@ public class RunGame implements Runnable{
     private void restartLevel(){
         System.out.println("RESET EVERYTHING AND RESTART LEVEL HERE");
         store.setWallet(100); // TODO SET TO LEVEL VALUE
+    }
+    
+    public String getTeleporterDirection(){
+    	return teleporterDirection;
     }
 
 }

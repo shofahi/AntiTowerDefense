@@ -139,5 +139,13 @@ abstract class Attacker {
     private boolean isAlive() {
         return this.health > 0;
     }
+    
+    public String getTurnValue(){
+    	return turn;
+    }
+    
+    public void setTurnValue(String turn){
+    	this.turn = turn;
+    }
 
 }

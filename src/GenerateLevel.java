@@ -11,7 +11,10 @@ public class GenerateLevel implements CreateBlock {
 
     private Position startPosition;
     private Rectangle goalPosition;
-
+    private Rectangle teleporterStartPosition;
+    private Position teleporterEndPosition;
+    private String teleporterDirection;
+    
     private int blockSize;
 
     private XmlReader xmlReader = new XmlReader(this);
@@ -34,12 +37,14 @@ public class GenerateLevel implements CreateBlock {
         xmlReader.generateXML();
         xmlReader.loadLevelXML(levelSelect);
 
+        
 
         for (int i = 0; i < blocks.size(); i++){
 
             if(blocks.get(i).getBlockType().equals(BlockType.GOALPOSITION)){
                 goalPosition = new Rectangle(blocks.get(i).getPos().getX(),blocks.get(i).getPos().getY(),blockSize,blockSize);
-            }
+                teleporterStartPosition = goalPosition;
+            }         
 
             if(blocks.get(i).getBlockType().equals(BlockType.STARTPOSITION)){
                 startPosition = new Position(blocks.get(i).getPos().getX(),blocks.get(i).getPos().getY());
@@ -47,7 +52,7 @@ public class GenerateLevel implements CreateBlock {
         }
 
         if(!getZoneList().isEmpty()){
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 1; i++)
                 createDefenders();
         }
     }
@@ -130,6 +135,31 @@ public class GenerateLevel implements CreateBlock {
 
     public Rectangle getGoalPosition() {
         return goalPosition;
+    }
+    
+    public Rectangle getTeleporterStartPosition(){
+    	return teleporterStartPosition;
+    }
+    
+    public Position getTeleporterEndPosition(){
+    	return teleporterEndPosition;
+    }
+    
+    public void setTeleporterEndPosition(Position pos){
+    	System.out.println("NEW ENDPOSITIO");
+    	teleporterEndPosition = pos;
+    }
+    
+    public void setTeleporterStartPosition(Position pos){
+    	teleporterStartPosition = new Rectangle(pos.getX(),pos.getY(),blockSize,blockSize);
+    }
+    
+    public void setTeleporterDirection(String value){
+    	teleporterDirection = value;
+    }
+    
+    public String getTeleporterDirection(){
+    	return teleporterDirection;
     }
 
     public LinkedList<Attacker> getAttackersList() {

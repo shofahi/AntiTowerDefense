@@ -13,8 +13,8 @@
     TURNSOUTH,
     TURNNORTH,
 
-   DEFENDER,
+    DEFENDER,
 
 
-   INVALID;
+    INVALID;
 }
