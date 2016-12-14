@@ -133,8 +133,9 @@ public class RunGame implements Runnable{
             store.getLblMoney().setText(String.valueOf(store.getWallet()));
             worldHandler.resetBonus();
 
-            store.canAfford();
-            checkIfFinished();
+            if(!checkIfFinished()){
+            	store.canAfford();
+            }
             checkIfGameOver();
         }
     }
@@ -157,22 +158,27 @@ public class RunGame implements Runnable{
         }
     }
 
-    public void checkIfFinished(){
+    public boolean checkIfFinished(){
         // NEW
         if(didFinishLevel()){
         	
-        	checkIfHighScore();
-        	
-            int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog(null, "Continue to next level?", "LEVEL COMPLETED", dialogButton);
-            if(dialogResult == 0) {
-                System.out.println("Continue to next level here");
-            } else {
-                System.out.println("Handle no option");
-            }
-            worldHandler.resetNrOfAttackersToGoal();
-            gameRunning = false;
+        	disableStoreButtons();
+        	if(generateLvl.getAttackersList().isEmpty()) {
+        		checkIfHighScore();
+        		
+        		int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(null, "Continue to next level?", "LEVEL COMPLETED", dialogButton);
+                if(dialogResult == 0) {
+                    System.out.println("Continue to next level here");
+                    // TODO NEXT LEVEL
+                } else {
+                    restartLevel();
+                }
+                worldHandler.resetNrOfAttackersToGoal();
+        	}
+        	return true;
         }
+        return false;
     }
 
     /**
@@ -337,7 +343,9 @@ public class RunGame implements Runnable{
 
     private void restartLevel(){
         System.out.println("RESET EVERYTHING AND RESTART LEVEL HERE");
-        store.setWallet(100); // TODO SET TO LEVEL VALUE
+        enableStoreButtons();
+        store.setWallet(500); 
+        // TODO SET TO LEVEL VALUE
     }
     
     public String getTeleporterDirection(){
@@ -360,4 +368,15 @@ public class RunGame implements Runnable{
 		    // SEND NAME TO DATABASE
 		}
 	}
+    
+    private void disableStoreButtons(){
+    	store.getBtnBuyMuscle().setEnabled(false);
+    	store.getBtnBuyNormal().setEnabled(false);
+    	store.getBtnBuySpecial().setEnabled(false);
+    }
+    private void enableStoreButtons(){
+    	store.getBtnBuyMuscle().setEnabled(true);
+    	store.getBtnBuyNormal().setEnabled(true);
+    	store.getBtnBuySpecial().setEnabled(true);
+    }
 }

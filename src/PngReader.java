@@ -17,7 +17,7 @@ public class PngReader {
 
     public void loadAllImages(){
 
-        listOfLevels = new LinkedList<>();
+        listOfLevels = new LinkedList<BufferedImage>();
 
         File directory = new File("Levels");
 
@@ -36,7 +36,7 @@ public class PngReader {
 
 
     public void loadImageLevel(){/*ska vi döpa om detta till generateLevel?*/
-        HashMap<DefenderType, Integer> tmp = new HashMap<>();
+        HashMap<DefenderType, Integer> tmp = new HashMap<DefenderType, Integer>();
         tmp.put(DefenderType.NORMAL, 3);
         tmp.put(DefenderType.NUCLEAR,1);
         XmlLevelWriter xmlWriter = new XmlLevelWriter("Dfdf");

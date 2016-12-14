@@ -9,7 +9,7 @@ public class NormalDefender extends Defender {
     private BufferedImage towerImg;
     private LoadImage loadImage = new LoadImage();
 
-    private Queue <Attacker> enemyList = new LinkedList<>();
+    private Queue <Attacker> enemyList = new LinkedList<Attacker>();
 
 
     public NormalDefender(Position pos, LinkedList<Attacker> attackersList) {

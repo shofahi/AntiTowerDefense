@@ -25,10 +25,10 @@ public class GenerateLevel implements CreateBlock {
     }
 
     private void init(){
-        blocks = new LinkedList<>();
-        zoneList = new LinkedList<>();
-        attackersList = new LinkedList<>();
-        defendersList = new LinkedList<>();
+        blocks = new LinkedList<Block>();
+        zoneList = new LinkedList<Block>();
+        attackersList = new LinkedList<Attacker>();
+        defendersList = new LinkedList<Defender>();
     }
     public void loadLevel(int levelSelect){
 

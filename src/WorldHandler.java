@@ -63,7 +63,7 @@ public class WorldHandler{
             }
             else if(generateLvl.getAttackersList().get(i).getBound().intersects(generateLvl.getGoalPosition())){
             	// Add money to wallet
-            	bonus += generateLvl.getAttackersList().get(i).getHealth() * 5;
+            	bonus += generateLvl.getAttackersList().get(i).getHealth() *2;
             	nrOfAttackerToGoal++;
                 System.out.println("Adding money to wallet here");
                 generateLvl.getAttackersList().remove(i);

@@ -9,7 +9,7 @@ public class ButtonListener implements ActionListener{
     private LinkedList<ActionEvent> listOfActions;
 
     public ButtonListener(){
-        listOfActions = new LinkedList<>();
+        listOfActions = new LinkedList<ActionEvent>();
     }
 
     @Override

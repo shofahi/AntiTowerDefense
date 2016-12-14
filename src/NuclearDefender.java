@@ -9,7 +9,7 @@ public class NuclearDefender extends Defender {
     private BufferedImage towerImg;
     private LoadImage loadImage = new LoadImage();
     
-    private Queue <Attacker> enemyList = new LinkedList<>();
+    private Queue <Attacker> enemyList = new LinkedList<Attacker>();
 
     public NuclearDefender(Position pos, LinkedList<Attacker> attackersList) {
         super(pos, DAMAGE, RANGE, FIRE_RATE,attackersList);
