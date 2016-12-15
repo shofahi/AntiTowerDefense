@@ -166,9 +166,9 @@ public class Store {
     	highScorePanel.setPreferredSize(new Dimension(175,100));
     	highScorePanel.setBackground(Color.BLACK);
     	JLabel highScore = new JLabel("High score:\n");
-    	firstPlace = new JLabel("1. Gretchen " + 280);
-    	secondPlace = new JLabel("2. Johannes " + 220);
-    	thirdPlace = new JLabel("3. Stephanie " + 180);
+    	firstPlace = new JLabel();
+    	secondPlace = new JLabel();
+    	thirdPlace = new JLabel();
     	highScore.setForeground(Color.white);
     	firstPlace.setForeground(Color.white);
     	secondPlace.setForeground(Color.white);
@@ -260,17 +260,18 @@ public class Store {
 		return STORE_HEIGHT;
 	}
 	
-	public void setFirstPlace(String first, int points){
+	public void setFirstPlace(String name, int level, int points){
 		firstHighScore = points;
-		firstPlace.setText(first + ": " + points);
+		firstPlace.setText("1. " + name + ": " + ". Level: " + level + " : " + points);
 	}
-	public void setSecondPlace(String second, int points){
+	public void setSecondPlace(String name, int level, int points){
 		secondHighScore = points;
-		secondPlace.setText(second + points);
+		secondPlace.setText("2. " + name + ": " + ". Level: " + level + " : " + points);
 	}
-	public void setThirdPlace(String third, int points){
-		this.thirdHighScore = points;
-		thirdPlace.setText(third + points);
+	
+	public void setThirdPlace(String name, int level, int points){
+		thirdHighScore = points;
+		thirdPlace.setText("3. " + name + ": " + ". Level: " + level + " : " + points);
 	}
 	
 	public int getFirstPlace(){

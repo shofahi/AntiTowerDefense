@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class RunGame implements Runnable{
@@ -17,6 +18,8 @@ public class RunGame implements Runnable{
     private Store store;
     private Database database;
     Window gui;
+    
+    private int currentLevel = 1;
 
     //This class will run on its own thread
     private Thread gameThread;
@@ -52,14 +55,25 @@ public class RunGame implements Runnable{
 
         //20 is the size of a block, this is just temporary
         worldHandler = new WorldHandler(generateLvl);
-        
-        store = new Store(buttonListener);
 
-        try {
-            database = new Database();
-        } catch (SQLException | ClassNotFoundException e) {
+        //try {
+            try {
+				database = new Database();
+				database.setHighScore(" ", 0, 0);
+				database.setHighScore(" ", 0, 0);
+				database.setHighScore(" ", 0, 0);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+       /* } catch {(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
+            store = new Store(buttonListener);
+            this.updateHighScorePanel();
     }
 
     /**
@@ -114,7 +128,7 @@ public class RunGame implements Runnable{
 
             if(System.currentTimeMillis() - timer > 1000){
                 timer += 1000;
-//                System.out.println("FPS: " + frames + " TICKS: " + updates);
+                // System.out.println("FPS: " + frames + " TICKS: " + updates);
                 frames = 0;
                 updates = 0;
             }
@@ -148,6 +162,7 @@ public class RunGame implements Runnable{
     public void checkIfGameOver(){
         // NEW
         if(isGameOver()){
+        	checkIfHighScore();
             pause = true;
             JDialog.setDefaultLookAndFeelDecorated(true);
             int response = JOptionPane.showConfirmDialog(null, "Restart level?\n", "GAME OVER",
@@ -169,7 +184,6 @@ public class RunGame implements Runnable{
         	
         	disableStoreButtons();
         	if(generateLvl.getAttackersList().isEmpty()) {
-        		checkIfHighScore();
         		
         		int dialogButton = JOptionPane.YES_NO_OPTION;
                 int dialogResult = JOptionPane.showConfirmDialog(null, "Continue to next level?", "LEVEL COMPLETED", dialogButton);
@@ -349,7 +363,7 @@ public class RunGame implements Runnable{
     private void restartLevel(){
         System.out.println("RESET EVERYTHING AND RESTART LEVEL HERE");
         enableStoreButtons();
-        store.setWallet(500); 
+        store.setWallet(100); 
         // TODO SET TO LEVEL VALUE
     }
     
@@ -358,21 +372,29 @@ public class RunGame implements Runnable{
     }
 
     private void checkIfHighScore(){
-		// Check against database instead of store??
-		if(store.getWallet() > store.getThirdPlace()){
-		    String name = JOptionPane.showInputDialog("NEW HIGH SCORE\nEnter name:\n");
+    	ArrayList<DatabaseModel> highScores = database.getThreeHighscores();
+    	String name = "- NO NAME -";
+    	
+    	if(currentLevel > highScores.get(2).getLevel() || 
+    			(currentLevel == highScores.get(2).getLevel() && 
+    			store.getWallet() >= highScores.get(2).getScore())) {
+    		name = JOptionPane.showInputDialog("NEW HIGH SCORE\nEnter name:\n");
 		    System.out.printf("The user's name is '%s'.\n", name);
-		    // Get from database instead of store label?
-		    if(store.getWallet() > store.getFirstPlace()) {
-		    	store.setFirstPlace(name, store.getWallet());
-		    } else if (store.getWallet() > store.getSecondPlace()) {
-		    	store.setSecondPlace(name, store.getWallet());
-		    } else {
-		    	store.setThirdPlace(name, store.getWallet());
-		    }
-		    // SEND NAME TO DATABASE
-		}
+    		database.setHighScore(name, currentLevel, store.getWallet());
+    		updateHighScorePanel();
+    	}
 	}
+    
+    private void updateHighScorePanel(){
+    	ArrayList<DatabaseModel> highScores = database.getThreeHighscores();
+    	DatabaseModel first = highScores.get(0);
+    	DatabaseModel second = highScores.get(1);
+    	DatabaseModel third = highScores.get(2);
+    	
+    	store.setFirstPlace(first.getName(), first.getLevel(), first.getScore());
+    	store.setSecondPlace(second.getName(), second.getLevel(), second.getScore());
+    	store.setThirdPlace(third.getName(), third.getLevel(), third.getScore());
+    }
     
     private void disableStoreButtons(){
     	store.getBtnBuyMuscle().setEnabled(false);

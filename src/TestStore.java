@@ -95,19 +95,19 @@ public class TestStore {
 
 	@Test
 	public void testSetAndGetFirstPlace() {
-		store.setFirstPlace("Lotta", 243);
+		store.setFirstPlace("Lotta",1, 243);
 		assertEquals(store.getFirstPlace(), 243);
 	}
 
 	@Test
 	public void testSetAndGetSecondPlace() {
-		store.setSecondPlace("Johannes", 202);
+		store.setSecondPlace("Johannes",1, 202);
 		assertEquals(store.getSecondPlace(), 202);
 	}
 
 	@Test
 	public void testSetAndGetThirdPlace() {
-		store.setThirdPlace("Petronella", 79);
+		store.setThirdPlace("Petronella",1, 79);
 		assertEquals(store.getThirdPlace(), 79);
 	}
 }
