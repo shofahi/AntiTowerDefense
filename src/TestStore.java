@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 import static org.junit.Assert.*;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -10,6 +6,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Class testing Store
+ * 
+ * @author Amanda
+ * @version 6 December 2016
+ */
 public class TestStore {
 
 	private Store store;

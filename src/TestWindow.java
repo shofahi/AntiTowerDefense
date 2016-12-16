@@ -1,17 +1,17 @@
 import static org.junit.Assert.*;
-import java.awt.Color;
-import java.awt.Dimension;
 
-import javax.swing.JFrame;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Class testing Window
+ * 
+ * @author Amanda
+ * @version 4 December 2016
+ */
 public class TestWindow {
 
 	private Window window;
