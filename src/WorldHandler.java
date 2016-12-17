@@ -1,122 +1,112 @@
 
 import java.awt.*;
 
-public class WorldHandler{
+public class WorldHandler {
 
-    private int bonus;
-    private int nrOfAttackerToGoal;
+	private int bonus;
+	private int nrOfAttackerToGoal;
 
-    private GenerateLevel generateLvl;
+	private GenerateLevel generateLvl;
 
-    private Attacker specialID = null;
-    
-    public WorldHandler(GenerateLevel generateLvl){
+	private Attacker specialID = null;
 
-        this.generateLvl = generateLvl;
-    }
+	public WorldHandler(GenerateLevel generateLvl) {
+		this.generateLvl = generateLvl;
+	}
 
-    public void render(Graphics g){
+	public void render(Graphics g) {
+		// for (Block block : blocks)
+		for (int i = 0; i < generateLvl.getBlocks().size(); i++) {
+			generateLvl.getBlocks().get(i).render(g);
+		}
 
-        //for (Block block : blocks)
+		for (int i = 0; i < generateLvl.getDefendersList().size(); i++) {
+			generateLvl.getDefendersList().get(i).render(g);
+		}
 
-        for (int i = 0; i < generateLvl.getBlocks().size();i++){
-            generateLvl.getBlocks().get(i).render(g);
-        }
+		for (int i = 0; i < generateLvl.getAttackersList().size(); i++) {
+			generateLvl.getAttackersList().get(i).render(g);
+		}
+	}
 
-        for (int i = 0; i < generateLvl.getDefendersList().size(); i++){
-            generateLvl.getDefendersList().get(i).render(g);
-        }
+	/**
+	 * 60frames per second
+	 */
+	public void update() {
 
-        for (int i = 0; i < generateLvl.getAttackersList().size(); i++){
-            generateLvl.getAttackersList().get(i).render(g);
-        }
-    }
+		// defender
+		for (int i = 0; i < generateLvl.getDefendersList().size(); i++) {
+			generateLvl.getDefendersList().get(i).update();
+		}
 
-    /**
-     * 60frames per second
-     */
-    public void update(){
+		for (int i = 0; i < generateLvl.getAttackersList().size(); i++) {
+			generateLvl.getAttackersList().get(i).update();
 
-        //defender
-        for (int i = 0; i < generateLvl.getDefendersList().size(); i++){
-            generateLvl.getDefendersList().get(i).update();
-        }
+			if (generateLvl.getAttackersList().get(i).getHealth() < 0) {
+				if (generateLvl.getAttackersList().get(i)
+						.equals(getSpecialID())) {
+					RunGame.specialAlive = false;
+				}
+				generateLvl.getAttackersList().remove(i);
+			} else if (generateLvl.getAttackersList().get(i).getBound()
+					.intersects(generateLvl.getGoalPosition())) {
+				// Add money to wallet
+				bonus += generateLvl.getAttackersList().get(i).getHealth() * 2;
+				nrOfAttackerToGoal++;
+				System.out.println("Adding money to wallet here");
+				generateLvl.getAttackersList().remove(i);
+			} else if (RunGame.hasTeleporter && generateLvl.getAttackersList()
+					.get(i).getBound()
+					.intersects(generateLvl.getTeleporterStartPosition())) {
+				Position pos = new Position(
+						generateLvl.getTeleporterEndPosition().getX(),
+						generateLvl.getTeleporterEndPosition().getY());
+				generateLvl.getAttackersList().get(i).setPos(pos);
 
-        for (int i = 0; i < generateLvl.getAttackersList().size(); i++){
-            generateLvl.getAttackersList().get(i).update();
+				generateLvl.getAttackersList().get(i)
+						.setTurnValue(generateLvl.getTeleporterDirection());
+			}
+		}
+	}
 
-            if(generateLvl.getAttackersList().get(i).getHealth() < 0){
-                if(generateLvl.getAttackersList().get(i).equals(getSpecialID())){
-//                	TODO: Remove the option to put down end-point of teleporter, remove start point if no end could be found, enable button to buy special again
-//                	specialID = null;
-                	
-                	
-                	
-                	System.out.println("Special died");
-                	if(generateLvl.getTeleporterEndPosition() == null){
-                		Position endpos = new Position(generateLvl.getGoalPosition().x,generateLvl.getGoalPosition().y);
-                		generateLvl.setTeleporterStartPosition(endpos);
-                		System.out.println("Special died w/o end teleporter");
-                	}
-                }
-                generateLvl.getAttackersList().remove(i);                
-            }
-            else if(generateLvl.getAttackersList().get(i).getBound().intersects(generateLvl.getGoalPosition())){
-            	// Add money to wallet
-            	bonus += generateLvl.getAttackersList().get(i).getHealth() *2;
-            	nrOfAttackerToGoal++;
-                System.out.println("Adding money to wallet here");
-                generateLvl.getAttackersList().remove(i);
-            }
-            else if(RunGame.hasTeleporter && generateLvl.getAttackersList().get(i).getBound().intersects(generateLvl.getTeleporterStartPosition())){
-//            	System.out.println("End: "+generateLvl.getTeleporterEndPosition().getX()+", "+generateLvl.getTeleporterEndPosition().getY());
-            	Position pos = new Position(generateLvl.getTeleporterEndPosition().getX(),generateLvl.getTeleporterEndPosition().getY());
-            	generateLvl.getAttackersList().get(i).setPos(pos);
-//            	System.out.println(generateLvl.getAttackersList().get(generateLvl.getAttackersList().indexOf(getSpecialID())).getTurnValue());
-            	//Turn the attacker correctly
-            	generateLvl.getAttackersList().get(i).setTurnValue(generateLvl.getTeleporterDirection());
-//            	generateLvl.getAttackersList().remove(i);
-//            	generateLvl.getAttackersList().add(new NormalAttacker(generateLvl.getTeleporterEndPosition(),generateLvl.getBlocks()));
-            	
-//            	for(int j = 0; j<generateLvl.getAttackersList().size(); j++){
-//            		System.out.println(generateLvl.getAttackersList().get(j));            		
-//            	}
-//            	System.out.println("\n");
-            }
-        }
-    }
+	public void createNewAttacker(AttackerType type) {
+		if (type.equals(AttackerType.NORMALATTACKER)) {
+			generateLvl.getAttackersList().add(new NormalAttacker(
+					generateLvl.getStartPosition(), generateLvl.getBlocks()));
+		} else if (type.equals(AttackerType.SPECIALATTACKER)) {
+			generateLvl.getAttackersList().add(new SpecialAttacker(
+					generateLvl.getStartPosition(), generateLvl.getBlocks()));
+			specialID = generateLvl.getAttackersList().getLast();
+			Position endpos = new Position(generateLvl.getGoalPosition().x,
+					generateLvl.getGoalPosition().y);
+			RunGame.specialAlive = true;
 
+			generateLvl.setTeleporterStartPosition(endpos);
+			generateLvl.setTeleporterEndPosition(null);
+			RunGame.hasTeleporter = false;
+		} else if (type.equals(AttackerType.MUSCLEATTACKER)) {
+			generateLvl.getAttackersList().add(new MuscleAttacker(
+					generateLvl.getStartPosition(), generateLvl.getBlocks()));
+		}
+	}
 
-    public void createNewAttacker(AttackerType type){
-        if(type.equals(AttackerType.NORMALATTACKER)){
-            generateLvl.getAttackersList().add(new NormalAttacker(generateLvl.getStartPosition(),generateLvl.getBlocks()));
-        } else if(type.equals(AttackerType.SPECIALATTACKER)){
-            generateLvl.getAttackersList().add(new SpecialAttacker(generateLvl.getStartPosition(),generateLvl.getBlocks()));
-            specialID = generateLvl.getAttackersList().getLast();
-            Position endpos = new Position(generateLvl.getGoalPosition().x,generateLvl.getGoalPosition().y);
-            
-            generateLvl.setTeleporterStartPosition(endpos);
-            generateLvl.setTeleporterEndPosition(null);
-            RunGame.hasTeleporter = false;
-        }  else if(type.equals(AttackerType.MUSCLEATTACKER)){
-            generateLvl.getAttackersList().add(new MuscleAttacker(generateLvl.getStartPosition(),generateLvl.getBlocks()));
-        }
-    }
+	public int getBonus() {
+		return bonus;
+	}
 
-    public int getBonus(){
-    	return bonus;
-    }
-    public void resetBonus(){
-    	bonus = 0;
-    }
+	public void resetBonus() {
+		bonus = 0;
+	}
 
-    public int getNrOfAttackersToGoal(){
-    	return nrOfAttackerToGoal;
-    }
-    public void resetNrOfAttackersToGoal(){
-    	this.nrOfAttackerToGoal = 0;
-    }
-    public Attacker getSpecialID(){
-    	return specialID;
-    }
+	public int getNrOfAttackersToGoal() {
+		return nrOfAttackerToGoal;
+	}
+
+	public void resetNrOfAttackersToGoal() {
+		this.nrOfAttackerToGoal = 0;
+	}
+
+	public Attacker getSpecialID() {
+		return specialID;
+	}
 }

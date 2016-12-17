@@ -21,7 +21,7 @@ public class Store {
 
 	public BufferedImage attacker;
 	private JButton btnBuyNormal;
-	private JButton btnBuySpecial;
+	public static JButton btnBuySpecial;
 	private JButton btnBuyMuscle;
 	private JButton setTeleporterStart;
 	private JButton setTeleporterEnd;
@@ -212,7 +212,7 @@ public class Store {
 	/**
 	 * Checks if player can afford different types of attackers
 	 */
-	public void canAfford() {
+	public void canAfford(boolean specialAlive) {
 		if (wallet < getNormalAttackerPrice()) {
 			btnBuyNormal.setEnabled(false);
 		} else {
@@ -225,10 +225,14 @@ public class Store {
 			btnBuyMuscle.setEnabled(true);
 		}
 
-		if (wallet < getSpecialAttackerPrice()) {
+		if(specialAlive){
 			btnBuySpecial.setEnabled(false);
-		} else {
+		}
+		
+		if (wallet >= getSpecialAttackerPrice() && !specialAlive) {
 			btnBuySpecial.setEnabled(true);
+		} else {
+			btnBuySpecial.setEnabled(false);
 		}
 	}
 
