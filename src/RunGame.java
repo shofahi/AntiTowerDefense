@@ -364,6 +364,7 @@ public class RunGame implements Runnable{
         System.out.println("RESET EVERYTHING AND RESTART LEVEL HERE");
         enableStoreButtons();
         store.setWallet(100); 
+        hasTeleporter = false;
         // TODO SET TO LEVEL VALUE
     }
     
