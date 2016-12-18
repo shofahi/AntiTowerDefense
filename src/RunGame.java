@@ -420,15 +420,15 @@ public class RunGame implements Runnable {
 					buttonListener.getListOfActions().remove(i);
 				} else if (buttonListener.getListOfActions().get(i)
 						.getSource() == store.getBtnSetTeleporterEnd()) {
-					Position pos = new Position(
-							generateLvl.getAttackersList()
-									.get(generateLvl.getAttackersList().indexOf(
-											worldHandler.getSpecialID()))
-									.getPos().getX(),
-							generateLvl.getAttackersList()
-									.get(generateLvl.getAttackersList().indexOf(
-											worldHandler.getSpecialID()))
-									.getPos().getY());
+							
+					
+					int specialID = generateLvl.getAttackersList().indexOf(
+							worldHandler.getSpecialID());
+					Attacker sA = generateLvl.getAttackersList().get(specialID);
+					int xPos = sA.getPos().getX();
+					int yPos = sA.getPos().getY();
+					Position pos = new Position(xPos, yPos);
+					
 					generateLvl.setTeleporterEndPosition(pos);
 
 					generateLvl.setTeleporterDirection(
