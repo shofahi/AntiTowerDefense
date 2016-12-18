@@ -21,8 +21,8 @@ public class RunGame implements Runnable {
 	private int victory;
 
 	// Jpanel/GUI information
-	private final int WIDTH;
-	private final int HEIGHT;
+	private final int WIDTH = 800;
+	private final int HEIGHT = 600;
 	private final String TITLE;
 	private JPanel gamePanel;
 	private Store store;
@@ -49,7 +49,7 @@ public class RunGame implements Runnable {
 	// NEW - skickar till store och window
 	private ButtonListener buttonListener = new ButtonListener();
 
-	GenerateLevel generateLvl = new GenerateLevel(20);
+	private GenerateLevel generateLvl;
 
 	public static boolean hasTeleporter = false;
 	public static boolean specialAlive = false;
@@ -57,47 +57,50 @@ public class RunGame implements Runnable {
 
 	private MouseAdapter mouseAdapter;
 
-	public RunGame(String title, int width, int height) {
+	public RunGame(String title) {
+        TITLE = title;
+        generateLvl = new GenerateLevel(20);
 
-		TITLE = title;
-		WIDTH = width;
-		HEIGHT = height;
-
-		gamePanel = new JPanel();
-
-		gamePanel.setSize(new Dimension(WIDTH, HEIGHT));
-		gamePanel.setBackground(Color.black);
-
-		// try {
-		try {
-			database = new Database();
-			database.setHighScore(" ", 0, 0);
-			database.setHighScore(" ", 0, 0);
-			database.setHighScore(" ", 0, 0);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		/*
-		 * } catch {(SQLException | ClassNotFoundException e) {
-		 * e.printStackTrace(); }
-		 */
-		store = new Store(buttonListener);
-		this.updateHighScorePanel();
-
-		// 20 is the size of a block, this is just temporary
-		worldHandler = new WorldHandler(generateLvl);
-
-		selectionValues = new Object[generateLvl.getAmountOfLevels()];
-
-		for (int i = 0; i < selectionValues.length; i++) {
-			selectionValues[i] = i + 1;
-		}
+        initializeConstructor();
 	}
 
+	public RunGame(String title, String xmlPath){
+	    TITLE = title;
+        generateLvl = new GenerateLevel(20,xmlPath);
+
+        initializeConstructor();
+    }
+
+    public void initializeConstructor(){
+        gamePanel = new JPanel();
+
+        gamePanel.setSize(new Dimension(WIDTH, HEIGHT));
+        gamePanel.setBackground(Color.black);
+
+        try {
+            database = new Database();
+            database.setHighScore(" ", 0, 0);
+            database.setHighScore(" ", 0, 0);
+            database.setHighScore(" ", 0, 0);
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        store = new Store(buttonListener);
+        this.updateHighScorePanel();
+
+        // 20 is the size of a block, this is just temporary
+        worldHandler = new WorldHandler(generateLvl);
+
+        selectionValues = new Object[generateLvl.getAmountOfLevels()];
+
+        for (int i = 0; i < selectionValues.length; i++) {
+            selectionValues[i] = i + 1;
+        }
+    }
 
 	/**
 	 * This method starts the game loop thread, which is used for rendering and
@@ -114,7 +117,7 @@ public class RunGame implements Runnable {
 
     /**
      * Method will initialize all the objects and attributes needed inorder
-     * to a new level
+     * to start a new level
      */
 	public void init() {
 
@@ -132,7 +135,7 @@ public class RunGame implements Runnable {
 
 		mouseAdapter = new MouseAdapter(generateLvl.getBlocks());
 		gamePanel.addMouseListener(mouseAdapter);
-
+		worldHandler.resetNrOfAttackersToGoal();
 	}
 
 	/**
@@ -153,8 +156,11 @@ public class RunGame implements Runnable {
 		while (gameRunning) {
 
 			if (reset) {
-				System.out.println("check");
 				init();
+
+                if(store.getWallet() >= store.getSpecialAttackerPrice()){
+                    store.getBtnBuySpecial().setEnabled(true);
+                }
 				reset = false;
 			}
 
@@ -333,6 +339,7 @@ public class RunGame implements Runnable {
 	public boolean isGameOver() {
 		if (generateLvl.getAttackersList().isEmpty()
 				&& store.getWallet() < 10) {
+            checkIfHighScore();
 			return true;
 		} else {
 			return false;
@@ -345,7 +352,7 @@ public class RunGame implements Runnable {
      * @return true if requirements have been filled
      */
 	public boolean didFinishLevel() {
-		return worldHandler.getNrOfAttackersToGoal() > victory;
+		return worldHandler.getNrOfAttackersToGoal() >= victory;
 	}
 
 
@@ -515,7 +522,7 @@ public class RunGame implements Runnable {
     /**
      * Method will restart the current level
      */
-    private void restartLevel(){
+    protected void restartLevel(){
         System.out.println("RESET EVERYTHING AND RESTART LEVEL HERE");
         store.setWallet(generateLvl.getStartMoney()); // TODO SET TO LEVEL VALUE
         reset = true;
@@ -569,4 +576,19 @@ public class RunGame implements Runnable {
 		store.getBtnBuyNormal().setEnabled(true);
 		store.getBtnBuySpecial().setEnabled(true);
 	}
+
+    public Store getStore() {
+        return store;
+    }
+
+    public WorldHandler getWorldHandler() {
+        return worldHandler;
+    }
+
+    public GenerateLevel getGenerateLvl() {
+        return generateLvl;
+    }
+
+
+
 }

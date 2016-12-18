@@ -17,27 +17,13 @@ public class CompleteTest {
 
     public static void main(String[] args) {
 
-        RunGame game = new RunGame("Anti Tower Defense Beta",800,600);
+        RunGame game;
+        if (args.length == 0 ){
+            game = new RunGame("Anti Tower Defense Beta");
+        }else
+            game = new RunGame("Anti Tower Defense Beta",args[0]);
+
         game.startGame();
-
-
-
-    	/*String xml = "XmlFiles/levels.xml";
-    	String xsd = "XmlFiles/levelList.xsd";
-    	Boolean bool = true;
-
-
-        try {
-            XmlReader.validateXMLFile(xml, xsd);
-        } catch (SAXException e) {
-            bool = false;
-            e.printStackTrace();
-        } catch (IOException e) {
-            bool = false;
-            e.printStackTrace();
-        }
-
-        System.out.println(bool);*/
 
     }
 

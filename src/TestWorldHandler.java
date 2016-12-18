@@ -1,4 +1,13 @@
-
+/**
+ * Classname: TestWorldHandler.java
+ * Version info 1.0
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 19/12/2017
+ * Course: Applikationsutveckling i Java
+ */
 /**
  * Class testing WorldHandler
  * 
@@ -58,6 +67,19 @@ public class TestWorldHandler {
 
         assertFalse(generateLvl.getAttackersList().getLast() instanceof MuscleAttacker);
     }
+
+    /**
+     * This method will try to create a SpecialAttack
+     * @throws Exception if the newly created Attacker has no special ID
+     */
+    @Test
+    public void test3CreateNewAttacker()throws Exception{
+        generateLvl.loadLevel(1);
+        worldHandler.createNewAttacker(AttackerType.SPECIALATTACKER);
+
+        assertNotNull(worldHandler.getSpecialID());
+    }
+
 
 
 }

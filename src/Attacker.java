@@ -2,18 +2,19 @@
  * Classname: Attacker.java
  * Version info 1.0
  * Copyright notice:    Masoud Shofahi
- *                      Amanda Dahlin
- *                      Gustav Norlander
- *                      Samuel Bylund Felixon
+ * Amanda Dahlin
+ * Gustav Norlander
+ * Samuel Bylund Felixon
  * Date: 19/12/2017
  * Course: Applikationsutveckling i Java
  */
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.LinkedList;
 
-abstract class Attacker implements LandonClass{
+abstract class Attacker implements LandonClass {
 
     private int health;
     private int moveSpeed;
@@ -29,22 +30,22 @@ abstract class Attacker implements LandonClass{
     /**
      * Constructor for Attacker
      *
-     * @param pos Position to spawn Attacker
+     * @param pos           Position to spawn Attacker
      * @param directionSign List of directionSign Blocks
-     * @param health Start health
-     * @param moveSpeed Movement speed of attacker
-     * @param width Width of attacker bound
-     * @param height Height of attacker bound
+     * @param health        Start health
+     * @param moveSpeed     Movement speed of attacker
+     * @param width         Width of attacker bound
+     * @param height        Height of attacker bound
      */
-    Attacker(Position pos, LinkedList <Block> directionSign,
+    Attacker(Position pos, LinkedList<Block> directionSign,
              int health, int moveSpeed, int width, int height) {
-        this.pos = new Position(pos.getX(),pos.getY());
+        this.pos = new Position(pos.getX(), pos.getY());
         this.width = width;
         this.height = height;
         this.health = health;
         this.moveSpeed = moveSpeed;
         this.directionSign = directionSign;
-        healthBar = new Rectangle(pos.getX(),pos.getY()+10,width,height/10);
+        healthBar = new Rectangle(pos.getX(), pos.getY() + 10, width, height / 10);
     }
 
     /**
@@ -77,22 +78,20 @@ abstract class Attacker implements LandonClass{
                     && getDirSign().get(i).getBlockType()
                     == BlockType.TURNEAST) {
                 turn = "EAST";
-            }
-            else if (getBound().intersects(getDirSign().get(i).getBound())
+            } else if (getBound().intersects(getDirSign().get(i).getBound())
                     && getDirSign().get(i).getBlockType()
                     == BlockType.TURN_Y) {
-                if(getDirSign().get(i).yNorth){
+                if (getDirSign().get(i).yNorth) {
                     turn = "NORTH";
-                }else{
+                } else {
                     turn = "SOUTH";
                 }
-            }
-            else if (getBound().intersects(getDirSign().get(i).getBound())
+            } else if (getBound().intersects(getDirSign().get(i).getBound())
                     && getDirSign().get(i).getBlockType()
                     == BlockType.TURN_X) {
-                if(getDirSign().get(i).xWest){
+                if (getDirSign().get(i).xWest) {
                     turn = "WEST";
-                }else{
+                } else {
                     turn = "EAST";
                 }
             }
@@ -101,15 +100,17 @@ abstract class Attacker implements LandonClass{
 
     /**
      * Inflict damage on the Attacker.
+     *
      * @param dmg The amount of damage to inflict.
      */
     public void inflictDamage(int dmg) {
-        setHealth(getHealth()-dmg);
+        setHealth(getHealth() - dmg);
     }
 
     /**
      * abstract method for rendering the graphics of the current
      * attacker.
+     *
      * @param g The graphics of the game
      */
     abstract public void render(Graphics g);
@@ -117,6 +118,7 @@ abstract class Attacker implements LandonClass{
 
     /**
      * get current health of attacker
+     *
      * @return the health
      */
     public int getHealth() {
@@ -125,6 +127,7 @@ abstract class Attacker implements LandonClass{
 
     /**
      * Change the current health of an attacker.
+     *
      * @param newHealth the new healthpoint amount
      */
     public void setHealth(int newHealth) {
@@ -133,6 +136,7 @@ abstract class Attacker implements LandonClass{
 
     /**
      * get the width of the attacker "Block"
+     *
      * @return The width
      */
     public int getWidth() {
@@ -141,6 +145,7 @@ abstract class Attacker implements LandonClass{
 
     /**
      * get the height of the attacker "Block"
+     *
      * @return The height
      */
     public int getHeight() {
@@ -149,6 +154,7 @@ abstract class Attacker implements LandonClass{
 
     /**
      * get the current position of the attacker
+     *
      * @return The position
      */
     public Position getPos() {
@@ -157,6 +163,7 @@ abstract class Attacker implements LandonClass{
 
     /**
      * set a new position of the attacker
+     *
      * @param pos The new position
      */
     public void setPos(Position pos) {
@@ -166,6 +173,7 @@ abstract class Attacker implements LandonClass{
     /**
      * Get the direction that the attacker should turn
      * (The attacker has intersected a turn-Block)
+     *
      * @return the direction (North/West/South/East)
      */
     public LinkedList<Block> getDirSign() {
@@ -174,6 +182,7 @@ abstract class Attacker implements LandonClass{
 
     /**
      * get the current health bar of an attacker
+     *
      * @return the healthBar
      */
     public Rectangle getHealthBar() {
@@ -182,17 +191,19 @@ abstract class Attacker implements LandonClass{
 
     /**
      * get the current turn value
+     *
      * @return
      */
-    public String getTurnValue(){
+    public String getTurnValue() {
         return turn;
     }
 
     /**
      * Change turn value
+     *
      * @param turn direction to turn
      */
-    public void setTurnValue(String turn){
+    public void setTurnValue(String turn) {
         this.turn = turn;
     }
 
