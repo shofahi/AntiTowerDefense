@@ -2,8 +2,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
+/**
+ *2
+ */
 
-public class ButtonListener implements ActionListener{
+
+public class ButtonListener implements ActionListener {
 
     private LinkedList<ActionEvent> listOfActions;
 
