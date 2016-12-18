@@ -10,16 +10,15 @@
  */
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 public class MuscleAttacker extends Attacker {
-    static private final int SPEED = 1;
+    static private final int SPEED = 2;
     static private final int START_HEALTH = 250;
     static private final int ATTACKER_WIDTH = 25;
     static private final int ATTACKER_HEIGHT = 25;
-
+    private int speedTrigger = 0;
     private BufferedImage muscleAttackerImg;
     private LoadImage loadImage = new LoadImage();
 
@@ -37,16 +36,21 @@ public class MuscleAttacker extends Attacker {
     }
 
     public void update() {
-        getTurn();
+        speedTrigger++;
+        if(speedTrigger == SPEED){
+            getTurn();
 
-        if (turn.equals("WEST")) {
-            getPos().setX(getPos().getX()-SPEED);
-        } else if (turn.equals("SOUTH")) {
-            getPos().setY(getPos().getY()+SPEED);
-        } else if (turn.equals("NORTH")) {
-            getPos().setY(getPos().getY()-SPEED);
-        } else if (turn.equals("EAST")) {
-            getPos().setX(getPos().getX()+SPEED);
+            if (turn.equals("WEST")) {
+                getPos().setX(getPos().getX()-1);
+            } else if (turn.equals("SOUTH")) {
+                getPos().setY(getPos().getY()+1);
+            } else if (turn.equals("NORTH")) {
+                getPos().setY(getPos().getY()-1);
+            } else if (turn.equals("EAST")) {
+                getPos().setX(getPos().getX()+1);
+            }
+
+            speedTrigger = 0;
         }
     }
 
