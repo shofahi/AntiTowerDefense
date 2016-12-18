@@ -190,7 +190,7 @@ abstract class Attacker implements LandonClass {
     }
 
     /**
-     * get the current turn value
+     *  get the current turn value
      *
      * @return
      */
