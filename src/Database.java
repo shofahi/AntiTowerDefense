@@ -24,17 +24,18 @@ public class Database {
     private ResultSet resultSet = null;
 
     private final static String SQL_GETALLSCORES =
-            "SELECT * FROM "+ TABLE_NAME +" ORDER BY level DESC,score DESC";
+            "SELECT * FROM " + TABLE_NAME + " ORDER BY level DESC,score DESC";
 
     private final static String SQL_GETSCOREBYNAME =
-            "SELECT * FROM "+ TABLE_NAME + " WHERE name = ? "
+            "SELECT * FROM " + TABLE_NAME +  " WHERE name = ? "
                     + "ORDER BY level DESC, score DESC";
 
     private final static String SQL_ADDSCORE =
-            "INSERT INTO "+ TABLE_NAME +" (name, level, score) VALUES (?, ?, ?)";
+            "INSERT INTO " + TABLE_NAME + " (name, level, score) VALUES (?, "
+                    + "?, ?)";
 
     private final static String SQL_REMOVEALL =
-            "DELETE FROM "+ TABLE_NAME +" WHERE 1=1";
+            "DELETE FROM " + TABLE_NAME + " WHERE 1=1";
 
     /**
      * Default constructor.
@@ -110,7 +111,8 @@ public class Database {
      * @return Arraylist containing the highscores
      */
     public synchronized ArrayList<DatabaseModel> getHighScore(String name){
-        ArrayList<DatabaseModel> playerHighscores = new ArrayList<DatabaseModel>();
+        ArrayList<DatabaseModel> playerHighscores
+                = new ArrayList<DatabaseModel>();
         try {
             pStatement = connection.prepareStatement(SQL_GETSCOREBYNAME);
             pStatement.setString(1,name);
@@ -157,9 +159,7 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return highscoreList;
-
     }
 
     /**
@@ -188,18 +188,17 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return highscoreList;
-
     }
 
-    public synchronized void shutdown()
-    {
+    /**
+     * Shut down connection to database
+     */
+    public synchronized void shutdown() {
         try {
             if(pStatement != null){
                 pStatement.close();
             }
-
             if (statement != null) {
                 statement.close();
             }
@@ -208,10 +207,13 @@ public class Database {
                 connection.close();
             }
         } catch (SQLException sqlExcept) {
-
+            System.out.println(sqlExcept.getMessage());
         }
     }
 
+    /**
+     * Remove highscore entries from database
+     */
     public synchronized void removeHighscores(){
         try {
             pStatement = connection.prepareStatement(SQL_REMOVEALL);
@@ -220,6 +222,5 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

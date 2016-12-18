@@ -1,11 +1,17 @@
+/**
+ * Classname: ButtonListener.java
+ * Version info 1.0
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 19/12/2017
+ * Course: Applikationsutveckling i Java
+ */
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
-
-/**
- *2
- */
-
 
 public class ButtonListener implements ActionListener {
 
@@ -23,10 +29,7 @@ public class ButtonListener implements ActionListener {
      * Adds action event to list of actions
      */
     @Override
-    public void actionPerformed(ActionEvent e) {
-
-        listOfActions.add(e);
-    }
+    public void actionPerformed(ActionEvent e) { listOfActions.add(e); }
 
     /**
      * Returns the list of ActionsEvents
