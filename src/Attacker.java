@@ -209,4 +209,7 @@ abstract class Attacker implements LandonClass {
 
     abstract public Rectangle getBound();
 
+    public int getMoveSpeed() {
+        return moveSpeed;
+    }
 }
