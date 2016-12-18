@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
 import java.util.*;
 
 public class NormalDefender extends Defender {
-    static private final int DAMAGE = 1;
+    static private final int DAMAGE = 5;
     static private final int RANGE = 300;
     private BufferedImage towerImg;
     private LoadImage loadImage = new LoadImage();
@@ -82,7 +82,8 @@ public class NormalDefender extends Defender {
         g.drawImage(towerImg,getPos().getX(),getPos().getY(),
                 towerImg.getWidth(),towerImg.getHeight(),null );
 
-        g.setColor(Color.blue);
+        //Invisible but needed for the rectangle bound
+        g.setColor(new Color(255, 255, 255, 0));
         g.drawRect(getPos().getX() - (getRange() / 2)
                 + (towerImg.getWidth() / 2), getPos().getY()
                 - (getRange() / 2) + (towerImg.getHeight() / 2),
@@ -90,7 +91,7 @@ public class NormalDefender extends Defender {
 
         if(!enemyList.isEmpty()){
             g.setColor(Color.green);
-            g.drawLine(getPos().getX(),getPos().getY(),
+            g.drawLine(getPos().getX()+20,getPos().getY()+20,
                     enemyList.peek().getPos().getX()+10,
                     enemyList.peek().getPos().getY()+10);
         }

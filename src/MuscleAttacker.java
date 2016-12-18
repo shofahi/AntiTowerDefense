@@ -10,13 +10,12 @@
  */
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 public class MuscleAttacker extends Attacker {
     static private final int SPEED = 2;
-    static private final int START_HEALTH = 250;
+    static private final int START_HEALTH = 3500;
     static private final int ATTACKER_WIDTH = 25;
     static private final int ATTACKER_HEIGHT = 25;
     private int speedTrigger = 0;
@@ -29,7 +28,7 @@ public class MuscleAttacker extends Attacker {
      * @param directionSign List with DirectionSigns for navigating
      *                      the path
      */
-    public MuscleAttacker(Position pos, LinkedList<Block> directionSign){
+    public MuscleAttacker(Position pos, LinkedList<Block> directionSign) {
         super(pos, directionSign,
                 START_HEALTH, SPEED,
                 ATTACKER_WIDTH,ATTACKER_HEIGHT);
@@ -38,7 +37,8 @@ public class MuscleAttacker extends Attacker {
 
     public void update() {
         speedTrigger++;
-        if(speedTrigger == SPEED){
+
+        if(speedTrigger == getMoveSpeed()){
             getTurn();
 
             landOn(getPos(),turn);
@@ -85,13 +85,13 @@ public class MuscleAttacker extends Attacker {
     @Override
     public void landOn(Position pos, String turn) {
         if (turn.equals("WEST")) {
-            getPos().setX(getPos().getX()-SPEED);
+            getPos().setX(getPos().getX()-1);
         } else if (turn.equals("SOUTH")) {
-            getPos().setY(getPos().getY()+SPEED);
+            getPos().setY(getPos().getY()+1);
         } else if (turn.equals("NORTH")) {
-            getPos().setY(getPos().getY()-SPEED);
+            getPos().setY(getPos().getY()-1);
         } else if (turn.equals("EAST")) {
-            getPos().setX(getPos().getX()+SPEED);
+            getPos().setX(getPos().getX()+1);
         }
     }
 }

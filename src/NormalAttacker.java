@@ -18,7 +18,7 @@ import java.util.LinkedList;
 
 public class NormalAttacker extends Attacker {
     static private final int SPEED = 1;
-    static private final int START_HEALTH = 100;
+    static private final int START_HEALTH = 1200;
     static private final int ATTACKER_WIDTH = 20;
     static private final int ATTACKER_HEIGHT = 20;
 
@@ -34,7 +34,7 @@ public class NormalAttacker extends Attacker {
      * @param directionSign - List with DirectionSigns for navigating
      *                        the path
      */
-    public NormalAttacker(Position pos, LinkedList<Block> directionSign){
+    public NormalAttacker(Position pos, LinkedList<Block> directionSign) {
         super(pos, directionSign,
               START_HEALTH, SPEED,
               ATTACKER_WIDTH,ATTACKER_HEIGHT);
@@ -45,7 +45,7 @@ public class NormalAttacker extends Attacker {
     public void update() {
 
         speedTrigger++;
-        if(speedTrigger == SPEED){
+        if(speedTrigger == getMoveSpeed()){
             getTurn();
 
             landOn(getPos(),turn);
@@ -96,13 +96,13 @@ public class NormalAttacker extends Attacker {
     @Override
     public void landOn(Position pos, String turn) {
         if (turn.equals("WEST")) {
-            getPos().setX(getPos().getX()-SPEED);
+            getPos().setX(getPos().getX()-1);
         } else if (turn.equals("SOUTH")) {
-            getPos().setY(getPos().getY()+SPEED);
+            getPos().setY(getPos().getY()+1);
         } else if (turn.equals("NORTH")) {
-            getPos().setY(getPos().getY()-SPEED);
+            getPos().setY(getPos().getY()-1);
         } else if (turn.equals("EAST")) {
-            getPos().setX(getPos().getX()+SPEED);
+            getPos().setX(getPos().getX()+1);
         }
     }
 }

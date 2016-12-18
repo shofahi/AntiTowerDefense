@@ -16,7 +16,7 @@ import java.util.LinkedList;
 
 public class SpecialAttacker extends Attacker {
     static private final int SPEED = 1;
-    static private final int START_HEALTH = 175;
+    static private final int START_HEALTH = 700;
     static private final int ATTACKER_WIDTH = 25;
     static private final int ATTACKER_HEIGHT = 25;
     private int speedTrigger = 0;
@@ -40,7 +40,7 @@ public class SpecialAttacker extends Attacker {
     public void update() {
 
         speedTrigger++;
-        if(speedTrigger == SPEED){
+        if(speedTrigger == getMoveSpeed()){
             getTurn();
 
             landOn(getPos(),turn);
@@ -87,13 +87,13 @@ public class SpecialAttacker extends Attacker {
     @Override
     public void landOn(Position pos, String turn) {
         if (turn.equals("WEST")) {
-            getPos().setX(getPos().getX()-SPEED);
+            getPos().setX(getPos().getX()-1);
         } else if (turn.equals("SOUTH")) {
-            getPos().setY(getPos().getY()+SPEED);
+            getPos().setY(getPos().getY()+1);
         } else if (turn.equals("NORTH")) {
-            getPos().setY(getPos().getY()-SPEED);
+            getPos().setY(getPos().getY()-1);
         } else if (turn.equals("EAST")) {
-            getPos().setX(getPos().getX()+SPEED);
+            getPos().setX(getPos().getX()+1);
         }
     }
 }
