@@ -99,7 +99,7 @@ public class Window extends JFrame {
 
 		// Second menu in the MenuBar.
 		secondMenu = new JMenu("Information");
-		about = new JMenuItem();
+		about = new JMenuItem("About");
 		help = new JMenuItem("Help");
 		about.addActionListener(buttonListener);
 		help.addActionListener(buttonListener);
