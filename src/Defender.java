@@ -1,13 +1,18 @@
+/**
+ * Classname: MuscleAttacker.java
+ * Version info 1.0
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 17/12/2017
+ * Course: Applikationsutveckling i Java
+ */
 import java.awt.*;
 import java.util.LinkedList;
 
 
-/**
- * Abstract class Defender
- * This class contains the basic properties of a Defender aswell as
- * abstract methods that specific Defenders want to have different
- * properties for.
- */
+
 public abstract class Defender {
 
     private Position pos;
@@ -17,13 +22,19 @@ public abstract class Defender {
 
     private LinkedList<Attacker> attackersList;
 
-    //Creates a defender
-    public Defender(Position pos, int damage, int range, int fireRate,LinkedList<Attacker> attackersList){
+    /**
+     * Constructor for Defender
+     * @param pos Position to place Defender
+     * @param damage Damage of defender
+     * @param range Range of defender
+     * @param attackersList List that contains spawned attackers
+     */
+    public Defender(Position pos, int damage, int range,
+                    LinkedList<Attacker> attackersList){
 
         this.pos = new Position(pos.getX(),pos.getY());
     	this.damage = damage;
     	this.range = range;
-    	this.fireRate = fireRate;
         this.attackersList = attackersList;
     }
 
@@ -72,7 +83,7 @@ public abstract class Defender {
      * Get the list of Attackers currently in range for the Defender
      * @return The list of Attackers
      */
-    public LinkedList<Attacker> getAttackersList() {
+    public LinkedList<Attacker> getAttackerList() {
         return attackersList;
     }
 
@@ -100,9 +111,4 @@ public abstract class Defender {
      * @return The bound x*x
      */
     abstract public Rectangle getRangeBound();
-
-    public int getFireRate() {
-        return fireRate;
-    }
-
 }

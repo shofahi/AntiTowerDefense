@@ -1,11 +1,16 @@
+/**
+ * Classname: Attacker.java
+ * Version info 1.0
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 17/12/2017
+ * Course: Applikationsutveckling i Java
+ */
 import java.awt.*;
 import java.util.LinkedList;
 
-/**
- * Abstract class Attacker
- * This class contains the basic properties of an attacker aswell as
- * abstract methods that specific attackers want to have different properties.
- */
 abstract class Attacker {
 
     private int health;
@@ -19,8 +24,18 @@ abstract class Attacker {
 
     private LinkedList<Block> directionSign;
 
-    //Spawns an Attacker.
-    Attacker(Position pos, LinkedList <Block> directionSign, int health, int moveSpeed, int width, int height) {
+    /**
+     * Constructor for Attacker
+     *
+     * @param pos Position to spawn Attacker
+     * @param directionSign List of directionSign Blocks
+     * @param health Start health
+     * @param moveSpeed Movement speed of attacker
+     * @param width Width of attacker bound
+     * @param height Height of attacker bound
+     */
+    Attacker(Position pos, LinkedList <Block> directionSign,
+             int health, int moveSpeed, int width, int height) {
         this.pos = new Position(pos.getX(),pos.getY());
         this.width = width;
         this.height = height;
@@ -30,6 +45,68 @@ abstract class Attacker {
         healthBar = new Rectangle(pos.getX(),pos.getY()+10,width,height/10);
 
     }
+
+    /**
+     * Method that will update the attacker one "step".
+     * 1. Check if the attacker should turn
+     * 2. Take one step (change position to N/S/E/W)
+     */
+    public void update() {
+        getTurn();
+
+        if (turn.equals("WEST")) {
+            getPos().setX(getPos().getX()-1);
+        } else if (turn.equals("SOUTH")) {
+            getPos().setY(getPos().getY()+1);
+        } else if (turn.equals("NORTH")) {
+            getPos().setY(getPos().getY()-1);
+        } else if (turn.equals("EAST")) {
+            getPos().setX(getPos().getX()+1);
+        }
+    }
+
+    /**
+     * Method to check if the attackers' rectangle bound has intersected a
+     * DiretionSign. If there is a intersect, change the direction that the
+     * Attacker is facing.
+     */
+    public void getTurn() {
+        for (int i = 0; i < getDirSign().size(); i++) {
+            if (getBound().intersects(getDirSign().get(i).getBound())
+                    && getDirSign().get(i).getBlockType()
+                    == BlockType.TURNWEST) {
+                turn = "WEST";
+            } else if (getBound().intersects(getDirSign().get(i).getBound())
+                    && getDirSign().get(i).getBlockType()
+                    == BlockType.TURNSOUTH) {
+                turn = "SOUTH";
+            } else if (getBound().intersects(getDirSign().get(i).getBound())
+                    && getDirSign().get(i).getBlockType()
+                    == BlockType.TURNNORTH) {
+                turn = "NORTH";
+            } else if (getBound().intersects(getDirSign().get(i).getBound())
+                    && getDirSign().get(i).getBlockType()
+                    == BlockType.TURNEAST) {
+                turn = "EAST";
+            }
+        }
+    }
+
+    /**
+     * Inflict damage on the Attacker.
+     * @param dmg The amount of damage to inflict.
+     */
+    public void inflictDamage(int dmg) {
+        setHealth(getHealth()-dmg);
+    }
+
+    /**
+     * abstract method for rendering the graphics of the current
+     * attacker.
+     * @param g The graphics of the game
+     */
+    abstract public void render(Graphics g);
+
 
     /**
      * get current health of attacker
@@ -84,7 +161,7 @@ abstract class Attacker {
      * (The attacker has intersected a turn-Block)
      * @return the direction (North/West/South/East)
      */
-    public LinkedList<Block> getDirectionSign() {
+    public LinkedList<Block> getDirSign() {
         return directionSign;
     }
 
@@ -97,55 +174,20 @@ abstract class Attacker {
     }
 
     /**
-     * move
-     * abstract method for moving Attacker
+     * get the current turn value
+     * @return
      */
-    abstract public void getTurn();
-
-    /**
-     * abstract method that will make the attacker
-     * check necessary information of how it will
-     * take the next move.
-     */
-    abstract public void update();
-
-    /**
-     * abstract method for rendering the graphics of the current
-     * attacker.
-     * @param g The graphics of the game
-     */
-    abstract public void render(Graphics g);
-
-    /**
-     * abstract method for inflicting damage om the attacker
-     * @param dmg The amount of damage to inflict.
-     */
-    abstract public void inflictDamage(int dmg);
-
-    /**
-     * abstract method for getting the bounds of the "AttackerBlock"
-     * @return The rectangle with bounds
-     */
-    abstract public Rectangle getBound();
-
-    public int getMoveSpeed() {
-        return moveSpeed;
-    }
-
-    private void setMoveSpeed(int newSpeed) {
-        this.moveSpeed = newSpeed;
-    }
-
-    private boolean isAlive() {
-        return this.health > 0;
-    }
-    
     public String getTurnValue(){
-    	return turn;
-    }
-    
-    public void setTurnValue(String turn){
-    	this.turn = turn;
+        return turn;
     }
 
+    /**
+     * Change turn value
+     * @param turn direction to turn
+     */
+    public void setTurnValue(String turn){
+        this.turn = turn;
+    }
+
+    abstract public Rectangle getBound();
 }

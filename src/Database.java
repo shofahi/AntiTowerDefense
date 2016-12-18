@@ -1,15 +1,22 @@
+/**
+ * Classname: Database.java
+ * Version info 1.0
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 17/12/2017
+ * Course: Applikationsutveckling i Java
+ */
 import java.sql.*;
 import java.util.ArrayList;
 
-/**
- * Created by Samuel on 2016-12-12.
- */
 public class Database {
     private static final String DRIVER = "org.apache.derby.jdbc.ClientDriver";
     private static final String JDBC_URL = "jdbc:derby:antiTDDatabase";
     private static final String JDBC_CREATE = ";create=true";
     private static final String JDBC_SHUTDOWN = ";shutdown=true";
-    private static final String tableName = "antiTDHighscores";
+    private static final String TABLE_NAME = "antiTDHighscores";
 
     private Connection connection = null;
     private Statement statement = null;
@@ -17,22 +24,32 @@ public class Database {
     private ResultSet resultSet = null;
 
     private final static String SQL_GETALLSCORES =
-            "SELECT * FROM "+tableName+" ORDER BY level DESC,score DESC";
+            "SELECT * FROM "+ TABLE_NAME +" ORDER BY level DESC,score DESC";
 
     private final static String SQL_GETSCOREBYNAME =
-            "SELECT * FROM "+tableName+ " WHERE name = ?";
+            "SELECT * FROM "+ TABLE_NAME + " WHERE name = ? "
+                    + "ORDER BY level DESC, score DESC";
 
     private final static String SQL_ADDSCORE =
-            "INSERT INTO "+tableName+" (name, level, score) VALUES (?, ?, ?)";
+            "INSERT INTO "+ TABLE_NAME +" (name, level, score) VALUES (?, ?, ?)";
 
     private final static String SQL_REMOVEALL =
-            "DELETE FROM "+tableName+" WHERE 1=1";
+            "DELETE FROM "+ TABLE_NAME +" WHERE 1=1";
 
+    /**
+     * Default constructor.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public Database() throws SQLException, ClassNotFoundException {
         setUpDBConnection();
         createDBTable();
     }
 
+    /**
+     * Method to set up the connection to the database. If no database
+     * is found, the database is created.
+     */
     private synchronized void setUpDBConnection() {
         try{
             Class.forName(DRIVER).newInstance();
@@ -45,18 +62,20 @@ public class Database {
         }
     }
 
+    /**
+     * Method to create a table in the database. If a table
+     * already exists, the method just continues as if nothing is wrong
+     */
     private synchronized void createDBTable(){
         try{
-            //Class.forName(DRIVER).newInstance();
-            //connection = DriverManager.getConnection(JDBC_URL);
             statement = connection.createStatement();
-            statement.execute("CREATE TABLE "+tableName+" " +
-                        "(id INTEGER NOT NULL PRIMARY KEY " +
-                        "GENERATED ALWAYS AS IDENTITY " +
-                        "(START WITH 1, INCREMENT BY 1) , " +
-                        "name VARCHAR(50) NOT NULL, " +
-                        "level INTEGER NOT NULL, " +
-                        "score INTEGER NOT NULL)");
+            statement.execute("CREATE TABLE "+ TABLE_NAME
+                    + " (id INTEGER NOT NULL PRIMARY KEY "
+                    + "GENERATED ALWAYS AS IDENTITY "
+                    + "(START WITH 1, INCREMENT BY 1) , "
+                    + "name VARCHAR(50) NOT NULL, "
+                    + "level INTEGER NOT NULL, "
+                    + "score INTEGER NOT NULL)");
             statement.close();
         } catch (SQLException e) {
             if(DatabaseHelper.tableAlreadyExists(e)){
@@ -65,9 +84,14 @@ public class Database {
         }
     }
 
+    /**
+     * Method to add a highscore entry to the table.
+     * @param name The name
+     * @param level Level that was completed
+     * @param score Score when completing level
+     */
     public synchronized void setHighScore(String name, int level, int score){
         try{
-            //connection = DriverManager.getConnection(JDBC_URL);
             pStatement = connection.prepareStatement(SQL_ADDSCORE);
             pStatement.setString(1,name);
             pStatement.setInt(2, level);
@@ -79,19 +103,27 @@ public class Database {
         }
     }
 
-    public synchronized DatabaseModel getHighScore(String name){
-        DatabaseModel playerInfo = null;
+    /**
+     * Method to get all highscores from a single username from the
+     * database.
+     * @param name Name to match
+     * @return Arraylist containing the highscores
+     */
+    public synchronized ArrayList<DatabaseModel> getHighScore(String name){
+        ArrayList<DatabaseModel> playerHighscores = new ArrayList<DatabaseModel>();
         try {
-            //connection = DriverManager.getConnection(JDBC_URL);
             pStatement = connection.prepareStatement(SQL_GETSCOREBYNAME);
             pStatement.setString(1,name);
             resultSet = pStatement.executeQuery();
             try{
-                resultSet.next();
-                playerInfo = new DatabaseModel(resultSet.getInt(1),
-                                                resultSet.getString(2),
-                                                resultSet.getInt(3),
-                                                resultSet.getInt(4));
+                while(resultSet.next()){
+                    DatabaseModel tmpModel = new DatabaseModel();
+                    tmpModel.setId(resultSet.getInt("id"));
+                    tmpModel.setName(resultSet.getString("name"));
+                    tmpModel.setLevel(resultSet.getInt("level"));
+                    tmpModel.setScore(resultSet.getInt("score"));
+                    playerHighscores.add(tmpModel);
+                }
             }catch(SQLException e){
                     e.printStackTrace();
             }
@@ -100,9 +132,13 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return playerInfo;
+        return playerHighscores;
     }
 
+    /**
+     * Method to get all highscores stored in the whole database table
+     * @return Arraylist containing the highscores
+     */
     public synchronized ArrayList<DatabaseModel> getAllHighscores(){
         ArrayList<DatabaseModel> highscoreList = new ArrayList<DatabaseModel>();
         try {
@@ -126,6 +162,12 @@ public class Database {
 
     }
 
+    /**
+     * Get top three highscores. Sadly derby doesnt allow
+     * "LIMIT" as mySQL keyword. Therefor getting top3 is not
+     * made by the database itself.
+     * @return
+     */
     public synchronized ArrayList<DatabaseModel> getThreeHighscores(){
         ArrayList<DatabaseModel> highscoreList = new ArrayList<DatabaseModel>();
         int i = 0;
@@ -179,15 +221,5 @@ public class Database {
             e.printStackTrace();
         }
 
-    }
-
-    public synchronized void printHighScore(ArrayList<DatabaseModel> hsList){
-        System.out.println("ID:\t\tNAME:\t\tLEVEL:\t\tSCORE:");
-        for(DatabaseModel tmpModel : hsList){
-            System.out.println(tmpModel.getId()+"\t\t"+
-                                tmpModel.getName()+"\t\t"+
-                                tmpModel.getLevel()+"\t\t"+
-                                tmpModel.getScore());
-        }
     }
 }

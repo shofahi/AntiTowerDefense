@@ -28,8 +28,36 @@ public class TestDatabase {
         Assert.assertTrue(myDB.getAllHighscores().size() == 0);
         myDB.setHighScore("testName", 2, 10);
         Assert.assertTrue(myDB.getAllHighscores().size() > 0);
-        Assert.assertEquals(10, myDB.getHighScore("testName").getScore());
-        Assert.assertEquals("testName", myDB.getHighScore("testName").getName());
+        ArrayList<DatabaseModel> score = myDB.getHighScore("testName");
+        Assert.assertEquals("testName", score.get(0).getName());
+        Assert.assertEquals(2, score.get(0).getLevel());
+        Assert.assertEquals(10, score.get(0).getScore());
+    }
+
+    @Test
+    public void testAddMultipleWithSameName(){
+        myDB.setHighScore("testName", 1, 1);
+        myDB.setHighScore("testName", 2, 2);
+        myDB.setHighScore("testName", 3, 3);
+        Assert.assertTrue(myDB.getAllHighscores().size() == 3);
+        ArrayList<DatabaseModel> score = myDB.getHighScore("testName");
+        Assert.assertEquals(3, score.size());
+    }
+
+    @Test
+    public void testGetTopThree(){
+        myDB.setHighScore("testName1", 10, 10);
+        myDB.setHighScore("testName2", 10, 9);
+        myDB.setHighScore("testName3", 10, 1);
+        myDB.setHighScore("testName4", 10, 8);
+        myDB.setHighScore("testName5", 9, 2);
+        myDB.setHighScore("testName6", 8, 3);
+        ArrayList<DatabaseModel> topThree = myDB.getThreeHighscores();
+        Assert.assertEquals(3, topThree.size());
+
+        Assert.assertEquals("testName1", topThree.get(0).getName());
+        Assert.assertEquals("testName2", topThree.get(1).getName());
+        Assert.assertEquals("testName4", topThree.get(2).getName());
     }
 
     @Test
@@ -44,17 +72,12 @@ public class TestDatabase {
     }
 
     @Test
-    public void testGetDatabaseModel(){
-        myDB.setHighScore("kalle", 3, 3);
-        myDB.setHighScore("kalle", 3, 53);
-        myDB.setHighScore("kalle", 3, 22);
-        myDB.setHighScore("kalle", 3, 100);
-        myDB.setHighScore("kalle", 3, 500);
-        myDB.setHighScore("anka", 4, 355);
-        myDB.setHighScore("anka", 2, 355);
-        myDB.setHighScore("tjalle", 2, 1337);
-        myDB.printHighScore(myDB.getAllHighscores());
-        System.out.println("BELOW IS TOP THREE!!!");
-        myDB.printHighScore(myDB.getThreeHighscores());
+    public void testGetTopThreeHighscores(){
+        myDB.setHighScore("test1", 1, 5);
+        myDB.setHighScore("test2", 1, 5);
+        myDB.setHighScore("test3", 1, 5);
+        ArrayList<DatabaseModel> highscores = myDB.getThreeHighscores();
+        Assert.assertTrue(highscores.size() == 3);
     }
+
 }
