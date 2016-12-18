@@ -20,6 +20,10 @@ public class TestLevelBlocks {
 		this.levelBlocks = null;
 	}
 
+	/**
+	 * Tries to create instances of Levelblocks using the two
+	 * different constructors.
+	 */
 	@Test
 	public void testConstructors() {
 		LevelBlocks positionLevelBlocks = new LevelBlocks(new Position(1, 1),
@@ -35,6 +39,10 @@ public class TestLevelBlocks {
 				coordinatesLevelBlocks);
 	}
 
+	/**
+	 * Test to create a rectangle with specific size and
+	 * make sure getBound returns the correct measurements
+	 */
 	@Test
 	public void testGetBound() {
 		Rectangle expected = new Rectangle(1, 1, 10, 10);
