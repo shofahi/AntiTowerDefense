@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class GenerateLevel implements CreateBlock {
+public class GenerateLevel implements LandonClass {
     private LinkedList<Block> blocks;
     private LinkedList<Block> zoneList;
     private LinkedList<Attacker> attackersList;
@@ -18,7 +18,7 @@ public class GenerateLevel implements CreateBlock {
     private int amountOfLevels;
     private int blockSize;
 
-	private XmlReader xmlReader = new XmlReader(this);
+	private XmlReader xmlReader;
 
     /**
      *
@@ -26,6 +26,18 @@ public class GenerateLevel implements CreateBlock {
      */
     public GenerateLevel(int blockSize){
 
+        xmlReader = new XmlReader(this);
+        this.blockSize = blockSize;
+        xmlReader.generateXML();
+        amountOfLevels = xmlReader.nodeList.getLength();
+    }
+
+    /**
+     *
+     * @param blockSize
+     */
+    public GenerateLevel(int blockSize,String path){
+        xmlReader = new XmlReader(path,this);
         this.blockSize = blockSize;
         xmlReader.generateXML();
         amountOfLevels = xmlReader.nodeList.getLength();
@@ -47,14 +59,21 @@ public class GenerateLevel implements CreateBlock {
      */
     public void loadLevel(int levelSelect) {
 
-        /*if (xmlReader.validateXMLFile("XmlFiles/levelList.xsd")) {
+        if (!xmlReader.validateXMLFile("XmlFiles/levelList.xsd")) {
             JOptionPane.showMessageDialog(null, "The file format is not correct",
                     "Error", JOptionPane.ERROR_MESSAGE);
-        }*/
+            System.exit(1);
+        }
 
         init();
-        xmlReader.loadLevelXML(levelSelect);
 
+
+        if(!xmlReader.loadLevelXML(levelSelect)){
+            JOptionPane.showMessageDialog(null, "Could not load level: " + levelSelect,
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+
+        }
 
         for (int i = 0; i < blocks.size(); i++) {
 
@@ -153,56 +172,56 @@ public class GenerateLevel implements CreateBlock {
 
     /**
      * Method will create a level object (Block)
-     * @param xPos the x-position where the object should be created
-     * @param yPos the y-position where the object should be created
+     * @param pos the position where the object should be created
      * @param type which type of level object should be created
      */
     @Override
-    public void landOn(int xPos, int yPos, String type) {
+    public void landOn(Position pos, String type) {
+
 
 		if (type.equals(BlockType.STARTPOSITION.toString())) {
-			blocks.add(new LevelBlocks(xPos, yPos, 20, 20,
+			blocks.add(new LevelBlocks(pos, 20, 20,
 					BlockType.STARTPOSITION));
 		}
 
 		if (type.equals(BlockType.GOALPOSITION.toString())) {
-			blocks.add(new LevelBlocks(xPos, yPos, 20, 20,
+			blocks.add(new LevelBlocks(pos, 20, 20,
 					BlockType.GOALPOSITION));
 		}
 
 		if (type.equals(BlockType.TURNSOUTH.toString())) {
 			blocks.add(
-					new LevelBlocks(xPos, yPos, 20, 20, BlockType.TURNSOUTH));
+					new LevelBlocks(pos, 20, 20, BlockType.TURNSOUTH));
 		}
 
 		if (type.equals(BlockType.TURNNORTH.toString())) {
 			blocks.add(
-					new LevelBlocks(xPos, yPos, 20, 20, BlockType.TURNNORTH));
+					new LevelBlocks(pos, 20, 20, BlockType.TURNNORTH));
 		}
 
 		if (type.equals(BlockType.TURNWEST.toString())) {
-			blocks.add(new LevelBlocks(xPos, yPos, 20, 20, BlockType.TURNWEST));
+			blocks.add(new LevelBlocks(pos, 20, 20, BlockType.TURNWEST));
 		}
 
 		if (type.equals(BlockType.TURNEAST.toString())) {
-			blocks.add(new LevelBlocks(xPos, yPos, 20, 20, BlockType.TURNEAST));
+			blocks.add(new LevelBlocks(pos, 20, 20, BlockType.TURNEAST));
 		}
 
         if (type.equals(BlockType.TURN_Y.toString())) {
-            blocks.add(new LevelBlocks(xPos, yPos, 20, 20, BlockType.TURN_Y));
+            blocks.add(new LevelBlocks(pos, 20, 20, BlockType.TURN_Y));
         }
 
         if (type.equals(BlockType.TURN_X.toString())) {
-            blocks.add(new LevelBlocks(xPos, yPos, 20, 20, BlockType.TURN_X));
+            blocks.add(new LevelBlocks(pos, 20, 20, BlockType.TURN_X));
         }
 
 		if (type.equals(BlockType.PATH.toString())) {
-			blocks.add(new LevelBlocks(xPos, yPos, 20, 20, BlockType.PATH));
+			blocks.add(new LevelBlocks(pos, 20, 20, BlockType.PATH));
 		}
 
 		if (type.equals(BlockType.DEFENDER.toString())) {
 			zoneList.add(
-					new LevelBlocks(xPos, yPos, 20, 20, BlockType.DEFENDER));
+					new LevelBlocks(pos, 20, 20, BlockType.DEFENDER));
 		}
 
     }
@@ -315,4 +334,5 @@ public class GenerateLevel implements CreateBlock {
     public int getAttackersToFinish(){
         return xmlReader.lvlRules.get(LevelInfo.ATTACKERS_TO_FINISH);
     }
+
 }

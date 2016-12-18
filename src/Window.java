@@ -24,13 +24,13 @@ public class Window extends JFrame {
 	 * Constructor creating Window, calls method that 
 	 * creates menu bar, and some settings
 	 * 
-	 * @param String title
-	 * @param int width
-	 * @param int height
-	 * @param ButtonListener buttonListener
+	 * @param  title
+	 * @param  width
+	 * @param  height
+	 * @param  buttonListener
 	 */
 	public Window(String title, int width, int height,
-			ButtonListener buttonListener) {
+                  ButtonListener buttonListener) {
 
 		super(title);
 
@@ -48,6 +48,7 @@ public class Window extends JFrame {
 	 * Methods that sets the gui visible
 	 */
 	public void createGUI() {
+
 		setVisible(true);
 	}
 

@@ -1,9 +1,9 @@
 /**
  * Created by Samuel on 2016-12-01.
  */
-public interface CreateBlock {
+public interface LandonClass {
     /**
      * Draw blocks on map
      */
-    void landOn(int xPos,int yPos, String type);
+    void landOn(Position pos, String type);
 }

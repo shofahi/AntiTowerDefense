@@ -19,12 +19,11 @@ public class TestWorldHandler {
 
 	private WorldHandler worldHandler;
 	private GenerateLevel generateLvl;
-	private Position pos;
-	private LinkedList<Block> direction;
 
 	@Before
 	public void setUp() throws Exception {
-		this.generateLvl = new GenerateLevel(20);
+		this.generateLvl = new GenerateLevel(20,"XmlFiles/levels.xml");
+		generateLvl.init();
 		this.worldHandler = new WorldHandler(generateLvl);
 	}
 
@@ -34,21 +33,31 @@ public class TestWorldHandler {
 		worldHandler = null;
 	}
 
+
+	/**
+	 * This method will try to create a MuscleAttacker
+	 * @throws Exception if the newly created Attacker is not a MuscleAttacker
+	 */
 	@Test
-	public void testRender() {
-	
+	public void testCreateNewAttacker() throws  Exception{
+
+	    generateLvl.loadLevel(1);
+        worldHandler.createNewAttacker(AttackerType.MUSCLEATTACKER);
+
+        assertTrue(generateLvl.getAttackersList().getLast() instanceof MuscleAttacker);
 	}
 
+    /**
+     * This method will try to create a NormalAttacker
+     * @throws Exception if the newly created Attacker is a MuscleAttacker
+     */
 	@Test
-	public void testUpdate() {
-		
-	}
+    public void test2CreateNewAttacker()throws Exception{
+        generateLvl.loadLevel(1);
+        worldHandler.createNewAttacker(AttackerType.NORMALATTACKER);
 
-	@Test
-	public void testCreateNewAttacker() {
-		worldHandler.createNewAttacker(AttackerType.MUSCLEATTACKER);
-		//assertEquals(1, generateLvl.getAttackersList().size());
-		//System.out.println(generateLvl.getAttackersList().get(0).getClass());
-		//assertEquals(generateLvl.getAttackersList().get(0).getClass())
-	}
+        assertFalse(generateLvl.getAttackersList().getLast() instanceof MuscleAttacker);
+    }
+
+
 }

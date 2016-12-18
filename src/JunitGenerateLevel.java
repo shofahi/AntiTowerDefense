@@ -7,6 +7,7 @@
  */
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
@@ -32,7 +33,8 @@ public class JunitGenerateLevel {
      */
     @Test
     public void test1LandOn()throws Exception{
-        generateLevel.landOn(0,0,BlockType.PATH.toString());
+        Position pos = new Position(0,0);
+        generateLevel.landOn(pos,BlockType.PATH.toString());
         assertFalse(generateLevel.getBlocks().isEmpty());
     }
 
@@ -56,8 +58,8 @@ public class JunitGenerateLevel {
     @Test
     public void test2IsCreatable()throws Exception{
 
-        generateLevel.landOn(0,0,BlockType.DEFENDER.toString());
-
+        Position pos = new Position(0,0);
+        generateLevel.landOn(pos,BlockType.PATH.toString());
         NormalDefender nd = new NormalDefender(generateLevel.getZoneList().get(0).getPos(),generateLevel.getAttackersList());
         assertTrue(generateLevel.isCreatable(nd));
     }
@@ -71,7 +73,8 @@ public class JunitGenerateLevel {
     public void test3IsCreatable()throws Exception{
 
         //Zone
-        generateLevel.landOn(0,0,BlockType.DEFENDER.toString());
+        Position pos = new Position(0,0);
+        generateLevel.landOn(pos,BlockType.PATH.toString());
 
         NormalDefender nd = new NormalDefender(generateLevel.getZoneList().get(0).getPos(),generateLevel.getAttackersList());
         if(generateLevel.isCreatable(nd)){
@@ -82,11 +85,23 @@ public class JunitGenerateLevel {
         assertFalse(generateLevel.isCreatable(nd2));
     }
 
+    /**
+     * Method load a xml level that does not contain any start and goal position
+     *@throws Exception if the checkStartAndGoalPosition method returns true
+     */
     @Test
-    public void testCheckStartAndGoalPosition(){
-
+    public void testCheckStartAndGoalPosition()throws Exception{
+        GenerateLevel generateLevel = new GenerateLevel(20,"XmlFiles/missingStartGoalPos.xml");
+        generateLevel.loadLevel(1);
+        assertFalse(generateLevel.checkStartAndGoalPosition());
     }
 
-
-
+    /**
+     * This method will try to load a level in a xml file that does not exist
+     */
+    @Test
+    public void testAccessLevelDoesNotExist(){
+        GenerateLevel generateLevel = new GenerateLevel(20,"XmlFiles/missingStartGoalPos.xml");
+        generateLevel.loadLevel(2);
+    }
 }

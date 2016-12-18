@@ -10,6 +10,7 @@
  */
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
@@ -40,15 +41,7 @@ public class MuscleAttacker extends Attacker {
         if(speedTrigger == SPEED){
             getTurn();
 
-            if (turn.equals("WEST")) {
-                getPos().setX(getPos().getX()-1);
-            } else if (turn.equals("SOUTH")) {
-                getPos().setY(getPos().getY()+1);
-            } else if (turn.equals("NORTH")) {
-                getPos().setY(getPos().getY()-1);
-            } else if (turn.equals("EAST")) {
-                getPos().setX(getPos().getX()+1);
-            }
+            landOn(getPos(),turn);
 
             speedTrigger = 0;
         }
@@ -84,4 +77,21 @@ public class MuscleAttacker extends Attacker {
                                 getWidth(),getHeight());
     }
 
+    /**
+     * Method will moves attackers depending on value of turn
+     * @param pos the position of attacker
+     * @param turn the direction
+     */
+    @Override
+    public void landOn(Position pos, String turn) {
+        if (turn.equals("WEST")) {
+            getPos().setX(getPos().getX()-SPEED);
+        } else if (turn.equals("SOUTH")) {
+            getPos().setY(getPos().getY()+SPEED);
+        } else if (turn.equals("NORTH")) {
+            getPos().setY(getPos().getY()-SPEED);
+        } else if (turn.equals("EAST")) {
+            getPos().setX(getPos().getX()+SPEED);
+        }
+    }
 }

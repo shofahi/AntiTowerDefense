@@ -8,7 +8,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class WorldHandler {
+public class WorldHandler{
 
 	private int bonus;
 	private int nrOfAttackerToGoal;
@@ -20,8 +20,8 @@ public class WorldHandler {
 	/**
 	 * Sets this generateLvl to the parameter
 	 *
-	 * @param GenerateLevel
-	 *            generateLvl
+	 * @param generateLvl
+	 *
 	 */
 	public WorldHandler(GenerateLevel generateLvl) {
 		this.generateLvl = generateLvl;
@@ -29,8 +29,7 @@ public class WorldHandler {
 
 	/**
 	 * Renders different block types, defender types and and attackers
-	 *
-	 * @param Graphics g
+	 * @param  g
 	 */
 	public void render(Graphics g) {
 		// for (Block block : blocks)
@@ -174,4 +173,5 @@ public class WorldHandler {
 	public Attacker getSpecialID() {
 		return specialID;
 	}
+
 }

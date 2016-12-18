@@ -1,3 +1,14 @@
+/**
+ * Classname: RunGame.java
+ * Version info 1.0
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 19/12/2017
+ * Course: Applikationsutveckling i Java
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
@@ -88,6 +99,7 @@ public class RunGame implements Runnable {
 		}
 	}
 
+
 	/**
 	 * This method starts the game loop thread, which is used for rendering and
 	 * updating the game logic
@@ -101,18 +113,21 @@ public class RunGame implements Runnable {
 		}
 	}
 
+    /**
+     * Method will initialize all the objects and attributes needed inorder
+     * to a new level
+     */
 	public void init() {
 
-		gameImg = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-		graphics = gameImg.getGraphics();
-		generateLvl.loadLevel(currentLevel);
-		store.setWallet(generateLvl.getStartMoney());
-		if (!generateLvl.checkStartAndGoalPosition()) {
-			JOptionPane.showMessageDialog(null,
-					"The Level is missing a Start Position"
-							+ "and Goal Position",
-					"Error", JOptionPane.ERROR_MESSAGE);
-		}
+        gameImg = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
+        graphics = gameImg.getGraphics();
+        generateLvl.loadLevel(1);
+        store.setWallet(generateLvl.getStartMoney());
+        if(!generateLvl.checkStartAndGoalPosition()){
+            JOptionPane.showMessageDialog(null,"The Level is missing a Start Position" +
+                            "and Goal Position",
+                    "Error",JOptionPane.ERROR_MESSAGE);
+        }
 
 		mouseAdapter = new MouseAdapter(generateLvl.getBlocks());
 		gamePanel.addMouseListener(mouseAdapter);
@@ -190,66 +205,68 @@ public class RunGame implements Runnable {
 		}
 	}
 
-	public void checkIfGameOver() {
-		if (isGameOver()) {
-			pause = true;
-			JDialog.setDefaultLookAndFeelDecorated(true);
-			int response = JOptionPane.showConfirmDialog(null,
-					"Restart level?\n", "GAME OVER", JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE);
-			if (response == JOptionPane.NO_OPTION) {
-				System.out.println("No button clicked");
-			} else if (response == JOptionPane.YES_OPTION) {
-				restartLevel();
-				pause = false;
-			} else if (response == JOptionPane.CLOSED_OPTION) {
-				System.out.println("JOptionPane closed");
-			}
-		}
-	}
+    /**
+     * This method will ask the user if he/she want to restart the game
+     * when game over.
+     */
+    public void checkIfGameOver(){
+        if(isGameOver()){
+            pause = true;
+            JDialog.setDefaultLookAndFeelDecorated(true);
+            int response = JOptionPane.showConfirmDialog(null, "Restart level?\n", "GAME OVER",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.NO_OPTION) {
+                System.out.println("No button clicked");
+            } else if (response == JOptionPane.YES_OPTION) {
+                restartLevel();
+                pause = false;
+            } else if (response == JOptionPane.CLOSED_OPTION) {
+                System.out.println("JOptionPane closed");
+            }
+        }
+    }
 
-	public boolean checkIfFinished() {
+    /**
+     * If the user finishes a level. This method will be called to
+     * ask the user if he/she wants to restart or continue to next level
+     * @return false if user wants to quit the game
+     */
+    public boolean checkIfFinished() {
 
-		if (didFinishLevel()) {
+        if (didFinishLevel()) {
 
-			disableStoreButtons();
-			if (generateLvl.getAttackersList().isEmpty()) {
-				if (currentLevel < generateLvl.getAmountOfLevels()) {
-					int dialogButton = JOptionPane.YES_NO_OPTION;
-					int dialogResult = JOptionPane.showConfirmDialog(null,
-							"Continue to next level?", "LEVEL COMPLETED",
-							dialogButton);
-					System.out.println("CURRENT LEVEL IS: " + currentLevel
-							+ "NEXT LEVEL" + generateLvl.getAmountOfLevels());
-					System.out.println(
-							"============================== " + dialogResult);
+            disableStoreButtons();
+            if (generateLvl.getAttackersList().isEmpty()) {
+                if (currentLevel < generateLvl.getAmountOfLevels()) {
+                    int dialogButton = JOptionPane.YES_NO_OPTION;
+                    int dialogResult = JOptionPane.showConfirmDialog(null, "Continue to next level?", "LEVEL COMPLETED", dialogButton);
+                    System.out.println("CURRENT LEVEL IS: " + currentLevel + "NEXT LEVEL" + generateLvl.getAmountOfLevels());
+                    System.out.println("============================== " + dialogResult);
 
-					if ((dialogResult == 0) && (currentLevel < generateLvl
-							.getAmountOfLevels())) {
-						System.out.println("Continue to next level here");
-						currentLevel++;
-						reset = true;
-					} else {
-						System.out.println("Handle no option");
-					}
-				} else {
-					int dialogButton = JOptionPane.YES_NO_OPTION;
-					int dialogResult = JOptionPane.showConfirmDialog(null,
-							"Congratulation you finished all the levels",
-							"Would you like to restart", dialogButton);
+                    if ((dialogResult == 0) && (currentLevel < generateLvl.getAmountOfLevels())) {
+                        System.out.println("Continue to next level here");
+                        currentLevel++;
+                        reset = true;
+                    } else {
+                        System.out.println("Handle no option");
+                    }
+                } else {
+                    int dialogButton = JOptionPane.YES_NO_OPTION;
+                    int dialogResult = JOptionPane.showConfirmDialog(null, "Congratulation you finished all the levels", "Would you like to restart", dialogButton);
 
-					if (dialogResult == 0) {
-						currentLevel = 1;
-						reset = true;
-					}
-				}
-				worldHandler.resetNrOfAttackersToGoal();
-			}
+                    if (dialogResult == 0) {
+                        currentLevel = 1;
+                        reset = true;
+                    }
+                }
+                worldHandler.resetNrOfAttackersToGoal();
+            }
 
-			return true;
-		}
-		return false;
-	}
+            return true;
+        }
+        return false;
+    }
+
 
 	/**
 	 * Method will render all the objects
@@ -280,6 +297,10 @@ public class RunGame implements Runnable {
 		g.dispose();
 	}
 
+    /**
+     * Method will created the windows interface and
+     * create a new Thread for game loop
+     */
 	public void startGame() {
 
 		SwingUtilities.invokeLater(new Runnable() {
@@ -301,6 +322,12 @@ public class RunGame implements Runnable {
 		});
 	}
 
+    /**
+     * Method will check if the game is over.
+     * The game will be over when the user doesn't have enough money
+     * to buy new attackers.
+     * @return true if the game is over.
+     */
 	public boolean isGameOver() {
 		if (generateLvl.getAttackersList().isEmpty()
 				&& store.getWallet() < 10) {
@@ -310,10 +337,20 @@ public class RunGame implements Runnable {
 		}
 	}
 
+    /**
+     * Method will check if the requirements have been filled
+     * inorder to finish the level
+     * @return true if requirements have been filled
+     */
 	public boolean didFinishLevel() {
 		return worldHandler.getNrOfAttackersToGoal() > VICTORY;
 	}
 
+
+    /**
+     * Method will go through the ButtonListener list.
+     * If an event has occurred then the right method will be called
+     */
 	public void checkActionListenerList() {
 
 		if (!buttonListener.getListOfActions().isEmpty()) {
@@ -444,7 +481,6 @@ public class RunGame implements Runnable {
 					hasTeleporter = true;
 					store.getBtnSetTeleporterEnd().setEnabled(false);
 					buttonListener.getListOfActions().remove(i);
-
 				}
 			}
 		}
@@ -468,19 +504,21 @@ public class RunGame implements Runnable {
 				"Change Level", JOptionPane.QUESTION_MESSAGE, null,
 				selectionValues, String.valueOf(currentLevel));
 
-		currentLevel = Integer.parseInt(selection.toString());
-		reset = true;
+        if(selection != null){
+            currentLevel = Integer.parseInt(selection.toString());
+            reset = true;
+        }
+    }
 
-	}
-
-	/**
-	 * Method will restart the current level
-	 */
-	private void restartLevel() {
-		System.out.println("RESET EVERYTHING AND RESTART LEVEL HERE");
-		store.setWallet(generateLvl.getStartMoney()); // TODO SET TO LEVEL VALUE
-		reset = true;
-	}
+    /**
+     * Method will restart the current level
+     */
+    private void restartLevel(){
+        System.out.println("RESET EVERYTHING AND RESTART LEVEL HERE");
+        store.setWallet(generateLvl.getStartMoney()); // TODO SET TO LEVEL VALUE
+        reset = true;
+        hasTeleporter = false;
+    }
 
 	public String getTeleporterDirection() {
 		return teleporterDirection;

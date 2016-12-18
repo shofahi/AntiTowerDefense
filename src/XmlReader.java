@@ -83,11 +83,10 @@ public class XmlReader{
         try {
             ((schemaFactory.newSchema(new File(xsd))).newValidator()).validate(new StreamSource(new File (path)));
         } catch (SAXException e) {
-            System.out.println("Check");
-            e.printStackTrace();
+            System.out.println("Exception 1");
             return false;
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Exception 2");
             return false;
         }
         return true;
@@ -97,7 +96,7 @@ public class XmlReader{
      * This method will load a specific level from the XML file
      * @param levelNumber the level that should be loaded
      */
-    public void loadLevelXML(int levelNumber) {
+    public boolean loadLevelXML(int levelNumber) {
 
       for(int i = 0; i < nodeList.getLength(); i++){
           Node node = nodeList.item(i);
@@ -116,7 +115,8 @@ public class XmlReader{
                   int yPos = Integer.parseInt(ele.getElementsByTagName("yPos").item(0).getTextContent());
                   String type = ele.getAttribute("type");
 
-                  generateLvl.landOn(xPos,yPos,type);
+                  Position pos = new Position(xPos,yPos);
+                  generateLvl.landOn(pos,type);
               }
 
               //Rules
@@ -134,7 +134,13 @@ public class XmlReader{
 
               int nuclearDefender = Integer.parseInt(ele.getElementsByTagName(LevelInfo.NUCLEAR_DEFENDER.toString()).item(0).getTextContent());
               lvlRules.put(LevelInfo.NUCLEAR_DEFENDER,nuclearDefender);
+
+              return true;
           }
+
       }
+
+      return false;
     }
+
 }

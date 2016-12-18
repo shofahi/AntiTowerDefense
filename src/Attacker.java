@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.LinkedList;
 
-abstract class Attacker{
+abstract class Attacker implements LandonClass{
 
     private int health;
     private int moveSpeed;
