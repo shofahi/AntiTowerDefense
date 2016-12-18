@@ -26,13 +26,11 @@ public class LoadImage {
     public static BufferedImage loadTheImage (String path){
 
             BufferedImage img = null;
-
             URL url = LoadImage.class.getResource(path);
         try {
             img =ImageIO.read(url);
-            //TODO: handle excpetion. Bad to catch it here.
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
         return img;
