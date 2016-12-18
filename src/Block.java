@@ -17,22 +17,26 @@ import java.awt.*;
 
 abstract public class Block{
 
-    private Position pos;
+    private boolean yNorth = true;
+    private boolean xWest = true;
+
     private int width;
     private int height;
+
+    private Position pos;
+
     private BlockType blockType;
 
-    boolean yNorth = true;
-    boolean xWest = true;
+    public Block (Position pos, int width, int height,BlockType blockType) {
 
-    public Block(Position pos, int width, int height,BlockType blockType){
         this.pos = pos;
         this.width = width;
         this.height = height;
         this.blockType = blockType;
     }
 
-    public Block (int xPos, int yPos, int width,int height, BlockType blockType){
+    public Block (int xPos, int yPos, int width,int height,
+                  BlockType blockType){
 
         pos = new Position(xPos,yPos);
         this.width = width;
@@ -77,6 +81,11 @@ abstract public class Block{
      * @param g - Graphics
      */
     public abstract void render(Graphics g);
+
+    /**
+     * Abstract method for getBound
+     * @return Bound as Rectangle object
+     */
     public abstract Rectangle getBound();
 
     /**
@@ -87,24 +96,37 @@ abstract public class Block{
     public boolean getTypeByPosition(Position pos){
 
         if (this.pos == pos && blockType.equals(BlockType.DEFENDER)){
+
             return true;
         }
+
         return false;
     }
 
     /**
      * Change the direction sign to west/east
      */
-    public void setxWest() {
-
-        xWest ^= true;
-    }
+    public void setxWest() { xWest ^= true; }
 
     /**
      * Change the direction sign to south/north
      */
-    public void setyNorth() {
-        yNorth ^= true;
+    public void setyNorth() { yNorth ^= true; }
+
+    /**
+     * Getter for yNorth
+     * @return yNorth
+     */
+    public boolean isyNorth() {
+        return yNorth;
+    }
+
+    /**
+     * Getter for xWest
+     * @return xWest
+     */
+    public boolean isxWest() {
+        return xWest;
     }
 }
 

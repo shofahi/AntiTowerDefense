@@ -18,7 +18,6 @@ public abstract class Defender {
     private Position pos;
     private int damage;
     private int range;
-    private int fireRate;
 
     private LinkedList<Attacker> attackersList;
 
@@ -31,7 +30,6 @@ public abstract class Defender {
      */
     public Defender(Position pos, int damage, int range,
                     LinkedList<Attacker> attackersList){
-
         this.pos = new Position(pos.getX(),pos.getY());
     	this.damage = damage;
     	this.range = range;
@@ -94,8 +92,8 @@ public abstract class Defender {
     abstract void update();
 
     /**
-     * absract method that will declare what should be rendered to the graphics
-     * for each frame (Lazer, pulsing etc)
+     * absract method that will declare what should be rendered to the
+     * graphics for each frame (Lazer, pulsing etc)
      * @param g The graphics of the game
      */
     abstract void render(Graphics g);

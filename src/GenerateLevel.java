@@ -1,3 +1,13 @@
+/**
+ * Classname: GenerateLevel.java
+ * Version info 1.0
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 17/12/2017
+ * Course: Applikationsutveckling i Java
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;
@@ -21,8 +31,8 @@ public class GenerateLevel implements LandonClass {
 	private XmlReader xmlReader;
 
     /**
-     *
-     * @param blockSize
+     * Constructor for GenerateLevel with specified blocksize
+     * @param blockSize Diameter of block
      */
     public GenerateLevel(int blockSize){
 
@@ -33,8 +43,8 @@ public class GenerateLevel implements LandonClass {
     }
 
     /**
-     *
-     * @param blockSize
+     * Constructor for GenerateLevel with specified blocksize and path
+     * @param blockSize Diameter of block
      */
     public GenerateLevel(int blockSize,String path){
         xmlReader = new XmlReader(path,this);
@@ -60,7 +70,8 @@ public class GenerateLevel implements LandonClass {
     public void loadLevel(int levelSelect) {
 
         if (!xmlReader.validateXMLFile("XmlFiles/levelList.xsd")) {
-            JOptionPane.showMessageDialog(null, "The file format is not correct",
+            JOptionPane.showMessageDialog(null,
+                    "The file format is not correct",
                     "Error", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
@@ -69,7 +80,8 @@ public class GenerateLevel implements LandonClass {
 
 
         if(!xmlReader.loadLevelXML(levelSelect)){
-            JOptionPane.showMessageDialog(null, "Could not load level: " + levelSelect,
+            JOptionPane.showMessageDialog(null,
+                    "Could not load level: " + levelSelect,
                     "Error", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
 
@@ -84,7 +96,8 @@ public class GenerateLevel implements LandonClass {
             }
 
             if (blocks.get(i).getBlockType().equals(BlockType.STARTPOSITION)) {
-                startPosition = new Position(blocks.get(i).getPos().getX(), blocks.get(i).getPos().getY());
+                startPosition = new Position(blocks.get(i).getPos().getX(),
+                        blocks.get(i).getPos().getY());
             }
         }
 
@@ -96,9 +109,11 @@ public class GenerateLevel implements LandonClass {
      */
     public void createDefenders(){
         if(!getZoneList().isEmpty()){
-            for (int i = 0; i < xmlReader.lvlRules.get(LevelInfo.NORMAL_DEFENDER); i++)
+            for (int i = 0;
+                 i < xmlReader.lvlRules.get(LevelInfo.NORMAL_DEFENDER); i++)
                 createNormalDefender();
-            for (int i = 0; i < xmlReader.lvlRules.get(LevelInfo.NUCLEAR_DEFENDER); i++)
+            for (int i = 0;
+                 i < xmlReader.lvlRules.get(LevelInfo.NUCLEAR_DEFENDER); i++)
                 createNuclearDefender();
         }
     }
@@ -131,7 +146,8 @@ public class GenerateLevel implements LandonClass {
         }
         for (int j = 0; j < defendersList.size(); j++){
 
-            if (defender.getBound().intersects(defendersList.get(j).getBound())){
+            if (defender.getBound().intersects(defendersList.get(j).
+                    getBound())){
                 return false;
             }
         }
@@ -139,13 +155,15 @@ public class GenerateLevel implements LandonClass {
     }
 
     /**
-     * Create and place a NormalDefender if there is any available place on the level
+     * Create and place a NormalDefender if there is
+     * any available place on the level
      */
     private void createNormalDefender(){
 
         for (int i = 0; i < zoneList.size(); i++){
 
-            NormalDefender tmp = new NormalDefender(getRandomBlock().getPos(),attackersList);
+            NormalDefender tmp = new NormalDefender(getRandomBlock().getPos(),
+                    attackersList);
 
             if(isCreatable(tmp)){
                 defendersList.add(tmp);
@@ -155,13 +173,15 @@ public class GenerateLevel implements LandonClass {
     }
 
     /**
-     * Create and place a NuclearDefender if there is any available place on the level
+     * Create and place a NuclearDefender if there is any
+     * available place on the level
      */
     private void createNuclearDefender(){
 
         for (int k = 0; k < zoneList.size(); k++){
 
-            NuclearDefender tmp = new NuclearDefender(getRandomBlock().getPos(),attackersList);
+            NuclearDefender tmp = new NuclearDefender(getRandomBlock().getPos(),
+                    attackersList);
 
             if(isCreatable(tmp)){
                 defendersList.add(tmp);
@@ -226,8 +246,10 @@ public class GenerateLevel implements LandonClass {
 
     }
 
-
-
+    /**
+     * Method to check if start and goal position are null
+     * @return Boolean
+     */
     public boolean checkStartAndGoalPosition(){
 
         if(startPosition == null || goalPosition == null){
@@ -237,7 +259,8 @@ public class GenerateLevel implements LandonClass {
     }
 
     /**
-     * A getter for blocks, which contains objects such as path, start, and goal
+     * A getter for blocks, which contains objects such as path,
+     * start, and goal
      * @return blocks
      */
     public LinkedList<Block> getBlocks() {
@@ -245,7 +268,8 @@ public class GenerateLevel implements LandonClass {
     }
 
     /**
-     * A getter for zone list, which contains the positions where a defender can be created
+     * A getter for zone list, which contains the positions where a
+     * defender can be created
      * @return blocks
      */
     public LinkedList<Block> getZoneList() {
@@ -269,24 +293,41 @@ public class GenerateLevel implements LandonClass {
     }
 
     /**
-     * A getter for the attackerList. All the attackers created will be stored in this list
+     * A getter for the attackerList. All the attackers created
+     * will be stored in this list
      * @return attackerList
      */
     public LinkedList<Attacker> getAttackersList() {
         return attackersList;
     }
+
+    /**
+     * A getter for the teleporter start position.
+     * @return teleporterStartPostition as a Rectangle object
+     */
 	public Rectangle getTeleporterStartPosition() {
 		return teleporterStartPosition;
 	}
 
+    /**
+     * A getter for the teleporter end position.
+     * @return teleporterEndPostition as a Rectangle object
+     */
 	public Position getTeleporterEndPosition() {
 		return teleporterEndPosition;
 	}
 
+    /**
+     * A setter for the teleporter end position.
+     */
 	public void setTeleporterEndPosition(Position pos) {
 		teleporterEndPosition = pos;
 	}
 
+    /**
+     *
+     * @param pos
+     */
 	public void setTeleporterStartPosition(Position pos) {
 		teleporterStartPosition = new Rectangle(pos.getX(), pos.getY(),
 				blockSize, blockSize);
@@ -303,7 +344,8 @@ public class GenerateLevel implements LandonClass {
 
 
     /**
-     * A getter for the defenderList. All the defenders created will be stored in this list
+     * A getter for the defenderList. All the defenders created
+     * will be stored in this list
      * @return defenderList
      */
     public LinkedList<Defender> getDefendersList() {
@@ -311,7 +353,8 @@ public class GenerateLevel implements LandonClass {
     }
 
     /**
-     * A getter for amountOfLevels. The value represents the amount of levels that is available
+     * A getter for amountOfLevels. The value represents the amount
+     * of levels that is available
      * @return amountOfLevels
      */
     public int getAmountOfLevels() {
@@ -319,7 +362,8 @@ public class GenerateLevel implements LandonClass {
     }
 
     /**
-     * A getter for startMoney. The value represents the amount of money user will begin with
+     * A getter for startMoney. The value represents the amount of
+     * money user will begin with
      * @return startMoney
      */
     public int getStartMoney(){
@@ -327,7 +371,8 @@ public class GenerateLevel implements LandonClass {
     }
 
     /**
-     * A getter for attackersToFinish. The value represents how many attackers should reach the goal
+     * A getter for attackersToFinish. The value represents how many
+     * attackers should reach the goal
      * inorder to finish the level
      * @return attackersToFinish
      */
