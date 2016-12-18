@@ -110,12 +110,12 @@ public class Window extends JFrame {
 		menuBar.add(secondMenu);
 
 		return menuBar;
-	}
+	}  
 	
-	/**
+	/** 
 	 * Returns menu item start
 	 * @return JMenuItem start
-	 */
+	 */ 
 	public JMenuItem getStart() {
 		return start;
 	}
