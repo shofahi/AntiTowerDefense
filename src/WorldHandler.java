@@ -7,11 +7,14 @@
  */
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class WorldHandler{
 
 	private int bonus;
 	private int nrOfAttackerToGoal;
+	private BufferedImage[] yImg;
+	private BufferedImage[] xImg;
 
 	private GenerateLevel generateLvl;
 
@@ -25,8 +28,23 @@ public class WorldHandler{
 	 */
 	public WorldHandler(GenerateLevel generateLvl) {
 		this.generateLvl = generateLvl;
+		init();
 	}
 
+
+	/**
+	 *
+	 */
+	private void init(){
+		yImg = new BufferedImage[2];
+		xImg = new BufferedImage[2];
+
+		yImg[0] = LoadImage.loadTheImage("north_trans.png");
+		yImg[1] = LoadImage.loadTheImage("south_trans.png");
+
+		xImg[0] = LoadImage.loadTheImage("west_trans.png");
+		xImg[1] = LoadImage.loadTheImage("east_trans.png");
+	}
 	/**
 	 * Renders different block types, defender types and and attackers
 	 * @param  g
@@ -34,7 +52,38 @@ public class WorldHandler{
 	public void render(Graphics g) {
 		// for (Block block : blocks)
 		for (int i = 0; i < generateLvl.getBlocks().size(); i++) {
-			generateLvl.getBlocks().get(i).render(g);
+			if(generateLvl.getBlocks().get(i).getBlockType().equals(BlockType
+					.TURN_Y)){
+				if(generateLvl.getBlocks().get(i).isyNorth()){
+					g.drawImage(yImg[0], generateLvl.getBlocks().get(i)
+							.getPos().getX(), generateLvl.getBlocks().get(i)
+							.getPos().getY(), yImg[0].getWidth(),
+							yImg[0].getHeight(), null);
+				}else{
+					g.drawImage(yImg[1], generateLvl.getBlocks().get(i)
+							.getPos().getX(), generateLvl.getBlocks().get(i)
+							.getPos().getY(), yImg[1].getWidth(),
+							yImg[1].getHeight(), null);
+				}
+
+			} else if(generateLvl.getBlocks().get(i).getBlockType().equals
+					(BlockType.TURN_X)){
+				if(generateLvl.getBlocks().get(i).isxWest()){
+					g.drawImage(xImg[0], generateLvl.getBlocks().get(i)
+							.getPos().getX(), generateLvl.getBlocks().get(i)
+							.getPos().getY(), xImg[0].getWidth(),
+							xImg[0].getHeight(), null);
+				}else{
+					g.drawImage(xImg[1], generateLvl.getBlocks().get(i)
+							.getPos().getX(), generateLvl.getBlocks().get(i)
+							.getPos().getY(), xImg[1].getWidth(),
+							xImg[1].getHeight(), null);
+				}
+
+			} else{
+				generateLvl.getBlocks().get(i).render(g);
+			}
+
 		}
 
 		for (int i = 0; i < generateLvl.getDefendersList().size(); i++) {
@@ -78,7 +127,6 @@ public class WorldHandler{
 
                 JOptionPane.showMessageDialog(null, "Attacker out of range",
                         "Error", JOptionPane.ERROR_MESSAGE);
-
                 System.exit(1);
             }
 
