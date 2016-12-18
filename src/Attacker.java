@@ -2,16 +2,14 @@
  * Classname: Attacker.java
  * Version info 1.0
  * Copyright notice:    Masoud Shofahi
- * Amanda Dahlin
- * Gustav Norlander
- * Samuel Bylund Felixon
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
  * Date: 19/12/2017
  * Course: Applikationsutveckling i Java
  */
 
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.util.LinkedList;
 
 abstract class Attacker implements LandonClass {
@@ -39,13 +37,15 @@ abstract class Attacker implements LandonClass {
      */
     Attacker(Position pos, LinkedList<Block> directionSign,
              int health, int moveSpeed, int width, int height) {
+
         this.pos = new Position(pos.getX(), pos.getY());
         this.width = width;
         this.height = height;
         this.health = health;
         this.moveSpeed = moveSpeed;
         this.directionSign = directionSign;
-        healthBar = new Rectangle(pos.getX(), pos.getY() + 10, width, height / 10);
+        healthBar = new Rectangle(pos.getX(), pos.getY() + 10,
+                width, height / 10);
     }
 
     /**
@@ -61,37 +61,48 @@ abstract class Attacker implements LandonClass {
      * Attacker is facing.
      */
     public void getTurn() {
+
         for (int i = 0; i < getDirSign().size(); i++) {
+
             if (getBound().intersects(getDirSign().get(i).getBound())
                     && getDirSign().get(i).getBlockType()
                     == BlockType.TURNWEST) {
+
                 turn = "WEST";
             } else if (getBound().intersects(getDirSign().get(i).getBound())
                     && getDirSign().get(i).getBlockType()
                     == BlockType.TURNSOUTH) {
+
                 turn = "SOUTH";
             } else if (getBound().intersects(getDirSign().get(i).getBound())
                     && getDirSign().get(i).getBlockType()
                     == BlockType.TURNNORTH) {
+
                 turn = "NORTH";
             } else if (getBound().intersects(getDirSign().get(i).getBound())
                     && getDirSign().get(i).getBlockType()
                     == BlockType.TURNEAST) {
+
                 turn = "EAST";
             } else if (getBound().intersects(getDirSign().get(i).getBound())
                     && getDirSign().get(i).getBlockType()
                     == BlockType.TURN_Y) {
-                if (getDirSign().get(i).yNorth) {
+                if (getDirSign().get(i).isyNorth()) {
+
                     turn = "NORTH";
                 } else {
+
                     turn = "SOUTH";
                 }
             } else if (getBound().intersects(getDirSign().get(i).getBound())
                     && getDirSign().get(i).getBlockType()
                     == BlockType.TURN_X) {
-                if (getDirSign().get(i).xWest) {
+
+                if (getDirSign().get(i).isxWest()) {
+
                     turn = "WEST";
                 } else {
+
                     turn = "EAST";
                 }
             }
@@ -103,8 +114,7 @@ abstract class Attacker implements LandonClass {
      *
      * @param dmg The amount of damage to inflict.
      */
-    public void inflictDamage(int dmg) {
-        setHealth(getHealth() - dmg);
+    public void inflictDamage(int dmg) { setHealth(getHealth() - dmg);
     }
 
     /**
@@ -130,8 +140,7 @@ abstract class Attacker implements LandonClass {
      *
      * @param newHealth the new healthpoint amount
      */
-    public void setHealth(int newHealth) {
-        this.health = newHealth;
+    public void setHealth(int newHealth) { this.health = newHealth;
     }
 
     /**
@@ -207,8 +216,16 @@ abstract class Attacker implements LandonClass {
         this.turn = turn;
     }
 
+    /**
+     * Get bound of attacker
+     * @return The bound as a Rectangle object
+     */
     abstract public Rectangle getBound();
 
+    /**
+     * Get move speed of Attacker
+     * @return
+     */
     public int getMoveSpeed() {
         return moveSpeed;
     }
