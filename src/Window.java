@@ -34,6 +34,9 @@ public class Window extends JFrame {
 
 		super(title);
 
+		JPopupMenu.setDefaultLightWeightPopupEnabled(false);
+		ToolTipManager.sharedInstance().setLightWeightPopupEnabled(false);
+
 		this.buttonListener = buttonListener;
 
 		setSize(new Dimension(width, height));

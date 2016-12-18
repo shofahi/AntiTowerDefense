@@ -11,7 +11,6 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 public class RunGame implements Runnable {
 
 	// TEMPORARY (SHOULD COME FROM XML-FILE)
-	private final int VICTORY = 2;
+	private int victory;
 
 	// Jpanel/GUI information
 	private final int WIDTH;
@@ -123,6 +122,8 @@ public class RunGame implements Runnable {
         graphics = gameImg.getGraphics();
         generateLvl.loadLevel(1);
         store.setWallet(generateLvl.getStartMoney());
+        victory = generateLvl.getAttackersToFinish();
+        System.out.println(victory);
         if(!generateLvl.checkStartAndGoalPosition()){
             JOptionPane.showMessageDialog(null,"The Level is missing a Start Position" +
                             "and Goal Position",
@@ -274,13 +275,14 @@ public class RunGame implements Runnable {
 	public void render() {
 
 		// Clear the clear
-		graphics.clearRect(0, 0, WIDTH + store.getSTORE_WIDTH(), HEIGHT);
+        graphics.clearRect(0, 0, WIDTH + store.getSTORE_WIDTH(), HEIGHT);
 
 		// ********************************Draw here***********************/
+
 		worldHandler.render(graphics);
 
 		// *************************************************************
-		drawGameImage();
+        drawGameImage();
 
 	}
 
@@ -343,7 +345,7 @@ public class RunGame implements Runnable {
      * @return true if requirements have been filled
      */
 	public boolean didFinishLevel() {
-		return worldHandler.getNrOfAttackersToGoal() > VICTORY;
+		return worldHandler.getNrOfAttackersToGoal() > victory;
 	}
 
 

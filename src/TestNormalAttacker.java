@@ -1,5 +1,12 @@
 /**
- * Created by Samuel on 2016-11-24.
+ * Classname: TestNormalAttacker.java
+ * Version info 1.0
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 19/12/2017
+ * Course: Applikationsutveckling i Java
  */
 
 import org.junit.After;
@@ -24,6 +31,9 @@ public class TestNormalAttacker {
         this.nA = null;
     }
 
+    /**
+     * Test that you can set attacker hp
+     */
     @Test
     public void testSetHealth(){
         nA.setHealth(555);
@@ -31,6 +41,9 @@ public class TestNormalAttacker {
         Assert.assertEquals(555, nA.getHealth());
     }
 
+    /**
+     * Test method inflictDamage
+     */
     @Test
     public void testInflictDamage(){
         nA.setHealth(100);
@@ -40,6 +53,10 @@ public class TestNormalAttacker {
         Assert.assertEquals(90, nA.getHealth());
     }
 
+    /**
+     * Test that getTurn will change the direction attacker should move.
+     * (SOUTH)
+     */
     @Test
     public void testGetTurnSouthDirectionSign() {
         Block turnSouth = new LevelBlocks(60, 40, 20, 20, BlockType.TURNSOUTH);
@@ -52,6 +69,10 @@ public class TestNormalAttacker {
         Assert.assertEquals("SOUTH", nA.getTurnValue());
     }
 
+    /**
+     * Test that getTurn will change the direction attacker should move.
+     * (WEST)
+     */
     @Test
     public void testGetTurnWestDirectionSign(){
         Block turnWest = new LevelBlocks(40, 59, 20, 20, BlockType.TURNWEST);
@@ -63,6 +84,10 @@ public class TestNormalAttacker {
         Assert.assertEquals("WEST", nA.getTurnValue());
     }
 
+    /**
+     * Test that getTurn will change the direction attacker should move.
+     * (NORTH)
+     */
     @Test
     public void testGetTurnNorthDirectionSign(){
         Block turnNorth = new LevelBlocks(59, 40, 20, 20, BlockType.TURNNORTH);
@@ -74,6 +99,10 @@ public class TestNormalAttacker {
         Assert.assertEquals("NORTH", nA.getTurnValue());
     }
 
+    /**
+     * Test that getTurn will change the direction attacker should move.
+     * (EAST)
+     */
     @Test
     public void testGetTurnEastDirectionSign(){
         Block turnEast = new LevelBlocks(40, 59, 20, 20, BlockType.TURNEAST);
@@ -84,6 +113,9 @@ public class TestNormalAttacker {
         Assert.assertEquals("EAST", nA.getTurnValue());
     }
 
+    /**
+     * test that Update will move the attacker one step in current direction
+     */
     @Test
     public void testUpdate(){
         Position attackerPos = new Position(20, 30);
@@ -94,6 +126,10 @@ public class TestNormalAttacker {
         Assert.assertEquals(nA.getPos(), expectedPos);
     }
 
+    /**
+     * Test that should fail. Attacker moves to another direction than
+     * compared to.
+     */
     @Test
     public void testUpdateShouldFail(){
         Position attackerPos = new Position(20, 30);
@@ -103,6 +139,4 @@ public class TestNormalAttacker {
         nA.update();
         Assert.assertNotEquals(nA.getPos(), anotherPos);
     }
-
-
 }

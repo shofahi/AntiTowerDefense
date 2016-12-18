@@ -1,3 +1,14 @@
+/**
+ * Classname: TestDataBase.java
+ * Version info 1.0
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 19/12/2017
+ * Course: Applikationsutveckling i Java
+ */
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -6,9 +17,6 @@ import org.junit.Test;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- * Created by Samuel on 2016-12-12.
- */
 public class TestDatabase {
     Database myDB = null;
 
@@ -23,17 +31,24 @@ public class TestDatabase {
         myDB.shutdown();
     }
 
+    /**
+     * Test adding a highscore to the database table and compare
+     * name,level,score with expected values.
+     */
     @Test
     public void testAddHighscore(){
         Assert.assertTrue(myDB.getAllHighscores().size() == 0);
         myDB.setHighScore("testName", 2, 10);
-        Assert.assertTrue(myDB.getAllHighscores().size() > 0);
+        Assert.assertTrue(myDB.getAllHighscores().size() == 1);
         ArrayList<DatabaseModel> score = myDB.getHighScore("testName");
         Assert.assertEquals("testName", score.get(0).getName());
         Assert.assertEquals(2, score.get(0).getLevel());
         Assert.assertEquals(10, score.get(0).getScore());
     }
 
+    /**
+     * Test adding multiple entries with same name.
+     */
     @Test
     public void testAddMultipleWithSameName(){
         myDB.setHighScore("testName", 1, 1);
@@ -44,6 +59,9 @@ public class TestDatabase {
         Assert.assertEquals(3, score.size());
     }
 
+    /**
+     * Test the method getThreeHighscores(). Should return top3 highscores.
+     */
     @Test
     public void testGetTopThree(){
         myDB.setHighScore("testName1", 10, 10);
@@ -60,6 +78,10 @@ public class TestDatabase {
         Assert.assertEquals("testName4", topThree.get(2).getName());
     }
 
+    /**
+     * Test the method removeHighscores. Should remove all highscores
+     * from database table.
+     */
     @Test
     public void testRemoveHighscores(){
 
@@ -70,14 +92,4 @@ public class TestDatabase {
         highscores = myDB.getAllHighscores();
         Assert.assertFalse(highscores.size() > 0);
     }
-
-    @Test
-    public void testGetTopThreeHighscores(){
-        myDB.setHighScore("test1", 1, 5);
-        myDB.setHighScore("test2", 1, 5);
-        myDB.setHighScore("test3", 1, 5);
-        ArrayList<DatabaseModel> highscores = myDB.getThreeHighscores();
-        Assert.assertTrue(highscores.size() == 3);
-    }
-
 }
