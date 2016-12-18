@@ -112,7 +112,7 @@ public class Window extends JFrame {
 		return menuBar;
 	}
 	
-	/**
+	/** 
 	 * Returns menu item start
 	 * @return JMenuItem start
 	 */
