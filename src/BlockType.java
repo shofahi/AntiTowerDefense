@@ -1,20 +1,23 @@
 /**
  *
  */
- enum BlockType {
+enum BlockType {
 
-    PATH,
+   PATH,
 
-    STARTPOSITION,
-    GOALPOSITION,
+   STARTPOSITION,
+   GOALPOSITION,
 
-    TURNWEST,
-    TURNEAST,
-    TURNSOUTH,
-    TURNNORTH,
+   TURNWEST,
+   TURNEAST,
+   TURNSOUTH,
+   TURNNORTH,
+   TURN_Y,
+   TURN_X,
 
-    DEFENDER,
+
+   DEFENDER,
 
 
-    INVALID;
+   INVALID;
 }

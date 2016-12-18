@@ -5,13 +5,15 @@
  *                      Amanda Dahlin
  *                      Gustav Norlander
  *                      Samuel Bylund Felixon
- * Date: 17/12/2017
+ * Date: 19/12/2017
  * Course: Applikationsutveckling i Java
  */
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.LinkedList;
 
-abstract class Attacker {
+abstract class Attacker{
 
     private int health;
     private int moveSpeed;
@@ -43,7 +45,6 @@ abstract class Attacker {
         this.moveSpeed = moveSpeed;
         this.directionSign = directionSign;
         healthBar = new Rectangle(pos.getX(),pos.getY()+10,width,height/10);
-
     }
 
     /**
@@ -51,19 +52,7 @@ abstract class Attacker {
      * 1. Check if the attacker should turn
      * 2. Take one step (change position to N/S/E/W)
      */
-    public void update() {
-        getTurn();
-
-        if (turn.equals("WEST")) {
-            getPos().setX(getPos().getX()-1);
-        } else if (turn.equals("SOUTH")) {
-            getPos().setY(getPos().getY()+1);
-        } else if (turn.equals("NORTH")) {
-            getPos().setY(getPos().getY()-1);
-        } else if (turn.equals("EAST")) {
-            getPos().setX(getPos().getX()+1);
-        }
-    }
+    abstract public void update();
 
     /**
      * Method to check if the attackers' rectangle bound has intersected a
@@ -88,6 +77,24 @@ abstract class Attacker {
                     && getDirSign().get(i).getBlockType()
                     == BlockType.TURNEAST) {
                 turn = "EAST";
+            }
+            else if (getBound().intersects(getDirSign().get(i).getBound())
+                    && getDirSign().get(i).getBlockType()
+                    == BlockType.TURN_Y) {
+                if(getDirSign().get(i).yNorth){
+                    turn = "NORTH";
+                }else{
+                    turn = "SOUTH";
+                }
+            }
+            else if (getBound().intersects(getDirSign().get(i).getBound())
+                    && getDirSign().get(i).getBlockType()
+                    == BlockType.TURN_X) {
+                if(getDirSign().get(i).xWest){
+                    turn = "WEST";
+                }else{
+                    turn = "EAST";
+                }
             }
         }
     }
@@ -190,4 +197,5 @@ abstract class Attacker {
     }
 
     abstract public Rectangle getBound();
+
 }

@@ -1,92 +1,164 @@
+import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
 
 public class GenerateLevel implements CreateBlock {
-	private LinkedList<Block> blocks;
-	private LinkedList<Block> zoneList;
-	private LinkedList<Attacker> attackersList;
-	private LinkedList<Defender> defendersList;
+    private LinkedList<Block> blocks;
+    private LinkedList<Block> zoneList;
+    private LinkedList<Attacker> attackersList;
+    private LinkedList<Defender> defendersList;
 
-	private Position startPosition;
-	private Rectangle goalPosition;
 	private Rectangle teleporterStartPosition;
 	private Position teleporterEndPosition;
 	private String teleporterDirection;
 
-	private int blockSize;
+    private Position startPosition = null;
+    private Rectangle goalPosition = null;
+    private int amountOfLevels;
+    private int blockSize;
 
 	private XmlReader xmlReader = new XmlReader(this);
 
-	public GenerateLevel(int blockSize) {
+    /**
+     *
+     * @param blockSize
+     */
+    public GenerateLevel(int blockSize){
 
-		this.blockSize = blockSize;
-	}
+        this.blockSize = blockSize;
+        xmlReader.generateXML();
+        amountOfLevels = xmlReader.nodeList.getLength();
+    }
 
-	private void init() {
-		blocks = new LinkedList<Block>();
-		zoneList = new LinkedList<Block>();
-		attackersList = new LinkedList<Attacker>();
-		defendersList = new LinkedList<Defender>();
-	}
+    /**
+     * Method will Initialize all the objects and data structures
+     */
+    protected void init(){
+        blocks = new LinkedList<>();
+        zoneList = new LinkedList<>();
+        attackersList = new LinkedList<>();
+        defendersList = new LinkedList<>();
+    }
 
-	public void loadLevel(int levelSelect) {
+    /**
+     * Method will load a specific level from the .xml file.
+     * @param levelSelect the level to be loaded
+     */
+    public void loadLevel(int levelSelect) {
 
-		init();
+        /*if (xmlReader.validateXMLFile("XmlFiles/levelList.xsd")) {
+            JOptionPane.showMessageDialog(null, "The file format is not correct",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }*/
 
-		xmlReader.generateXML();
-		xmlReader.loadLevelXML(levelSelect);
+        init();
+        xmlReader.loadLevelXML(levelSelect);
 
-		for (int i = 0; i < blocks.size(); i++) {
 
-			if (blocks.get(i).getBlockType().equals(BlockType.GOALPOSITION)) {
-				goalPosition = new Rectangle(blocks.get(i).getPos().getX(),
-						blocks.get(i).getPos().getY(), blockSize, blockSize);
-				teleporterStartPosition = goalPosition;
-			}
+        for (int i = 0; i < blocks.size(); i++) {
 
-			if (blocks.get(i).getBlockType().equals(BlockType.STARTPOSITION)) {
-				startPosition = new Position(blocks.get(i).getPos().getX(),
-						blocks.get(i).getPos().getY());
-			}
-		}
+            if (blocks.get(i).getBlockType().equals(BlockType.GOALPOSITION)) {
+                goalPosition = new Rectangle(blocks.get(i).getPos().getX(),
+                        blocks.get(i).getPos().getY(), blockSize, blockSize);
+                teleporterStartPosition = goalPosition;
+            }
 
-		if (!getZoneList().isEmpty()) {
-			for (int i = 0; i < 1; i++)
-				createDefenders();
-		}
-	}
+            if (blocks.get(i).getBlockType().equals(BlockType.STARTPOSITION)) {
+                startPosition = new Position(blocks.get(i).getPos().getX(), blocks.get(i).getPos().getY());
+            }
+        }
 
-	private void createDefenders() {
+        createDefenders();
+    }
 
-		boolean isCreatable = true;
-		Random r = new Random();
-		int randomNum = r.nextInt(zoneList.size());
-		Block tmpBlock = zoneList.get(randomNum);
-		NormalDefender tmp = new NormalDefender(tmpBlock.getPos(),
-				attackersList);
+    /**
+     * Method will  create and place the defenders on random available zones.
+     */
+    public void createDefenders(){
+        if(!getZoneList().isEmpty()){
+            for (int i = 0; i < xmlReader.lvlRules.get(LevelInfo.NORMAL_DEFENDER); i++)
+                createNormalDefender();
+            for (int i = 0; i < xmlReader.lvlRules.get(LevelInfo.NUCLEAR_DEFENDER); i++)
+                createNuclearDefender();
+        }
+    }
 
-		for (int i = 0; i < blocks.size(); i++) {
+    /**
+     * Get a Random zone (Blocks where a defender can be placed) from zoneList
+     * @return a random zone
+     */
+    private Block getRandomBlock (){
+        Random r = new Random();
+        int randomNum = r.nextInt(zoneList.size());
+        return zoneList.get(randomNum);
+    }
 
-			if (tmp.getBound().intersects(blocks.get(i).getBound())) {
-				isCreatable = false;
-			}
-		}
+    /**
+     * Method checks if the defender can be placed on the current zone
+     * @param defender the Defender
+     * @return true if it can be placed with out colliding with other objects
+     */
+    protected boolean isCreatable(Defender defender){
 
-		for (int i = 0; i < defendersList.size(); i++) {
+        if(zoneList.isEmpty()){
+            return false;
+        }
 
-			if (tmp.getBound().intersects(defendersList.get(i).getBound())) {
-				isCreatable = false;
-			}
-		}
+        for (int j = 0; j < blocks.size(); j++){
+            if (defender.getBound().intersects(blocks.get(j).getBound())){
+                return false;
+            }
+        }
+        for (int j = 0; j < defendersList.size(); j++){
 
-		if (isCreatable) {
-			defendersList.add(tmp);
-		}
-	}
+            if (defender.getBound().intersects(defendersList.get(j).getBound())){
+                return false;
+            }
+        }
+        return true;
+    }
 
-	@Override
-	public void landOn(int xPos, int yPos, String type) {
+    /**
+     * Create and place a NormalDefender if there is any available place on the level
+     */
+    private void createNormalDefender(){
+
+        for (int i = 0; i < zoneList.size(); i++){
+
+            NormalDefender tmp = new NormalDefender(getRandomBlock().getPos(),attackersList);
+
+            if(isCreatable(tmp)){
+                defendersList.add(tmp);
+                return;
+            }
+        }
+    }
+
+    /**
+     * Create and place a NuclearDefender if there is any available place on the level
+     */
+    private void createNuclearDefender(){
+
+        for (int k = 0; k < zoneList.size(); k++){
+
+            NuclearDefender tmp = new NuclearDefender(getRandomBlock().getPos(),attackersList);
+
+            if(isCreatable(tmp)){
+                defendersList.add(tmp);
+                return;
+            }
+        }
+    }
+
+    /**
+     * Method will create a level object (Block)
+     * @param xPos the x-position where the object should be created
+     * @param yPos the y-position where the object should be created
+     * @param type which type of level object should be created
+     */
+    @Override
+    public void landOn(int xPos, int yPos, String type) {
 
 		if (type.equals(BlockType.STARTPOSITION.toString())) {
 			blocks.add(new LevelBlocks(xPos, yPos, 20, 20,
@@ -116,6 +188,14 @@ public class GenerateLevel implements CreateBlock {
 			blocks.add(new LevelBlocks(xPos, yPos, 20, 20, BlockType.TURNEAST));
 		}
 
+        if (type.equals(BlockType.TURN_Y.toString())) {
+            blocks.add(new LevelBlocks(xPos, yPos, 20, 20, BlockType.TURN_Y));
+        }
+
+        if (type.equals(BlockType.TURN_X.toString())) {
+            blocks.add(new LevelBlocks(xPos, yPos, 20, 20, BlockType.TURN_X));
+        }
+
 		if (type.equals(BlockType.PATH.toString())) {
 			blocks.add(new LevelBlocks(xPos, yPos, 20, 20, BlockType.PATH));
 		}
@@ -125,24 +205,57 @@ public class GenerateLevel implements CreateBlock {
 					new LevelBlocks(xPos, yPos, 20, 20, BlockType.DEFENDER));
 		}
 
-	}
+    }
 
-	public LinkedList<Block> getBlocks() {
-		return blocks;
-	}
 
-	public LinkedList<Block> getZoneList() {
-		return zoneList;
-	}
 
-	public Position getStartPosition() {
-		return startPosition;
-	}
+    public boolean checkStartAndGoalPosition(){
 
-	public Rectangle getGoalPosition() {
-		return goalPosition;
-	}
+        if(startPosition == null || goalPosition == null){
+            return false;
+        }
+        return true;
+    }
 
+    /**
+     * A getter for blocks, which contains objects such as path, start, and goal
+     * @return blocks
+     */
+    public LinkedList<Block> getBlocks() {
+        return blocks;
+    }
+
+    /**
+     * A getter for zone list, which contains the positions where a defender can be created
+     * @return blocks
+     */
+    public LinkedList<Block> getZoneList() {
+        return zoneList;
+    }
+
+    /**
+     * A getter for the start position
+     * @return startPosition
+     */
+    public Position getStartPosition() {
+        return startPosition;
+    }
+
+    /**
+     * A getter for the goal position
+     * @return startPosition
+     */
+    public Rectangle getGoalPosition() {
+        return goalPosition;
+    }
+
+    /**
+     * A getter for the attackerList. All the attackers created will be stored in this list
+     * @return attackerList
+     */
+    public LinkedList<Attacker> getAttackersList() {
+        return attackersList;
+    }
 	public Rectangle getTeleporterStartPosition() {
 		return teleporterStartPosition;
 	}
@@ -168,11 +281,38 @@ public class GenerateLevel implements CreateBlock {
 		return teleporterDirection;
 	}
 
-	public LinkedList<Attacker> getAttackersList() {
-		return attackersList;
-	}
 
-	public LinkedList<Defender> getDefendersList() {
-		return defendersList;
-	}
+
+    /**
+     * A getter for the defenderList. All the defenders created will be stored in this list
+     * @return defenderList
+     */
+    public LinkedList<Defender> getDefendersList() {
+        return defendersList;
+    }
+
+    /**
+     * A getter for amountOfLevels. The value represents the amount of levels that is available
+     * @return amountOfLevels
+     */
+    public int getAmountOfLevels() {
+        return amountOfLevels;
+    }
+
+    /**
+     * A getter for startMoney. The value represents the amount of money user will begin with
+     * @return startMoney
+     */
+    public int getStartMoney(){
+        return xmlReader.lvlRules.get(LevelInfo.STARTING_GOLD);
+    }
+
+    /**
+     * A getter for attackersToFinish. The value represents how many attackers should reach the goal
+     * inorder to finish the level
+     * @return attackersToFinish
+     */
+    public int getAttackersToFinish(){
+        return xmlReader.lvlRules.get(LevelInfo.ATTACKERS_TO_FINISH);
+    }
 }

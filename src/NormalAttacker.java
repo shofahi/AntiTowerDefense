@@ -5,16 +5,19 @@
  *                      Amanda Dahlin
  *                      Gustav Norlander
  *                      Samuel Bylund Felixon
- * Date: 17/12/2017
+ * Date: 19/12/2017
  * Course: Applikationsutveckling i Java
  */
+
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
+
+
 public class NormalAttacker extends Attacker {
-    static private final int SPEED = 10;
+    static private final int SPEED = 3;
     static private final int START_HEALTH = 100;
     static private final int ATTACKER_WIDTH = 20;
     static private final int ATTACKER_HEIGHT = 20;
@@ -36,6 +39,20 @@ public class NormalAttacker extends Attacker {
 
     }
 
+    public void update() {
+        getTurn();
+
+        if (turn.equals("WEST")) {
+            getPos().setX(getPos().getX()-SPEED);
+        } else if (turn.equals("SOUTH")) {
+            getPos().setY(getPos().getY()+SPEED);
+        } else if (turn.equals("NORTH")) {
+            getPos().setY(getPos().getY()-SPEED);
+        } else if (turn.equals("EAST")) {
+            getPos().setX(getPos().getX()+SPEED);
+        }
+    }
+
     /**
      * Override method toRender Attacker graphics to screen.
      * Attacker image + health bar
@@ -55,6 +72,8 @@ public class NormalAttacker extends Attacker {
         g.fillRect(getPos().getX(),getPos().getY()-getWidth()/2,
                     getHealthBar().width*getHealth()/START_HEALTH,
                     getHealthBar().height);
+
+        g.setColor(Color.MAGENTA);
     }
 
     /**
@@ -67,4 +86,6 @@ public class NormalAttacker extends Attacker {
         return new Rectangle(getPos().getX(),getPos().getY(),
                              getWidth(),getHeight());
     }
+
+
 }

@@ -5,6 +5,7 @@
  * @authors Amanda Dahlin, Gustav Nordlander,
  *          Samuel Bylund Felixson, Masoud Shofahi
  */
+import javax.swing.*;
 import java.awt.*;
 
 public class WorldHandler {
@@ -62,6 +63,27 @@ public class WorldHandler {
 		for (int i = 0; i < generateLvl.getAttackersList().size(); i++) {
 			generateLvl.getAttackersList().get(i).update();
 
+			//Goes out of range
+			if(generateLvl.getAttackersList().get(i).getPos().getX() > 800 ||
+                    generateLvl.getAttackersList().get(i).getPos().getX() < 0 ){
+
+                JOptionPane.showMessageDialog(null, "Attacker out of range",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+
+                System.exit(1);
+            }
+
+            //Goes out of range
+            if(generateLvl.getAttackersList().get(i).getPos().getY() > 600 ||
+                    generateLvl.getAttackersList().get(i).getPos().getY() < 0 ){
+
+                JOptionPane.showMessageDialog(null, "Attacker out of range",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+
+                System.exit(1);
+            }
+
+
 			if (generateLvl.getAttackersList().get(i).getHealth() < 0) {
 				if (generateLvl.getAttackersList().get(i)
 						.equals(getSpecialID())) {
@@ -92,7 +114,7 @@ public class WorldHandler {
 	/**
 	 * Checks what type of attacker is sent in as parameters and creates either
 	 * SpecialAttacker, NormalAttacker or MuscleAttacker.
-	 * @param AttackerType type
+	 * @param type type
 	 */
 	public void createNewAttacker(AttackerType type) {
 		if (type.equals(AttackerType.NORMALATTACKER)) {

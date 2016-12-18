@@ -5,16 +5,17 @@
  *                      Amanda Dahlin
  *                      Gustav Norlander
  *                      Samuel Bylund Felixon
- * Date: 17/12/2017
+ * Date: 19/12/2017
  * Course: Applikationsutveckling i Java
  */
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 public class MuscleAttacker extends Attacker {
-    static private final int SPEED = 5;
+    static private final int SPEED = 1;
     static private final int START_HEALTH = 250;
     static private final int ATTACKER_WIDTH = 25;
     static private final int ATTACKER_HEIGHT = 25;
@@ -33,6 +34,20 @@ public class MuscleAttacker extends Attacker {
                 START_HEALTH, SPEED,
                 ATTACKER_WIDTH,ATTACKER_HEIGHT);
         muscleAttackerImg = loadImage.loadTheImage("MuscleMonster.png");
+    }
+
+    public void update() {
+        getTurn();
+
+        if (turn.equals("WEST")) {
+            getPos().setX(getPos().getX()-SPEED);
+        } else if (turn.equals("SOUTH")) {
+            getPos().setY(getPos().getY()+SPEED);
+        } else if (turn.equals("NORTH")) {
+            getPos().setY(getPos().getY()-SPEED);
+        } else if (turn.equals("EAST")) {
+            getPos().setX(getPos().getX()+SPEED);
+        }
     }
 
     /**
@@ -64,4 +79,5 @@ public class MuscleAttacker extends Attacker {
         return new Rectangle(getPos().getX(),getPos().getY(),
                                 getWidth(),getHeight());
     }
+
 }

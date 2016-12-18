@@ -24,7 +24,7 @@ public class LevelBlocks extends Block {
 	 * Renders graphics with different colors depending on what
 	 * block type is used.
 	 * 
-	 * @param Graphics g
+	 * @param g
 	 */
 	@Override
 	public void render(Graphics g) {

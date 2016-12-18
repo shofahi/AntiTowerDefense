@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,14 +17,15 @@ public class RunGame implements Runnable {
 	private JPanel gamePanel;
 	private Store store;
 	private Database database;
-	Window gui;
+	private Window gui;
 
-	private int currentLevel = 1;
-
-	// This class will run on its own thread
-	private Thread gameThread;
-	private boolean gameRunning;
-	private boolean pause;
+    //This class will run on its own thread
+    private Thread gameThread;
+    private boolean gameRunning;
+    private boolean pause;
+    private boolean reset = true;
+    private int currentLevel = 1;
+    private Object[] selectionValues;
 
 	// We will need these two objects to render
 	private Graphics graphics;
@@ -43,6 +45,7 @@ public class RunGame implements Runnable {
 	public static boolean specialAlive = false;
 	private String teleporterDirection;
 
+	private MouseAdapter mouseAdapter;
 	public RunGame(String title, int width, int height) {
 
 		TITLE = title;
@@ -50,11 +53,9 @@ public class RunGame implements Runnable {
 		HEIGHT = height;
 
 		gamePanel = new JPanel();
+
 		gamePanel.setSize(new Dimension(WIDTH, HEIGHT));
 		gamePanel.setBackground(Color.black);
-
-		// 20 is the size of a block, this is just temporary
-		worldHandler = new WorldHandler(generateLvl);
 
 		// try {
 		try {
@@ -75,7 +76,18 @@ public class RunGame implements Runnable {
 		 */
 		store = new Store(buttonListener);
 		this.updateHighScorePanel();
+
+        //20 is the size of a block, this is just temporary
+        worldHandler = new WorldHandler(generateLvl);
+
+
+        selectionValues = new Object[generateLvl.getAmountOfLevels()];
+
+        for (int i = 0; i < selectionValues.length;i++){
+            selectionValues[i] = i+1;
+        }
 	}
+
 
 	/**
 	 * This method starts the game loop thread, which is used for rendering and
@@ -92,11 +104,20 @@ public class RunGame implements Runnable {
 
 	public void init() {
 
-		gameImg = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-		graphics = gameImg.getGraphics();
+        gameImg = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
+        graphics = gameImg.getGraphics();
+        generateLvl.loadLevel(currentLevel);
+        store.setWallet(generateLvl.getStartMoney());
+        if(!generateLvl.checkStartAndGoalPosition()){
+            JOptionPane.showMessageDialog(null,"The Level is missing a Start Position" +
+                            "and Goal Position",
+                    "Error",JOptionPane.ERROR_MESSAGE);
+        }
 
-		generateLvl.loadLevel(1);
-	}
+        mouseAdapter = new MouseAdapter(generateLvl.getBlocks());
+        gamePanel.addMouseListener(mouseAdapter);
+
+    }
 
 	/**
 	 * Method overrides the thread method run
@@ -104,11 +125,9 @@ public class RunGame implements Runnable {
 	@Override
 	public void run() {
 
-		init();
-
-		final double TARGET_FPS = 60.0;
-		final double OPTIMAL_TIME = 1000000000 / TARGET_FPS;
-		long lastTime = System.nanoTime();
+        final double TARGET_FPS = 60.0;
+        final double OPTIMAL_TIME= 1000000000 / TARGET_FPS;
+        long lastTime = System.nanoTime();
 
 		double delta = 0;
 		long timer = System.currentTimeMillis();
@@ -117,16 +136,23 @@ public class RunGame implements Runnable {
 
 		while (gameRunning) {
 
-			long now = System.nanoTime();
-			delta += (now - lastTime) / OPTIMAL_TIME;
-			lastTime = now;
-			while (delta >= 1) {
-				update();
-				updates++;
-				delta--;
-			}
-			render();
-			frames++;
+
+            if(reset){
+                System.out.println("check");
+                init();
+                reset = false;
+            }
+
+            long now = System.nanoTime();
+            delta += (now - lastTime) / OPTIMAL_TIME;
+            lastTime = now;
+            while(delta >= 1){
+                update();
+                updates++;
+                delta--;
+            }
+            render();
+            frames++;
 
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
@@ -165,49 +191,59 @@ public class RunGame implements Runnable {
 		}
 	}
 
-	public void checkIfGameOver() {
-		// NEW
-		if (isGameOver()) {
-			checkIfHighScore();
-			pause = true;
-			JDialog.setDefaultLookAndFeelDecorated(true);
-			int response = JOptionPane.showConfirmDialog(null,
-					"Restart level?\n", "GAME OVER", JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE);
-			if (response == JOptionPane.NO_OPTION) {
-				System.out.println("No button clicked");
-			} else if (response == JOptionPane.YES_OPTION) {
-				restartLevel();
-				pause = false;
-			} else if (response == JOptionPane.CLOSED_OPTION) {
-				System.out.println("JOptionPane closed");
-			}
-		}
-	}
+    public void checkIfGameOver(){
+        if(isGameOver()){
+            pause = true;
+            JDialog.setDefaultLookAndFeelDecorated(true);
+            int response = JOptionPane.showConfirmDialog(null, "Restart level?\n", "GAME OVER",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.NO_OPTION) {
+                System.out.println("No button clicked");
+            } else if (response == JOptionPane.YES_OPTION) {
+                restartLevel();
+                pause = false;
+            } else if (response == JOptionPane.CLOSED_OPTION) {
+                System.out.println("JOptionPane closed");
+            }
+        }
+    }
 
-	public boolean checkIfFinished() {
-		// NEW
-		if (didFinishLevel()) {
+    public boolean checkIfFinished() {
 
-			disableStoreButtons();
-			if (generateLvl.getAttackersList().isEmpty()) {
+        if (didFinishLevel()) {
 
-				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(null,
-						"Continue to next level?", "LEVEL COMPLETED",
-						dialogButton);
-				if (dialogResult == 0) {
-					System.out.println("Continue to next level here");
-					// TODO NEXT LEVEL
-				} else {
-					restartLevel();
-				}
-				worldHandler.resetNrOfAttackersToGoal();
-			}
-			return true;
-		}
-		return false;
-	}
+            disableStoreButtons();
+            if (generateLvl.getAttackersList().isEmpty()) {
+                if (currentLevel < generateLvl.getAmountOfLevels()) {
+                    int dialogButton = JOptionPane.YES_NO_OPTION;
+                    int dialogResult = JOptionPane.showConfirmDialog(null, "Continue to next level?", "LEVEL COMPLETED", dialogButton);
+                    System.out.println("CURRENT LEVEL IS: " + currentLevel + "NEXT LEVEL" + generateLvl.getAmountOfLevels());
+                    System.out.println("============================== " + dialogResult);
+
+                    if ((dialogResult == 0) && (currentLevel < generateLvl.getAmountOfLevels())) {
+                        System.out.println("Continue to next level here");
+                        currentLevel++;
+                        reset = true;
+                    } else {
+                        System.out.println("Handle no option");
+                    }
+                } else {
+                    int dialogButton = JOptionPane.YES_NO_OPTION;
+                    int dialogResult = JOptionPane.showConfirmDialog(null, "Congratulation you finished all the levels", "Would you like to restart", dialogButton);
+
+                    if (dialogResult == 0) {
+                        currentLevel = 1;
+                        reset = true;
+                    }
+                }
+                worldHandler.resetNrOfAttackersToGoal();
+            }
+
+            return true;
+        }
+        return false;
+    }
+
 
 	/**
 	 * Method will render all the objects
@@ -274,7 +310,7 @@ public class RunGame implements Runnable {
 
 	public void checkActionListenerList() {
 
-		if (!buttonListener.getListOfActions().isEmpty()) {
+        if(!buttonListener.getListOfActions().isEmpty()){
 
 			for (int i = 0; i < buttonListener.getListOfActions().size(); i++) {
 
@@ -326,30 +362,39 @@ public class RunGame implements Runnable {
 					gameRunning = false;
 					buttonListener.getListOfActions().remove(i);
 					System.exit(0);
-				} else if (buttonListener.getListOfActions().get(i)
-						.getSource() == gui.getPause()) {
-					if (!pause) {
-						System.out.println("PAUSING GAME");
-						pause = true;
-						store.getBtnBuyMuscle().setEnabled(false);
-						store.getBtnBuyNormal().setEnabled(false);
-						store.getBtnBuySpecial().setEnabled(false);
-						gui.updateButtonText();
-						buttonListener.getListOfActions().remove(i);
-					} else {
-						System.out.println("RESUMING GAME");
-						store.getBtnBuyMuscle().setEnabled(true);
-						store.getBtnBuyNormal().setEnabled(true);
-						store.getBtnBuySpecial().setEnabled(true);
-						gui.updateButtonText();
-						pause = false;
-						buttonListener.getListOfActions().remove(i);
-					}
-				} else if (buttonListener.getListOfActions().get(i)
-						.getSource() == gui.getRestart()) {
-					restartLevel();
-					buttonListener.getListOfActions().remove(i);
-				} else if (buttonListener.getListOfActions().get(i)
+				} else if(buttonListener.getListOfActions().get(i).getSource() == gui.getPause()) {
+                    if (!pause) {
+                        System.out.println("PAUSING GAME");
+                        pause = true;
+                        store.getBtnBuyMuscle().setEnabled(false);
+                        store.getBtnBuyNormal().setEnabled(false);
+                        store.getBtnBuySpecial().setEnabled(false);
+                        gui.updateButtonText();
+                        buttonListener.getListOfActions().remove(i);
+                    }
+                    else {
+                        System.out.println("RESUMING GAME");
+                        store.getBtnBuyMuscle().setEnabled(true);
+                        store.getBtnBuyNormal().setEnabled(true);
+                        store.getBtnBuySpecial().setEnabled(true);
+                        gui.updateButtonText();
+                        pause = false;
+                        buttonListener.getListOfActions().remove(i);
+                    }
+                } else if(buttonListener.getListOfActions().get(i).getSource() == gui.getRestart()) {
+                    restartLevel();
+                    buttonListener.getListOfActions().remove(i);
+                }
+                else if(buttonListener.getListOfActions().get(i).getSource() == gui.getQuit()) {
+                    gameRunning = false;
+                    buttonListener.getListOfActions().remove(i);
+                    System.exit(0);
+                }
+                else if (buttonListener.getListOfActions().get(i).getSource() == gui.getChangeLevel()){
+                    System.out.println("Changing level");
+                    getListOfLevels();
+                    buttonListener.getListOfActions().remove(i);
+                }else if (buttonListener.getListOfActions().get(i)
 						.getSource() == gui.getHelp()) {
 					JOptionPane.showMessageDialog(null,
 							"Help:\n\n Play by adding attackers to the\n"
@@ -367,7 +412,7 @@ public class RunGame implements Runnable {
 									.get(generateLvl.getAttackersList().indexOf(
 											worldHandler.getSpecialID()))
 									.getPos().getY());
-					
+
 					generateLvl.setTeleporterStartPosition(pos);
 
 					store.getBtnSetTeleporterStart().setEnabled(false);
@@ -401,13 +446,34 @@ public class RunGame implements Runnable {
 		}
 	}
 
-	private void restartLevel() {
-		System.out.println("RESET EVERYTHING AND RESTART LEVEL HERE");
-		enableStoreButtons();
-		store.setWallet(100);
-		hasTeleporter = false;
-		// TODO SET TO LEVEL VALUE
-	}
+    /**
+     * This method will show all the available level, so the user can choose from
+     * It there is no Levels available, new window will pop up with an error message
+     */
+    private void getListOfLevels(){
+
+        if(generateLvl.getAmountOfLevels() == 0){
+            JOptionPane.showMessageDialog(null,"There are no Levels available",
+                    "Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Object selection = JOptionPane.showInputDialog(null, "Select level",
+                "Change Level", JOptionPane.QUESTION_MESSAGE, null, selectionValues, String.valueOf(currentLevel));
+
+        currentLevel = Integer.parseInt(selection.toString());
+        reset = true;
+
+    }
+
+    /**
+     * Method will restart the current level
+     */
+    private void restartLevel(){
+        System.out.println("RESET EVERYTHING AND RESTART LEVEL HERE");
+        store.setWallet(generateLvl.getStartMoney()); // TODO SET TO LEVEL VALUE
+        reset = true;
+    }
 
 	public String getTeleporterDirection() {
 		return teleporterDirection;

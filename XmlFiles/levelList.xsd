@@ -46,10 +46,10 @@
 
                                 <xsd:complexType>
                                     <xsd:all>
-                                        <xsd:element name = 'startGold' type = 'xsd:positiveInteger'/>
-                                        <xsd:element name = 'NORMAL' type = 'xsd:nonNegativeInteger'/>
-                                        <xsd:element name = 'NUCLEAR' type = 'xsd:nonNegativeInteger'/>
-                                        <xsd:element name = 'attackersToFinish' type = 'xsd:positiveInteger'/>
+                                        <xsd:element name = 'STARTING_GOLD' type = 'xsd:positiveInteger'/>
+                                        <xsd:element name = 'NORMAL_DEFENDER' type = 'xsd:nonNegativeInteger'/>
+                                        <xsd:element name = 'NUCLEAR_DEFENDER' type = 'xsd:nonNegativeInteger'/>
+                                        <xsd:element name = 'ATTACKERS_TO_FINISH' type = 'xsd:positiveInteger'/>
                                     </xsd:all>
                                 </xsd:complexType>
                             </xsd:element><!--END: rules-->

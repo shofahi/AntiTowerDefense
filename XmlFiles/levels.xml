@@ -1760,10 +1760,10 @@
       </block>
     </blockList>
     <rules>
-      <startGold>500</startGold>
-      <NORMAL>3</NORMAL>
-      <NUCLEAR>1</NUCLEAR>
-      <attackersToFinish>2</attackersToFinish>
+      <STARTING_GOLD>500</STARTING_GOLD>
+      <NORMAL_DEFENDER>3</NORMAL_DEFENDER>
+      <NUCLEAR_DEFENDER>1</NUCLEAR_DEFENDER>
+      <ATTACKERS_TO_FINISH>2</ATTACKERS_TO_FINISH>
     </rules>
   </level>
 </levelList>
