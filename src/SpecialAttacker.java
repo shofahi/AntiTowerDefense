@@ -15,12 +15,15 @@ import java.util.LinkedList;
 
 
 public class SpecialAttacker extends Attacker {
+
     static private final int SPEED = 1;
     static private final int START_HEALTH = 700;
     static private final int ATTACKER_WIDTH = 25;
     static private final int ATTACKER_HEIGHT = 25;
     private int speedTrigger = 0;
+
     private BufferedImage specialAttackerImg;
+
     private LoadImage loadImage = new LoadImage();
 
     /**
@@ -30,9 +33,11 @@ public class SpecialAttacker extends Attacker {
      *                      the attacker to navigate the path
      */
     public SpecialAttacker(Position pos, LinkedList<Block> directionSign){
+
         super(pos, directionSign,
                 START_HEALTH, SPEED,
                 ATTACKER_WIDTH,ATTACKER_HEIGHT);
+
         specialAttackerImg = loadImage.loadTheImage("frankenstein.png");
 
     }
@@ -40,14 +45,16 @@ public class SpecialAttacker extends Attacker {
     public void update() {
 
         speedTrigger++;
-        if(speedTrigger == getMoveSpeed()){
-            getTurn();
 
+        if(speedTrigger == getMoveSpeed()){
+
+            getTurn();
             landOn(getPos(),turn);
 
             speedTrigger = 0;
         }
     }
+
     /**
      * Override method to render Special Attacker graphics to screen.
      * Attacker image + health bar
@@ -55,6 +62,7 @@ public class SpecialAttacker extends Attacker {
      */
     @Override
     public void render(Graphics g){
+
         g.drawImage(specialAttackerImg,getPos().getX(),getPos().getY(),
                     getWidth(),getHeight(),null);
 
@@ -75,6 +83,7 @@ public class SpecialAttacker extends Attacker {
      */
     @Override
     public Rectangle getBound() {
+
         return new Rectangle(getPos().getX(),getPos().getY(),
                                 getWidth(),getHeight());
     }
@@ -86,13 +95,21 @@ public class SpecialAttacker extends Attacker {
      */
     @Override
     public void landOn(Position pos, String turn) {
+
         if (turn.equals("WEST")) {
+
             getPos().setX(getPos().getX()-1);
+
         } else if (turn.equals("SOUTH")) {
+
             getPos().setY(getPos().getY()+1);
+
         } else if (turn.equals("NORTH")) {
+
             getPos().setY(getPos().getY()-1);
+
         } else if (turn.equals("EAST")) {
+
             getPos().setX(getPos().getX()+1);
         }
     }

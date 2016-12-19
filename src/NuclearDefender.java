@@ -21,9 +21,11 @@ import java.util.*;
  *         Samuel Bylund Felixon
  */
 public class NuclearDefender extends Defender {
+
     static private final int DAMAGE = 1;
     static private final int RANGE = 200;
     static private final int FIRE_RATE = 2;
+
     private BufferedImage towerImg;
     private LoadImage loadImage = new LoadImage();
     
@@ -56,27 +58,34 @@ public class NuclearDefender extends Defender {
 
             if(getRangeBound().intersects(getAttackerList().get(i).getBound())
                     && !enemyList.contains(getAttackerList().get(i))) {
+
                 enemyList.add(getAttackerList().get(i));
             }
         }
 
         if(!enemyList.isEmpty()){
-        	for (Attacker a : enemyList) {
-        	    a.inflictDamage(DAMAGE);
+
+            for (Attacker a : enemyList) {
+
+        	       a.inflictDamage(DAMAGE);
         	}
         }
+
         if(!enemyList.isEmpty()
                 && !enemyList.peek().getBound().intersects(getRangeBound())) {
+
             enemyList.remove();
         }
+
         if(!enemyList.isEmpty() && enemyList.peek().getHealth() == 0){
-            System.out.println("Removing from the queue");
+
             enemyList.peek().inflictDamage(1);
             enemyList.remove();
         }
 
         if(!enemyList.isEmpty()
                 && !getAttackerList().contains(enemyList.peek())){
+
             enemyList.remove();
         }
     }
@@ -87,10 +96,12 @@ public class NuclearDefender extends Defender {
      */
     @Override
     void render(Graphics g) {
+
         g.drawImage(towerImg,getPos().getX(),getPos().getY(),
                 towerImg.getWidth(),towerImg.getHeight(),null);
 
         if(!enemyList.isEmpty()){
+
         	g.setColor(new Color(0, 255, 0, 80));
         	g.fillOval(getPos().getX() - (getRange() / 5)
                     + (towerImg.getWidth() / 5), getPos().getY()
@@ -128,12 +139,17 @@ public class NuclearDefender extends Defender {
      */
     @Override
     public Rectangle getRangeBound() {
+
         return new Rectangle(
                 getPos().getX()-(getRange()/2) + (towerImg.getWidth() /2),
                 getPos().getY()-(getRange()/2) + (towerImg.getHeight()/2),
                 getRange(),getRange());
     }
 
+    /**
+     * Getter for the towers enemy list (enemies within range)
+     * @return The list
+     */
     public Queue<Attacker> getEnemyList(){
         return enemyList;
     }

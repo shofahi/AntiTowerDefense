@@ -14,9 +14,12 @@ import java.awt.image.BufferedImage;
 import java.util.*;
 
 public class NormalDefender extends Defender {
+
     static private final int DAMAGE = 5;
     static private final int RANGE = 300;
+
     private BufferedImage towerImg;
+
     private LoadImage loadImage = new LoadImage();
 
     private Queue <Attacker> enemyList = new LinkedList<Attacker>();
@@ -46,29 +49,34 @@ public class NormalDefender extends Defender {
     void update() {
 
         for(int i = 0; i< getAttackerList().size(); i++){
+
             if(getRangeBound().intersects(getAttackerList().get(i).getBound())
                     && !enemyList.contains(getAttackerList().get(i))) {
+
                 enemyList.add(getAttackerList().get(i));
             }
         }
 
         if(!enemyList.isEmpty()){
+
             enemyList.peek().inflictDamage(DAMAGE);
         }
 
         if(!enemyList.isEmpty()
                 && !enemyList.peek().getBound().intersects(getRangeBound())) {
+
             enemyList.remove();
         }
 
         if(!enemyList.isEmpty() && enemyList.peek().getHealth() == 0){
-            System.out.println("Removing from the queue");
+
             enemyList.peek().inflictDamage(1);
             enemyList.remove();
         }
 
         if(!enemyList.isEmpty()
                 && !getAttackerList().contains(enemyList.peek())){
+
             enemyList.remove();
         }
     }
@@ -79,18 +87,22 @@ public class NormalDefender extends Defender {
      */
     @Override
     void render(Graphics g) {
+
         g.drawImage(towerImg,getPos().getX(),getPos().getY(),
                 towerImg.getWidth(),towerImg.getHeight(),null );
 
         //Invisible but needed for the rectangle bound
         g.setColor(new Color(255, 255, 255, 0));
+
         g.drawRect(getPos().getX() - (getRange() / 2)
                 + (towerImg.getWidth() / 2), getPos().getY()
                 - (getRange() / 2) + (towerImg.getHeight() / 2),
                 getRange(),getRange() );
 
         if(!enemyList.isEmpty()){
+
             g.setColor(Color.green);
+
             g.drawLine(getPos().getX()+20,getPos().getY()+20,
                     enemyList.peek().getPos().getX()+10,
                     enemyList.peek().getPos().getY()+10);
@@ -114,6 +126,7 @@ public class NormalDefender extends Defender {
      */
     @Override
     public Rectangle getRangeBound() {
+
         return new Rectangle(
                 getPos().getX() - (getRange()/2) + (towerImg.getWidth()/2),
                 getPos().getY() - (getRange()/2) + (towerImg.getHeight()/2),

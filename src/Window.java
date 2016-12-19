@@ -1,3 +1,13 @@
+/**
+ * Classname: Window.java
+ * Version info 1.0
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 17/12/2017
+ * Course: Applikationsutveckling i Java
+ */
 import javax.swing.*;
 import java.awt.*;
 
@@ -35,6 +45,7 @@ public class Window extends JFrame {
 		super(title);
 
 		JPopupMenu.setDefaultLightWeightPopupEnabled(false);
+
 		ToolTipManager.sharedInstance().setLightWeightPopupEnabled(false);
 
 		this.buttonListener = buttonListener;
@@ -62,6 +73,7 @@ public class Window extends JFrame {
 	 * @return JMenuBar menuBar
 	 */
 	public JMenuBar createMenu() {
+
 		JMenuBar menuBar;
 		JMenu menu;
 		JMenu secondMenu;

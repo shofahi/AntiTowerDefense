@@ -29,6 +29,7 @@ public class MuscleAttacker extends Attacker {
      *                      the path
      */
     public MuscleAttacker(Position pos, LinkedList<Block> directionSign) {
+
         super(pos, directionSign,
                 START_HEALTH, SPEED,
                 ATTACKER_WIDTH,ATTACKER_HEIGHT);
@@ -36,11 +37,12 @@ public class MuscleAttacker extends Attacker {
     }
 
     public void update() {
+
         speedTrigger++;
 
         if(speedTrigger == getMoveSpeed()){
-            getTurn();
 
+            getTurn();
             landOn(getPos(),turn);
 
             speedTrigger = 0;

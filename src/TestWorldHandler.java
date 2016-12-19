@@ -8,13 +8,7 @@
  * Date: 19/12/2017
  * Course: Applikationsutveckling i Java
  */
-/**
- * Class testing WorldHandler
- * 
- * @version 6 December 2016
- * @authors Amanda Dahlin, Gustav Nordlander, 
- * 			Samuel Bylund Felixson, Masoud Shofahi
- */
+
 import static org.junit.Assert.*;
 
 import java.awt.Graphics;
@@ -53,7 +47,8 @@ public class TestWorldHandler {
 	    generateLvl.loadLevel(1);
         worldHandler.createNewAttacker(AttackerType.MUSCLEATTACKER);
 
-        assertTrue(generateLvl.getAttackersList().getLast() instanceof MuscleAttacker);
+        assertTrue(generateLvl.getAttackersList().getLast()
+				instanceof MuscleAttacker);
 	}
 
     /**
@@ -65,7 +60,8 @@ public class TestWorldHandler {
         generateLvl.loadLevel(1);
         worldHandler.createNewAttacker(AttackerType.NORMALATTACKER);
 
-        assertFalse(generateLvl.getAttackersList().getLast() instanceof MuscleAttacker);
+        assertFalse(generateLvl.getAttackersList().getLast()
+                instanceof MuscleAttacker);
     }
 
     /**

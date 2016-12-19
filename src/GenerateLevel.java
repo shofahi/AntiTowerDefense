@@ -1,5 +1,5 @@
 /**
- * Classname: GenerateLevel.java
+ * Classname: LandonClass.java
  * Version info 1.0
  * Copyright notice:    Masoud Shofahi
  *                      Amanda Dahlin
@@ -47,6 +47,7 @@ public class GenerateLevel implements LandonClass {
      * @param blockSize Diameter of block
      */
     public GenerateLevel(int blockSize,String path){
+
         xmlReader = new XmlReader(path,this);
         this.blockSize = blockSize;
         xmlReader.generateXML();
@@ -57,6 +58,7 @@ public class GenerateLevel implements LandonClass {
      * Method will Initialize all the objects and data structures
      */
     protected void init(){
+
         blocks = new LinkedList<>();
         zoneList = new LinkedList<>();
         attackersList = new LinkedList<>();
@@ -70,6 +72,7 @@ public class GenerateLevel implements LandonClass {
     public void loadLevel(int levelSelect) {
 
         if (!xmlReader.validateXMLFile("XmlFiles/levelList.xsd")) {
+
             JOptionPane.showMessageDialog(null,
                     "The file format is not correct",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -80,6 +83,7 @@ public class GenerateLevel implements LandonClass {
 
 
         if(!xmlReader.loadLevelXML(levelSelect)){
+
             JOptionPane.showMessageDialog(null,
                     "Could not load level: " + levelSelect,
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -90,12 +94,14 @@ public class GenerateLevel implements LandonClass {
         for (int i = 0; i < blocks.size(); i++) {
 
             if (blocks.get(i).getBlockType().equals(BlockType.GOALPOSITION)) {
+
                 goalPosition = new Rectangle(blocks.get(i).getPos().getX(),
                         blocks.get(i).getPos().getY(), blockSize, blockSize);
                 teleporterStartPosition = goalPosition;
             }
 
             if (blocks.get(i).getBlockType().equals(BlockType.STARTPOSITION)) {
+
                 startPosition = new Position(blocks.get(i).getPos().getX(),
                         blocks.get(i).getPos().getY());
             }
@@ -108,13 +114,20 @@ public class GenerateLevel implements LandonClass {
      * Method will  create and place the defenders on random available zones.
      */
     public void createDefenders(){
+
         if(!getZoneList().isEmpty()){
+
             for (int i = 0;
-                 i < xmlReader.lvlRules.get(LevelInfo.NORMAL_DEFENDER); i++)
+                 i < xmlReader.lvlRules.get(LevelInfo.NORMAL_DEFENDER); i++){
+
                 createNormalDefender();
+            }
+
             for (int i = 0;
-                 i < xmlReader.lvlRules.get(LevelInfo.NUCLEAR_DEFENDER); i++)
+                 i < xmlReader.lvlRules.get(LevelInfo.NUCLEAR_DEFENDER); i++) {
+
                 createNuclearDefender();
+            }
         }
     }
 
@@ -123,8 +136,10 @@ public class GenerateLevel implements LandonClass {
      * @return a random zone
      */
     private Block getRandomBlock (){
+
         Random r = new Random();
         int randomNum = r.nextInt(zoneList.size());
+
         return zoneList.get(randomNum);
     }
 
@@ -136,11 +151,13 @@ public class GenerateLevel implements LandonClass {
     protected boolean isCreatable(Defender defender){
 
         if(zoneList.isEmpty()){
+
             return false;
         }
 
         for (int j = 0; j < blocks.size(); j++){
             if (defender.getBound().intersects(blocks.get(j).getBound())){
+
                 return false;
             }
         }
@@ -148,9 +165,11 @@ public class GenerateLevel implements LandonClass {
 
             if (defender.getBound().intersects(defendersList.get(j).
                     getBound())){
+
                 return false;
             }
         }
+
         return true;
     }
 
@@ -166,7 +185,9 @@ public class GenerateLevel implements LandonClass {
                     attackersList);
 
             if(isCreatable(tmp)){
+
                 defendersList.add(tmp);
+
                 return;
             }
         }
@@ -184,7 +205,9 @@ public class GenerateLevel implements LandonClass {
                     attackersList);
 
             if(isCreatable(tmp)){
+
                 defendersList.add(tmp);
+
                 return;
             }
         }
@@ -200,50 +223,59 @@ public class GenerateLevel implements LandonClass {
 
 
 		if (type.equals(BlockType.STARTPOSITION.toString())) {
+
 			blocks.add(new LevelBlocks(pos, 20, 20,
 					BlockType.STARTPOSITION));
 		}
 
 		if (type.equals(BlockType.GOALPOSITION.toString())) {
+
 			blocks.add(new LevelBlocks(pos, 20, 20,
 					BlockType.GOALPOSITION));
 		}
 
 		if (type.equals(BlockType.TURNSOUTH.toString())) {
+
 			blocks.add(
 					new LevelBlocks(pos, 20, 20, BlockType.TURNSOUTH));
 		}
 
 		if (type.equals(BlockType.TURNNORTH.toString())) {
+
 			blocks.add(
 					new LevelBlocks(pos, 20, 20, BlockType.TURNNORTH));
 		}
 
 		if (type.equals(BlockType.TURNWEST.toString())) {
+
 			blocks.add(new LevelBlocks(pos, 20, 20, BlockType.TURNWEST));
 		}
 
 		if (type.equals(BlockType.TURNEAST.toString())) {
+
 			blocks.add(new LevelBlocks(pos, 20, 20, BlockType.TURNEAST));
 		}
 
         if (type.equals(BlockType.TURN_Y.toString())) {
+
             blocks.add(new LevelBlocks(pos, 20, 20, BlockType.TURN_Y));
         }
 
         if (type.equals(BlockType.TURN_X.toString())) {
+
             blocks.add(new LevelBlocks(pos, 20, 20, BlockType.TURN_X));
         }
 
 		if (type.equals(BlockType.PATH.toString())) {
+
 			blocks.add(new LevelBlocks(pos, 20, 20, BlockType.PATH));
 		}
 
 		if (type.equals(BlockType.DEFENDER.toString())) {
+
 			zoneList.add(
 					new LevelBlocks(pos, 20, 20, BlockType.DEFENDER));
 		}
-
     }
 
     /**
@@ -253,8 +285,10 @@ public class GenerateLevel implements LandonClass {
     public boolean checkStartAndGoalPosition(){
 
         if(startPosition == null || goalPosition == null){
+
             return false;
         }
+
         return true;
     }
 
@@ -325,23 +359,29 @@ public class GenerateLevel implements LandonClass {
 	}
 
     /**
-     *
-     * @param pos
+     * A setter for the teleporter start position
+     * @param pos The position as Position Object
      */
 	public void setTeleporterStartPosition(Position pos) {
 		teleporterStartPosition = new Rectangle(pos.getX(), pos.getY(),
 				blockSize, blockSize);
 	}
 
+    /**
+     * A setter for the teleporters' direction
+     * @param value
+     */
 	public void setTeleporterDirection(String value) {
 		teleporterDirection = value;
 	}
 
+    /**
+     * A getter for the teleporters' direction
+     * @return The direction
+     */
 	public String getTeleporterDirection() {
 		return teleporterDirection;
 	}
-
-
 
     /**
      * A getter for the defenderList. All the defenders created
@@ -379,5 +419,4 @@ public class GenerateLevel implements LandonClass {
     public int getAttackersToFinish(){
         return xmlReader.lvlRules.get(LevelInfo.ATTACKERS_TO_FINISH);
     }
-
 }

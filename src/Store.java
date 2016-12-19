@@ -1,3 +1,13 @@
+/**
+ * Classname: Store.java
+ * Version info 1.0
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 17/12/2017
+ * Course: Applikationsutveckling i Java
+ */
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -21,18 +31,22 @@ public class Store {
 
 	public BufferedImage attacker;
 	private JButton btnBuyNormal;
-	public static JButton btnBuySpecial;
+
+    public static JButton btnBuySpecial;
 	private JButton btnBuyMuscle;
 	private JButton setTeleporterStart;
 	private JButton setTeleporterEnd;
-	private int normalAttackerPrice = 10;
+
+    private int normalAttackerPrice = 10;
 	private int specialAttackerPrice = 50;
 	private int muscleAttackerPrice = 75;
 	private int wallet = 150;
-	private JLabel lblMoney;
+
+    private JLabel lblMoney;
 	private ButtonListener buttonListener;
 	private JPanel headerPanel;
-	private final int STORE_WIDTH = 180;
+
+    private final int STORE_WIDTH = 180;
 	private final int STORE_HEIGHT = 600;
 
 	private JLabel firstPlace = new JLabel();
@@ -50,7 +64,8 @@ public class Store {
 	 *            buttonListener
 	 */
 	public Store(ButtonListener buttonListener) {
-		this.buttonListener = buttonListener;
+
+        this.buttonListener = buttonListener;
 	}
 
 	/**
@@ -59,12 +74,15 @@ public class Store {
 	 * @return JPanel storePanel
 	 */
 	public JPanel buildStore() {
-		JPanel storePanel = new JPanel();
-		storePanel.setBackground(Color.BLACK);
+
+        JPanel storePanel = new JPanel();
+
+        storePanel.setBackground(Color.BLACK);
 		storePanel.setBorder(
 				BorderFactory.createMatteBorder(0, 1, 0, 0, Color.WHITE));
 		storePanel.setPreferredSize(new Dimension(STORE_WIDTH, STORE_HEIGHT));
-		storePanel.add(headerPanel());
+
+        storePanel.add(headerPanel());
 		storePanel.add(normalAttackerPanel());
 		storePanel.add(specialAttackerPanel());
 		storePanel.add(teleportPanel());
@@ -80,22 +98,31 @@ public class Store {
 	 * @return headerPanel
 	 */
 	public JPanel headerPanel() {
-		headerPanel = new JPanel();
+
+        headerPanel = new JPanel();
 		headerPanel.setPreferredSize(new Dimension(155, 125));
 		headerPanel.setBackground(Color.BLACK);
-		JLabel store = new JLabel("STORE");
-		store.setForeground(Color.WHITE);
+
+        JLabel store = new JLabel("STORE");
+
+        store.setForeground(Color.WHITE);
 		store.setFont(new Font("Sans-Serif", Font.BOLD, 48));
-		headerPanel.add(store, BorderLayout.WEST);
-		JLabel lblTitle = new JLabel("Money: ");
-		lblTitle.setForeground(Color.white);
+
+        headerPanel.add(store, BorderLayout.WEST);
+
+        JLabel lblTitle = new JLabel("Money: ");
+
+        lblTitle.setForeground(Color.white);
 		lblTitle.setFont(new Font("Sans-Serif", Font.PLAIN, 20));
-		headerPanel.add(lblTitle, BorderLayout.WEST);
-		lblMoney = new JLabel("$" + getWallet());
+
+        headerPanel.add(lblTitle, BorderLayout.WEST);
+
+        lblMoney = new JLabel("$" + getWallet());
 		lblMoney.setText(String.valueOf(getWallet()));
 		lblMoney.setFont(new Font("Sans-Serif", Font.PLAIN, 28));
 		lblMoney.setForeground(Color.white);
-		headerPanel.add(lblMoney, BorderLayout.EAST);
+
+        headerPanel.add(lblMoney, BorderLayout.EAST);
 
 		return headerPanel;
 	}
@@ -106,17 +133,24 @@ public class Store {
 	 * @return JPanel specialAttackerPanel
 	 */
 	public JPanel specialAttackerPanel() {
-		JPanel specialAttackerPanel = new JPanel();
-		specialAttackerPanel.setBackground(Color.BLACK);
+
+        JPanel specialAttackerPanel = new JPanel();
+
+        specialAttackerPanel.setBackground(Color.BLACK);
 		specialAttackerPanel.setPreferredSize(new Dimension(175, 60));
-		JLabel specialAttacker = new JLabel(
+
+        JLabel specialAttacker = new JLabel(
 				"Special Attacker, $" + getSpecialAttackerPrice());
-		specialAttacker.setForeground(Color.white);
+
+        specialAttacker.setForeground(Color.white);
 		specialAttackerPanel.add(specialAttacker, BorderLayout.WEST);
-		btnBuySpecial = new JButton("Buy Special Attacker");
-		btnBuySpecial.addActionListener(buttonListener);
-		specialAttackerPanel.add(btnBuySpecial, BorderLayout.EAST);
-		return specialAttackerPanel;
+
+        btnBuySpecial = new JButton("Buy Special Attacker");
+        btnBuySpecial.addActionListener(buttonListener);
+
+        specialAttackerPanel.add(btnBuySpecial, BorderLayout.EAST);
+
+        return specialAttackerPanel;
 	}
 
 	/**
@@ -125,19 +159,27 @@ public class Store {
 	 * @return JPanel normalAttackerPanel
 	 */
 	public JPanel normalAttackerPanel() {
-		JPanel normalAttackerPanel = new JPanel();
-		normalAttackerPanel.setPreferredSize(new Dimension(175, 60));
+
+        JPanel normalAttackerPanel = new JPanel();
+
+        normalAttackerPanel.setPreferredSize(new Dimension(175, 60));
 		normalAttackerPanel.setBorder(
 				BorderFactory.createMatteBorder(1, 0, 0, 0, Color.GRAY));
 		normalAttackerPanel.setBackground(Color.BLACK);
-		JLabel normalAttacker = new JLabel(
+
+        JLabel normalAttacker = new JLabel(
 				"Normal Attacker, $" + getNormalAttackerPrice());
-		normalAttacker.setForeground(Color.white);
+
+        normalAttacker.setForeground(Color.white);
 		normalAttackerPanel.add(normalAttacker, BorderLayout.WEST);
-		btnBuyNormal = new JButton("Buy Normal Attacker");
-		btnBuyNormal.addActionListener(buttonListener);
-		normalAttackerPanel.add(btnBuyNormal, BorderLayout.EAST);
-		return normalAttackerPanel;
+
+        btnBuyNormal = new JButton("Buy Normal Attacker");
+
+        btnBuyNormal.addActionListener(buttonListener);
+
+        normalAttackerPanel.add(btnBuyNormal, BorderLayout.EAST);
+
+        return normalAttackerPanel;
 	}
 
 	/**
@@ -146,17 +188,26 @@ public class Store {
 	 * @return JPanel muscleAttackerPanel
 	 */
 	public JPanel muscleAttackerPanel() {
-		JPanel muscleAttackerPanel = new JPanel();
-		muscleAttackerPanel.setPreferredSize(new Dimension(175, 100));
+
+        JPanel muscleAttackerPanel = new JPanel();
+
+        muscleAttackerPanel.setPreferredSize(new Dimension(175, 100));
 		muscleAttackerPanel.setBackground(Color.BLACK);
-		JLabel normalAttacker = new JLabel(
+
+        JLabel normalAttacker = new JLabel(
 				"Buy Muscle Attacker, $" + getMuscleAttackerPrice());
-		normalAttacker.setForeground(Color.white);
-		muscleAttackerPanel.add(normalAttacker, BorderLayout.WEST);
-		btnBuyMuscle = new JButton("Buy Muscle Attacker");
-		btnBuyMuscle.addActionListener(buttonListener);
-		muscleAttackerPanel.add(btnBuyMuscle, BorderLayout.EAST);
-		return muscleAttackerPanel;
+
+        normalAttacker.setForeground(Color.white);
+
+        muscleAttackerPanel.add(normalAttacker, BorderLayout.WEST);
+
+        btnBuyMuscle = new JButton("Buy Muscle Attacker");
+
+        btnBuyMuscle.addActionListener(buttonListener);
+
+        muscleAttackerPanel.add(btnBuyMuscle, BorderLayout.EAST);
+
+        return muscleAttackerPanel;
 	}
 
 	/**
@@ -165,22 +216,33 @@ public class Store {
 	 * @return JPanel telepanel
 	 */
 	public JPanel teleportPanel() {
-		JPanel telepanel = new JPanel();
-		telepanel.setPreferredSize(new Dimension(175, 100));
+
+        JPanel telepanel = new JPanel();
+
+        telepanel.setPreferredSize(new Dimension(175, 100));
 		telepanel.setBackground(Color.BLACK);
-		JLabel normalAttacker = new JLabel("place the teleporter");
-		normalAttacker.setForeground(Color.white);
-		telepanel.add(normalAttacker, BorderLayout.NORTH);
+
+        JLabel normalAttacker = new JLabel("place the teleporter");
+
+        normalAttacker.setForeground(Color.white);
+
+        telepanel.add(normalAttacker, BorderLayout.NORTH);
 
 		setTeleporterStart = new JButton("start");
 		setTeleporterStart.addActionListener(buttonListener);
-		telepanel.add(setTeleporterStart, BorderLayout.WEST);
-		setTeleporterStart.setEnabled(false);
-		setTeleporterEnd = new JButton("end");
+
+        telepanel.add(setTeleporterStart, BorderLayout.WEST);
+
+        setTeleporterStart.setEnabled(false);
+
+        setTeleporterEnd = new JButton("end");
 		setTeleporterEnd.addActionListener(buttonListener);
-		telepanel.add(setTeleporterEnd, BorderLayout.EAST);
-		setTeleporterEnd.setEnabled(false);
-		return telepanel;
+
+        telepanel.add(setTeleporterEnd, BorderLayout.EAST);
+
+        setTeleporterEnd.setEnabled(false);
+
+        return telepanel;
 	}
 
 	/**
@@ -189,15 +251,21 @@ public class Store {
 	 * @return JPanel highScorePanel
 	 */
 	public JPanel highScorePanel() {
-		JPanel highScorePanel = new JPanel();
-		highScorePanel.setPreferredSize(new Dimension(175, 100));
+
+        JPanel highScorePanel = new JPanel();
+
+        highScorePanel.setPreferredSize(new Dimension(175, 100));
 		highScorePanel.setBackground(Color.BLACK);
-		JLabel highScore = new JLabel("High score:\n");
-		firstPlace = new JLabel();
+
+        JLabel highScore = new JLabel("High score:\n");
+
+        firstPlace = new JLabel();
 		secondPlace = new JLabel();
 		thirdPlace = new JLabel();
-		highScore.setForeground(Color.white);
-		firstPlace.setForeground(Color.white);
+
+        highScore.setForeground(Color.white);
+
+        firstPlace.setForeground(Color.white);
 		secondPlace.setForeground(Color.white);
 		thirdPlace.setForeground(Color.white);
 
@@ -213,26 +281,37 @@ public class Store {
 	 * Checks if player can afford different types of attackers
 	 */
 	public void canAfford(boolean specialAlive) {
-		if (wallet < getNormalAttackerPrice()) {
-			btnBuyNormal.setEnabled(false);
-		} else {
-			btnBuyNormal.setEnabled(true);
+
+        if(wallet < getNormalAttackerPrice()) {
+
+            btnBuyNormal.setEnabled(false);
+
+        } else {
+
+            btnBuyNormal.setEnabled(true);
 		}
 
-		if (wallet < getMuscleAttackerPrice()) {
-			btnBuyMuscle.setEnabled(false);
-		} else {
-			btnBuyMuscle.setEnabled(true);
+		if(wallet < getMuscleAttackerPrice()) {
+
+            btnBuyMuscle.setEnabled(false);
+
+        } else {
+
+            btnBuyMuscle.setEnabled(true);
 		}
 
 		if(specialAlive){
-			btnBuySpecial.setEnabled(false);
+
+            btnBuySpecial.setEnabled(false);
 		}
 		
-		if (wallet >= getSpecialAttackerPrice() && !specialAlive) {
-			btnBuySpecial.setEnabled(true);
-		} else {
-			btnBuySpecial.setEnabled(false);
+		if(wallet >= getSpecialAttackerPrice() && !specialAlive) {
+
+            btnBuySpecial.setEnabled(true);
+
+        } else {
+
+            btnBuySpecial.setEnabled(false);
 		}
 	}
 
@@ -395,8 +474,10 @@ public class Store {
 	 *            points
 	 */
 	public void setFirstPlace(String name, int level, int points) {
-		firstHighScore = points;
-		firstPlace.setText(
+
+        firstHighScore = points;
+
+        firstPlace.setText(
 				"1. " + name + ": " + ". Level: " + level + " : " + points);
 	}
 
@@ -411,8 +492,10 @@ public class Store {
 	 *            points
 	 */
 	public void setSecondPlace(String name, int level, int points) {
-		secondHighScore = points;
-		secondPlace.setText(
+
+        secondHighScore = points;
+
+        secondPlace.setText(
 				"2. " + name + ": " + ". Level: " + level + " : " + points);
 	}
 
@@ -427,8 +510,10 @@ public class Store {
 	 *            points
 	 */
 	public void setThirdPlace(String name, int level, int points) {
-		thirdHighScore = points;
-		thirdPlace.setText(
+
+        thirdHighScore = points;
+
+        thirdPlace.setText(
 				"3. " + name + ": " + ". Level: " + level + " : " + points);
 	}
 

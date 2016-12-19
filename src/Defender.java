@@ -30,6 +30,7 @@ public abstract class Defender {
      */
     public Defender(Position pos, int damage, int range,
                     LinkedList<Attacker> attackersList){
+
         this.pos = new Position(pos.getX(),pos.getY());
     	this.damage = damage;
     	this.range = range;

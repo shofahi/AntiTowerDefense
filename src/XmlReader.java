@@ -1,8 +1,11 @@
 /**
  * Classname: XmlReader.java
  * Version info 1.0
- * Copyright notice: Masoud Shofahi, Amanda Dahlin, Gustav Norlander, Samuel Bylund
- * Date: 19/12/2017
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 17/12/2017
  * Course: Applikationsutveckling i Java
  */
 import org.w3c.dom.Document;
@@ -35,7 +38,9 @@ public class XmlReader{
      * @param path the path
      */
     public XmlReader(String path,GenerateLevel generateLevel){
+
         this.path = path;
+
         generateLvl= generateLevel;
     }
 
@@ -45,29 +50,43 @@ public class XmlReader{
     public XmlReader(GenerateLevel generateLevel){
 
         path = "XmlFiles/test.xml";
+
         generateLvl= generateLevel;
     }
 
     /**
-     *This method will read all the levels from the xml file and stores them in a NodeList
+     * This method will read all the levels from the xml file and
+     * stores them in a NodeList
      */
     public void generateXML(){
 
         nodeList = null;
+
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+
         try {
+
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(path);
+
             Element data = doc.getDocumentElement();
+
             data.normalize();
+
             nodeList = doc.getElementsByTagName("level");
 
         } catch (ParserConfigurationException e) {
+
             e.printStackTrace();
+
         } catch (IOException e) {
+
             e.printStackTrace();
+
         } catch (org.xml.sax.SAXException e) {
+
             e.printStackTrace();
+
         }
     }
 
@@ -80,15 +99,20 @@ public class XmlReader{
     public boolean validateXMLFile(String xsd){
 
         SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+
         try {
+
             ((schemaFactory.newSchema(new File(xsd))).newValidator()).validate(new StreamSource(new File (path)));
+
         } catch (SAXException e) {
-            System.out.println("Exception 1");
+
             return false;
+
         } catch (IOException e) {
-            System.out.println("Exception 2");
+
             return false;
         }
+
         return true;
     }
 
@@ -99,40 +123,62 @@ public class XmlReader{
     public boolean loadLevelXML(int levelNumber) {
 
       for(int i = 0; i < nodeList.getLength(); i++){
+
           Node node = nodeList.item(i);
+
           Element element = (Element) node;
 
-          if(element.getAttribute("number").equals(Integer.toString(levelNumber))){
+          if(element.getAttribute("number").
+                  equals(Integer.toString(levelNumber))){
 
               NodeList blockList = element.getElementsByTagName("block");
 
               for (int j = 0; j < blockList.getLength(); j++){
 
                   Node blockNode = blockList.item(j);
+
                   Element ele = (Element) blockNode;
 
-                  int xPos = Integer.parseInt(ele.getElementsByTagName("xPos").item(0).getTextContent());
-                  int yPos = Integer.parseInt(ele.getElementsByTagName("yPos").item(0).getTextContent());
+                  int xPos = Integer.parseInt(ele.getElementsByTagName("xPos").
+                          item(0).getTextContent());
+                  int yPos = Integer.parseInt(ele.getElementsByTagName("yPos").
+                          item(0).getTextContent());
+
                   String type = ele.getAttribute("type");
 
                   Position pos = new Position(xPos,yPos);
+
                   generateLvl.landOn(pos,type);
               }
 
               //Rules
               NodeList rules = element.getElementsByTagName("rules");
+
               Node ruleNode = rules.item(0);
+
               Element ele = (Element) ruleNode;
-              int money = Integer.parseInt(ele.getElementsByTagName(LevelInfo.STARTING_GOLD.toString()).item(0).getTextContent());
+
+              int money = Integer.parseInt(ele.getElementsByTagName(LevelInfo.
+                      STARTING_GOLD.toString()).item(0).getTextContent());
+
               lvlRules.put(LevelInfo.STARTING_GOLD,money);
 
-              int attackersToFinish = Integer.parseInt(ele.getElementsByTagName(LevelInfo.ATTACKERS_TO_FINISH.toString()).item(0).getTextContent());
+              int attackersToFinish = Integer.parseInt(ele.
+                      getElementsByTagName(LevelInfo.ATTACKERS_TO_FINISH.
+                              toString()).item(0).getTextContent());
+
               lvlRules.put(LevelInfo.ATTACKERS_TO_FINISH,attackersToFinish);
 
-              int normalDefender = Integer.parseInt(ele.getElementsByTagName(LevelInfo.NORMAL_DEFENDER.toString()).item(0).getTextContent());
+              int normalDefender = Integer.parseInt(ele.
+                      getElementsByTagName(LevelInfo.NORMAL_DEFENDER.
+                              toString()).item(0).getTextContent());
+
               lvlRules.put(LevelInfo.NORMAL_DEFENDER,normalDefender);
 
-              int nuclearDefender = Integer.parseInt(ele.getElementsByTagName(LevelInfo.NUCLEAR_DEFENDER.toString()).item(0).getTextContent());
+              int nuclearDefender = Integer.parseInt(ele.
+                      getElementsByTagName(LevelInfo.NUCLEAR_DEFENDER.
+                              toString()).item(0).getTextContent());
+
               lvlRules.put(LevelInfo.NUCLEAR_DEFENDER,nuclearDefender);
 
               return true;

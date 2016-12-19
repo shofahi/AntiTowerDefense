@@ -1,11 +1,13 @@
 /**
- * Classname: JunitGenerateLevel.java
+ * Classname: GenerateLevel.java
  * Version info 1.0
- * Copyright notice: Masoud Shofahi, Amanda Dahlin, Gustav Norlander, Samuel Bylund
- * Date: 19/12/2017
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 17/12/2017
  * Course: Applikationsutveckling i Java
  */
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -13,11 +15,7 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertTrue;
 import static org.testng.AssertJUnit.assertFalse;
 
-/**
- * Created by MasoudMac on 18/12/16.
- */
-
-public class JunitGenerateLevel {
+public class TestGenerateLevel {
 
     private GenerateLevel generateLevel;
     @Before
@@ -46,7 +44,8 @@ public class JunitGenerateLevel {
     @Test
     public void testIsCreatable()throws Exception{
 
-        NormalDefender nd = new NormalDefender(new Position(0,0),generateLevel.getAttackersList());
+        NormalDefender nd = new NormalDefender(new Position(0,0),
+                generateLevel.getAttackersList());
         assertFalse(generateLevel.isCreatable(nd));
     }
 

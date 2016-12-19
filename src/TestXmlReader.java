@@ -1,5 +1,5 @@
 /**
- * Classname: LevelInfo.java
+ * Classname: TestXmlReader.java
  * Version info 1.0
  * Copyright notice:    Masoud Shofahi
  *                      Amanda Dahlin
@@ -8,10 +8,20 @@
  * Date: 17/12/2017
  * Course: Applikationsutveckling i Java
  */
-public enum LevelInfo {
+import org.junit.Test;
 
-    STARTING_GOLD,
-    ATTACKERS_TO_FINISH,
-    NORMAL_DEFENDER,
-    NUCLEAR_DEFENDER;
+public class TestXmlReader {
+
+
+    public void setUp() {
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void generateXMLTest1(){
+
+    }
+
 }

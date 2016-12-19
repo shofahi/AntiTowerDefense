@@ -6,7 +6,7 @@ import static junit.framework.TestCase.assertTrue;
 import static org.testng.AssertJUnit.assertFalse;
 
 /**
- * Classname: TestWorldHandler.java
+ * Classname: TestRunGame.java
  * Version info 1.0
  * Copyright notice:    Masoud Shofahi
  *                      Amanda Dahlin
@@ -27,7 +27,8 @@ public class TestRunGame {
     }
 
     /**
-     * This method will check if the game ends when user has less than 10 gold left
+     * This method will check if the game ends when user has less
+     * than 10 gold left
      * @throws Exception if isGameOver method returns false
      */
     @Test
@@ -58,15 +59,20 @@ public class TestRunGame {
         System.out.println(runGame.getWorldHandler().getNrOfAttackersToGoal());
 
         runGame.init();
-        Position goalPosition = new Position(runGame.getGenerateLvl().getGoalPosition().x,runGame.getGenerateLvl().getGoalPosition().y);
 
-        for (int i = 0; i < runGame.getGenerateLvl().getAttackersToFinish();i++){
-            runGame.getGenerateLvl().getAttackersList().add(new NormalAttacker(goalPosition,runGame.getGenerateLvl().getBlocks()));
+        Position goalPosition = new Position(runGame.getGenerateLvl().
+                getGoalPosition().x,
+                runGame.getGenerateLvl().getGoalPosition().y);
+
+        for (int i = 0; i < runGame.getGenerateLvl().getAttackersToFinish()
+                ; i++){
+            runGame.getGenerateLvl().getAttackersList().
+                    add(new NormalAttacker(goalPosition,
+                            runGame.getGenerateLvl().getBlocks()));
             runGame.getWorldHandler().update();
         }
 
         assertTrue(runGame.didFinishLevel());
-
     }
 
     /**
@@ -77,10 +83,15 @@ public class TestRunGame {
     @Test
     public void test2DidFinishLevel()throws Exception{
         runGame.init();
-        Position goalPosition = new Position(runGame.getGenerateLvl().getGoalPosition().x,runGame.getGenerateLvl().getGoalPosition().y);
+        Position goalPosition = new Position(runGame.getGenerateLvl().
+                getGoalPosition().x,
+                runGame.getGenerateLvl().getGoalPosition().y);
 
-        for (int i = 0; i < runGame.getGenerateLvl().getAttackersToFinish()-1;i++){
-            runGame.getGenerateLvl().getAttackersList().add(new NormalAttacker(goalPosition,runGame.getGenerateLvl().getBlocks()));
+        for (int i = 0; i < runGame.getGenerateLvl().getAttackersToFinish()-1
+                ;i++){
+            runGame.getGenerateLvl().getAttackersList().
+                    add(new NormalAttacker(goalPosition,
+                            runGame.getGenerateLvl().getBlocks()));
             runGame.getWorldHandler().update();
         }
 
@@ -91,8 +102,8 @@ public class TestRunGame {
      * Place one attacker to goal.
      * Restarts and checks if number of attackers reached goal is 0.
      * Also set wallet to 0 gold. After Restart the wallet should not be 0.
-     * Note: the actual restart method is not called here because it will require to create a GUI,
-     * init does the same thing.
+     * Note: the actual restart method is not called here because it will
+     * require to create a GUI, init does the same thing.
      * @throws Exception if the values are equal
      */
     @Test
@@ -100,19 +111,27 @@ public class TestRunGame {
         runGame.init();
         runGame.getStore().setWallet(0);
 
-        Position goalPosition = new Position(runGame.getGenerateLvl().getGoalPosition().x,runGame.getGenerateLvl().getGoalPosition().y);
+        Position goalPosition = new Position(runGame.getGenerateLvl().
+                getGoalPosition().x,
+                runGame.getGenerateLvl().getGoalPosition().y);
 
-        for (int i = 0; i < runGame.getGenerateLvl().getAttackersToFinish()-1;i++){
-            runGame.getGenerateLvl().getAttackersList().add(new NormalAttacker(goalPosition,runGame.getGenerateLvl().getBlocks()));
+        for (int i = 0; i < runGame.getGenerateLvl().getAttackersToFinish()-1
+                ;i++){
+            runGame.getGenerateLvl().getAttackersList().
+                    add(new NormalAttacker(goalPosition,
+                            runGame.getGenerateLvl().getBlocks()));
             runGame.getWorldHandler().update();
         }
+
         int actualGold = runGame.getStore().getWallet();
-        int actualAttackerReachedGoal = runGame.getWorldHandler().getNrOfAttackersToGoal();
+        int actualAttackerReachedGoal = runGame.getWorldHandler().
+                getNrOfAttackersToGoal();
 
         runGame.init();
 
         Assert.assertNotEquals(actualGold,runGame.getStore().getWallet());
-        Assert.assertNotEquals(actualAttackerReachedGoal,runGame.getWorldHandler().getNrOfAttackersToGoal());
-    }
 
+        Assert.assertNotEquals(actualAttackerReachedGoal,
+                runGame.getWorldHandler().getNrOfAttackersToGoal());
+    }
 }

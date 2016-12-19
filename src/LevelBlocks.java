@@ -1,22 +1,42 @@
 /**
- * Extends the abstract class Blocks and is used to render graphics
- * depending on the enum BlockType.
- * 
- * @version 17 December 2016
- * @authors Amanda Dahlin, Gustav Nordlander, Samuel Bylund Felixson, 
- * 			Masoud Shofahi
+ * Classname: LevelBlocks.java
+ * Version info 1.0
+ * Copyright notice:    Masoud Shofahi
+ *                      Amanda Dahlin
+ *                      Gustav Norlander
+ *                      Samuel Bylund Felixon
+ * Date: 17/12/2017
+ * Course: Applikationsutveckling i Java
  */
 
 import java.awt.*;
 
 public class LevelBlocks extends Block {
+
+	/**
+	 * Constructor for LevelBlocks.
+	 * @param pos Position object containing position
+	 * @param width Width of block
+	 * @param height Height of block
+	 * @param blockType What type of block it should be
+     */
 	public LevelBlocks(Position pos, int width, int height,
 			BlockType blockType) {
+
 		super(pos, width, height, blockType);
 	}
 
+	/**
+	 * Constructor for Levelblocks
+	 * @param xPos X-position as integer
+	 * @param yPos Y-position as integer
+	 * @param width Width of block
+	 * @param height Heigh of block
+     * @param blockType What type of block it should be
+     */
 	public LevelBlocks(int xPos, int yPos, int width, int height,
 			BlockType blockType) {
+
 		super(xPos, yPos, width, height, blockType);
 	}
 
@@ -24,10 +44,11 @@ public class LevelBlocks extends Block {
 	 * Renders graphics with different colors depending on what
 	 * block type is used.
 	 * 
-	 * @param g
+	 * @param g The graphics
 	 */
 	@Override
 	public void render(Graphics g) {
+
 		if (getBlockType() == BlockType.PATH) {
 			g.setColor(Color.ORANGE);
 			g.fillRect(getPos().getX(), getPos().getY(), getWidth(),
