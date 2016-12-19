@@ -5,7 +5,11 @@
  * Date: 19/12/2017
  * Course: Applikationsutveckling i Java
  */
-enum AttackerType {
+
+/**
+ * Enum for all different attackertypes
+ */
+public enum AttackerType {
 
     NORMALATTACKER,
     SPECIALATTACKER,

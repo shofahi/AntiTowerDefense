@@ -10,6 +10,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
+/**
+ * Normal type attacker class
+ */
 public class NormalAttacker extends Attacker {
     static private final int SPEED = 1;
     static private final int START_HEALTH = 1200;

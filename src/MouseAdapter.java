@@ -13,7 +13,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.LinkedList;
 
-
+/**
+ * Adapter for mouse-klicks
+ */
 public class MouseAdapter implements MouseListener {
 
     public boolean clicked = false;

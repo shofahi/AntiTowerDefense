@@ -23,6 +23,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * Class for loading, reading and validating Xml files.
+ */
 public class XmlReader{
 
     private String path;

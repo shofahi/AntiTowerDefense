@@ -8,6 +8,9 @@
 
 import java.sql.SQLException;
 
+/**
+ * Helper class for checking SQL exceptions.
+ */
 public class DatabaseHelper {
 
     /**

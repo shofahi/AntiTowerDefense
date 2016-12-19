@@ -5,6 +5,10 @@
  * Date: 17/12/2017
  * Course: Applikationsutveckling i Java
  */
+
+/**
+ * Model for how entries in the database should look
+ */
 public class DatabaseModel {
     private int id;
     private int level;

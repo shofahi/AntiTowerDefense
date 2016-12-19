@@ -11,6 +11,9 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
 
+/**
+ * Generates a level with either default path or specified path to xml
+ */
 public class GenerateLevel implements LandonClass {
     private LinkedList<Block> blocks;
     private LinkedList<Block> zoneList;

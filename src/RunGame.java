@@ -15,6 +15,9 @@ import java.awt.image.BufferedImage;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Class that controls logic- and render loop.
+ */
 public class RunGame implements Runnable {
 
 	//amount of attackers to finish level (will load from XML)

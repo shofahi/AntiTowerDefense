@@ -5,6 +5,10 @@
  * Date: 17/12/2017
  * Course: Applikationsutveckling i Java
  */
+
+/**
+ * Class for creating position objects
+ */
 public class Position {
 
     private int x;

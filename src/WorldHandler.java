@@ -12,6 +12,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class handling world-events.
+ */
 public class WorldHandler{
 
 	private int bonus;
