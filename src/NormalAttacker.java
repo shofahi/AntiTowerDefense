@@ -61,6 +61,7 @@ public class NormalAttacker extends Attacker {
      */
     @Override
     public void render(Graphics g){
+
         g.drawImage(normalAttackerImage,getPos().getX(),
                 getPos().getY(),
                 getWidth(),getHeight(),null);
