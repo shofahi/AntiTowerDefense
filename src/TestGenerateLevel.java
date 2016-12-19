@@ -1,10 +1,7 @@
 /**
- * Classname: GenerateLevel.java
+ * Classname: TestGenerateLevel.java
  * Version info 1.0
  * Copyright notice:    Masoud Shofahi
- *                      Amanda Dahlin
- *                      Gustav Norlander
- *                      Samuel Bylund Felixon
  * Date: 17/12/2017
  * Course: Applikationsutveckling i Java
  */
@@ -59,7 +56,8 @@ public class TestGenerateLevel {
 
         Position pos = new Position(0,0);
         generateLevel.landOn(pos,BlockType.PATH.toString());
-        NormalDefender nd = new NormalDefender(generateLevel.getZoneList().get(0).getPos(),generateLevel.getAttackersList());
+        NormalDefender nd = new NormalDefender(generateLevel.getZoneList().
+                get(0).getPos(),generateLevel.getAttackersList());
         assertTrue(generateLevel.isCreatable(nd));
     }
 
@@ -75,12 +73,14 @@ public class TestGenerateLevel {
         Position pos = new Position(0,0);
         generateLevel.landOn(pos,BlockType.PATH.toString());
 
-        NormalDefender nd = new NormalDefender(generateLevel.getZoneList().get(0).getPos(),generateLevel.getAttackersList());
+        NormalDefender nd = new NormalDefender(generateLevel.getZoneList().
+                get(0).getPos(),generateLevel.getAttackersList());
         if(generateLevel.isCreatable(nd)){
             generateLevel.getDefendersList().push(nd);
         }
 
-        NormalDefender nd2 = new NormalDefender(generateLevel.getZoneList().get(0).getPos(),generateLevel.getAttackersList());
+        NormalDefender nd2 = new NormalDefender(generateLevel.getZoneList().
+                get(0).getPos(),generateLevel.getAttackersList());
         assertFalse(generateLevel.isCreatable(nd2));
     }
 
@@ -90,7 +90,8 @@ public class TestGenerateLevel {
      */
     @Test
     public void testCheckStartAndGoalPosition()throws Exception{
-        GenerateLevel generateLevel = new GenerateLevel(20,"XmlFiles/missingStartGoalPos.xml");
+        GenerateLevel generateLevel = new GenerateLevel(20,
+                "XmlFiles/missingStartGoalPos.xml");
         generateLevel.loadLevel(1);
         assertFalse(generateLevel.checkStartAndGoalPosition());
     }
@@ -100,7 +101,8 @@ public class TestGenerateLevel {
      */
     @Test
     public void testAccessLevelDoesNotExist(){
-        GenerateLevel generateLevel = new GenerateLevel(20,"XmlFiles/missingStartGoalPos.xml");
+        GenerateLevel generateLevel = new GenerateLevel(20,
+                "XmlFiles/missingStartGoalPos.xml");
         generateLevel.loadLevel(2);
     }
 }

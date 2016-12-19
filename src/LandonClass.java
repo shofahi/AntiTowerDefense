@@ -1,5 +1,9 @@
 /**
- * Created by Samuel on 2016-12-01.
+ * Classname: LandonClass.java
+ * Version info 1.0
+ * Copyright notice:    Masoud Shofahi
+ * Date: 17/12/2017
+ * Course: Applikationsutveckling i Java
  */
 public interface LandonClass {
     /**

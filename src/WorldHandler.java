@@ -65,16 +65,16 @@ public class WorldHandler{
                 if (generateLvl.getBlocks().get(i).isyNorth()) {
 
                     g.drawImage(yImg[0], generateLvl.getBlocks().get(i)
-                                    .getPos().getX(), generateLvl.getBlocks().get(i)
-                                    .getPos().getY(), yImg[0].getWidth(),
+                            .getPos().getX(), generateLvl.getBlocks().get(i)
+                            .getPos().getY(), yImg[0].getWidth(),
 
                             yImg[0].getHeight(), null);
 
                 } else {
 
                     g.drawImage(yImg[1], generateLvl.getBlocks().get(i)
-                                    .getPos().getX(), generateLvl.getBlocks().get(i)
-                                    .getPos().getY(), yImg[1].getWidth(),
+                            .getPos().getX(), generateLvl.getBlocks().get(i)
+                            .getPos().getY(), yImg[1].getWidth(),
 
                             yImg[1].getHeight(), null);
                 }
@@ -84,16 +84,16 @@ public class WorldHandler{
 
                 if (generateLvl.getBlocks().get(i).isxWest()) {
                     g.drawImage(xImg[0], generateLvl.getBlocks().get(i)
-                                    .getPos().getX(), generateLvl.getBlocks().get(i)
-                                    .getPos().getY(), xImg[0].getWidth(),
+                            .getPos().getX(), generateLvl.getBlocks().get(i)
+                            .getPos().getY(), xImg[0].getWidth(),
 
                             xImg[0].getHeight(), null);
 
                 } else {
 
                     g.drawImage(xImg[1], generateLvl.getBlocks().get(i)
-                                    .getPos().getX(), generateLvl.getBlocks().get(i)
-                                    .getPos().getY(), xImg[1].getWidth(),
+                            .getPos().getX(), generateLvl.getBlocks().get(i)
+                            .getPos().getY(), xImg[1].getWidth(),
 
                             xImg[1].getHeight(), null);
                 }

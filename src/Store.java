@@ -1,10 +1,8 @@
 /**
  * Classname: Store.java
  * Version info 1.0
- * Copyright notice:    Masoud Shofahi
- *                      Amanda Dahlin
+ * Copyright notice:    Amanda Dahlin
  *                      Gustav Norlander
- *                      Samuel Bylund Felixon
  * Date: 17/12/2017
  * Course: Applikationsutveckling i Java
  */
@@ -17,15 +15,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-/**
- * Creates the a panel with buttons for buying new attackers. Shows information
- * about amount of money and high score list.
- * 
- * @version 28 November 2016
- * @authors Amanda Dahlin, Gustav Nordlander, Samuel Bylund Felixson, Masoud
- *          Shofahi
- */
 
 public class Store {
 

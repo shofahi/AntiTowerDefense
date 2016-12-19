@@ -1,10 +1,7 @@
 /**
  * Classname: TestWindow.java
  * Version info 1.0
- * Copyright notice:    Masoud Shofahi
- *                      Amanda Dahlin
- *                      Gustav Norlander
- *                      Samuel Bylund Felixon
+ * Copyright notice:    Amanda Dahlin
  * Date: 17/12/2017
  * Course: Applikationsutveckling i Java
  */
@@ -16,12 +13,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Class testing Window
- * 
- * @author Amanda
- * @version 4 December 2016
- */
 public class TestWindow {
 
 	private Window window;

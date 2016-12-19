@@ -2,7 +2,6 @@
  * Classname: MuscleAttacker.java
  * Version info 1.0
  * Copyright notice:    Masoud Shofahi
- *                      Amanda Dahlin
  *                      Gustav Norlander
  *                      Samuel Bylund Felixon
  * Date: 17/12/2017

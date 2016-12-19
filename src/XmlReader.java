@@ -2,7 +2,6 @@
  * Classname: XmlReader.java
  * Version info 1.0
  * Copyright notice:    Masoud Shofahi
- *                      Amanda Dahlin
  *                      Gustav Norlander
  *                      Samuel Bylund Felixon
  * Date: 17/12/2017
@@ -14,7 +13,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -98,11 +96,13 @@ public class XmlReader{
      */
     public boolean validateXMLFile(String xsd){
 
-        SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+        SchemaFactory schemaFactory = SchemaFactory.
+                newInstance("http://www.w3.org/2001/XMLSchema");
 
         try {
 
-            ((schemaFactory.newSchema(new File(xsd))).newValidator()).validate(new StreamSource(new File (path)));
+            ((schemaFactory.newSchema(new File(xsd))).newValidator()).
+                    validate(new StreamSource(new File (path)));
 
         } catch (SAXException e) {
 

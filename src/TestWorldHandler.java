@@ -11,9 +11,6 @@
 
 import static org.junit.Assert.*;
 
-import java.awt.Graphics;
-import java.util.LinkedList;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

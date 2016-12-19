@@ -28,7 +28,6 @@ public class MouseAdapter implements MouseListener {
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("HI");
 
         for (int i = 0; i < blocks.size(); i++){
 
