@@ -13,6 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -66,7 +67,6 @@ public class XmlReader{
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 
         try {
-
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(path);
 
@@ -77,17 +77,18 @@ public class XmlReader{
             nodeList = doc.getElementsByTagName("level");
 
         } catch (ParserConfigurationException e) {
-
-            e.printStackTrace();
-
+        	JOptionPane.showMessageDialog(null,"Error: " +
+                    "DocumentBuilder cannot be created with specified "
+                    + "configuration \n" + e.toString(),
+            "Error",JOptionPane.ERROR_MESSAGE);
         } catch (IOException e) {
-
-            e.printStackTrace();
-
+        	JOptionPane.showMessageDialog(null,"Error: " +
+                    "File not found \n" + e.toString(),
+            "Error",JOptionPane.ERROR_MESSAGE);
         } catch (org.xml.sax.SAXException e) {
-
-            e.printStackTrace();
-
+        	JOptionPane.showMessageDialog(null,"Error: " +
+                    "SAX Exception \n" + e.toString(),
+            "Error",JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -108,7 +109,6 @@ public class XmlReader{
                     validate(new StreamSource(new File (path)));
 
         } catch (SAXException e) {
-
             return false;
 
         } catch (IOException e) {
