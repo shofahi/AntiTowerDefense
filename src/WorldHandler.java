@@ -43,13 +43,12 @@ public class WorldHandler{
 	 * signs
 	 */
 	private void init(){
-
         yImg = new BufferedImage[2];
 		xImg = new BufferedImage[2];
 
 		yImg[0] = LoadImage.loadTheImage("north_trans.png");
 		yImg[1] = LoadImage.loadTheImage("south_trans.png");
-
+		
 		xImg[0] = LoadImage.loadTheImage("west_trans.png");
 		xImg[1] = LoadImage.loadTheImage("east_trans.png");
 	}
@@ -59,14 +58,10 @@ public class WorldHandler{
 	 * @param  g
 	 */
 	public void render(Graphics g) {
-
 		for (int i = 0; i < generateLvl.getBlocks().size(); i++) {
-
             if (generateLvl.getBlocks().get(i).getBlockType().equals(BlockType
                     .TURN_Y)) {
-
                 if (generateLvl.getBlocks().get(i).isyNorth()) {
-
                     g.drawImage(yImg[0], generateLvl.getBlocks().get(i)
                             .getPos().getX(), generateLvl.getBlocks().get(i)
                             .getPos().getY(), yImg[0].getWidth(),
@@ -74,46 +69,37 @@ public class WorldHandler{
                             yImg[0].getHeight(), null);
 
                 } else {
-
                     g.drawImage(yImg[1], generateLvl.getBlocks().get(i)
                             .getPos().getX(), generateLvl.getBlocks().get(i)
                             .getPos().getY(), yImg[1].getWidth(),
 
                             yImg[1].getHeight(), null);
                 }
-
             } else if (generateLvl.getBlocks().get(i).getBlockType().equals
                     (BlockType.TURN_X)) {
-
                 if (generateLvl.getBlocks().get(i).isxWest()) {
                     g.drawImage(xImg[0], generateLvl.getBlocks().get(i)
                             .getPos().getX(), generateLvl.getBlocks().get(i)
                             .getPos().getY(), xImg[0].getWidth(),
 
                             xImg[0].getHeight(), null);
-
                 } else {
-
                     g.drawImage(xImg[1], generateLvl.getBlocks().get(i)
                             .getPos().getX(), generateLvl.getBlocks().get(i)
                             .getPos().getY(), xImg[1].getWidth(),
 
                             xImg[1].getHeight(), null);
                 }
-
             } else {
-
                 generateLvl.getBlocks().get(i).render(g);
             }
         }
 
 		for (int i = 0; i < generateLvl.getDefendersList().size(); i++) {
-
             generateLvl.getDefendersList().get(i).render(g);
 		}
 
 		for (int i = 0; i < generateLvl.getAttackersList().size(); i++) {
-
             generateLvl.getAttackersList().get(i).render(g);
 		}
 	}
@@ -130,14 +116,11 @@ public class WorldHandler{
 
         //Defender
 		for (int i = 0; i < generateLvl.getDefendersList().size(); i++) {
-
 			generateLvl.getDefendersList().get(i).update();
 		}
 
 		for (int i = 0; i < generateLvl.getAttackersList().size(); i++) {
-
 			generateLvl.getAttackersList().get(i).update();
-
 			//Goes out of range
 			if(generateLvl.getAttackersList().get(i).getPos().getX() > 800 ||
                     generateLvl.getAttackersList().get(i).getPos().getX() < 0 ){
@@ -151,16 +134,13 @@ public class WorldHandler{
             //Goes out of range
             if(generateLvl.getAttackersList().get(i).getPos().getY() > 600 ||
                     generateLvl.getAttackersList().get(i).getPos().getY() < 0 ){
-
                 JOptionPane.showMessageDialog(null, "Attacker out of range",
                         "Error", JOptionPane.ERROR_MESSAGE);
 
                 System.exit(1);
             }
 
-
 			if (generateLvl.getAttackersList().get(i).getHealth() < 0) {
-
                 if (generateLvl.getAttackersList().get(i)
                         .equals(getSpecialID())) {
 
@@ -171,18 +151,15 @@ public class WorldHandler{
 
             } else if (generateLvl.getAttackersList().get(i).getBound()
 					.intersects(generateLvl.getGoalPosition())) {
-
                 // Add money to wallet
 				bonus += generateLvl.getAttackersList().get(i).getHealth() * 2;
 
                 nrOfAttackerToGoal++;
 
 				generateLvl.getAttackersList().remove(i);
-
             } else if (RunGame.hasTeleporter && generateLvl.getAttackersList()
 					.get(i).getBound()
 					.intersects(generateLvl.getTeleporterStartPosition())) {
-
                 Position pos = new Position(
 						generateLvl.getTeleporterEndPosition().getX(),
 						generateLvl.getTeleporterEndPosition().getY());
@@ -200,14 +177,10 @@ public class WorldHandler{
 	 * @param type type
 	 */
 	public void createNewAttacker(AttackerType type) {
-
         if (type.equals(AttackerType.NORMALATTACKER)) {
-
             generateLvl.getAttackersList().add(new NormalAttacker(
 					generateLvl.getStartPosition(), generateLvl.getBlocks()));
-
         } else if (type.equals(AttackerType.SPECIALATTACKER)) {
-
             generateLvl.getAttackersList().add(new SpecialAttacker(
 					generateLvl.getStartPosition(), generateLvl.getBlocks()));
 
@@ -222,9 +195,7 @@ public class WorldHandler{
 			generateLvl.setTeleporterEndPosition(null);
 
             RunGame.hasTeleporter = false;
-
         } else if (type.equals(AttackerType.MUSCLEATTACKER)) {
-
             generateLvl.getAttackersList().add(new MuscleAttacker(
 					generateLvl.getStartPosition(), generateLvl.getBlocks()));
 		}
