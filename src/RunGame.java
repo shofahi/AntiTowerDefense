@@ -46,12 +46,10 @@ public class RunGame implements Runnable {
 
 	// Load the level
 	private WorldHandler worldHandler;
-
 	boolean updateGui = false;
 
 	// buttonlistener to store and window
 	private ButtonListener buttonListener = new ButtonListener();
-
 	private GenerateLevel generateLvl;
 
 	public static boolean hasTeleporter = false;
@@ -90,7 +88,6 @@ public class RunGame implements Runnable {
      */
     public void initializeConstructor(){
         gamePanel = new JPanel();
-
         gamePanel.setSize(new Dimension(WIDTH, HEIGHT));
         gamePanel.setBackground(Color.black);
 
@@ -108,10 +105,8 @@ public class RunGame implements Runnable {
         }
         store = new Store(buttonListener);
         this.updateHighScorePanel();
-
-        // 20 is the size of a block, this is just temporary
+        
         worldHandler = new WorldHandler(generateLvl);
-
         selectionValues = new Object[generateLvl.getAmountOfLevels()];
 
         for (int i = 0; i < selectionValues.length; i++) {
@@ -137,19 +132,13 @@ public class RunGame implements Runnable {
      * to start a new level
      */
 	public void init() {
-
         gameImg = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
-
         graphics = gameImg.getGraphics();
-
         generateLvl.loadLevel(1);
-
         store.setWallet(generateLvl.getStartMoney());
-
         victory = generateLvl.getAttackersToFinish();
 
         if(!generateLvl.checkStartAndGoalPosition()){
-
             JOptionPane.showMessageDialog(null,"The Level is missing a" +
                     "Start Position and Goal Position",
                     "Error",JOptionPane.ERROR_MESSAGE);
@@ -157,7 +146,6 @@ public class RunGame implements Runnable {
 
 		mouseAdapter = new MouseAdapter(generateLvl.getBlocks());
 		gamePanel.addMouseListener(mouseAdapter);
-
 		worldHandler.resetNrOfAttackersToGoal();
 	}
 
@@ -166,7 +154,6 @@ public class RunGame implements Runnable {
 	 */
 	@Override
 	public void run() {
-
 		final double TARGET_FPS = 60.0;
 		final double OPTIMAL_TIME = 1000000000 / TARGET_FPS;
 		long lastTime = System.nanoTime();
@@ -178,38 +165,28 @@ public class RunGame implements Runnable {
 		int frames = 0;
 
 		while(gameRunning) {
-
 			if(reset) {
-
                 init();
-
                 if(store.getWallet() >= store.getSpecialAttackerPrice()){
-
                     store.getBtnBuySpecial().setEnabled(true);
                 }
-
                 reset = false;
 			}
 
 			long now = System.nanoTime();
-
             delta += (now - lastTime) / OPTIMAL_TIME;
-
             lastTime = now;
 
             while (delta >= 1) {
-
                 update();
 				updates++;
 				delta--;
 			}
 
             render();
-
             frames++;
 
 			if (System.currentTimeMillis() - timer > 1000) {
-
                 timer += 1000;
 				frames = 0;
 				updates = 0;
@@ -222,7 +199,6 @@ public class RunGame implements Runnable {
 	 */
 	public void update() {
 		if(pause) {
-
 			checkActionListenerList();
 			store.getBtnBuyMuscle().setEnabled(false);
 			store.getBtnBuyNormal().setEnabled(false);
@@ -230,22 +206,18 @@ public class RunGame implements Runnable {
 		} else {
 
 			worldHandler.update();
-
             checkActionListenerList();
 
             store.setWallet(store.getWallet() + worldHandler.getBonus());
             store.getLblMoney().setText(String.valueOf(store.getWallet()));
-
             worldHandler.resetBonus();
 
 			if(!specialAlive) {
-
                 store.getBtnSetTeleporterStart().setEnabled(false);
 				store.getBtnSetTeleporterEnd().setEnabled(false);
 			}
 
 			if(!checkIfFinished()) {
-
                 store.canAfford(specialAlive);
 			}
 
@@ -259,7 +231,6 @@ public class RunGame implements Runnable {
      */
     public void checkIfGameOver(){
         if(isGameOver()){
-
             pause = true;
 
             JDialog.setDefaultLookAndFeelDecorated(true);
@@ -268,15 +239,11 @@ public class RunGame implements Runnable {
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             if (response == JOptionPane.NO_OPTION) {
-
                 //Do nothing
             } else if (response == JOptionPane.YES_OPTION) {
-
                 restartLevel();
                 pause = false;
-
             } else if (response == JOptionPane.CLOSED_OPTION) {
-
                 //Do nothing
             }
         }
@@ -288,55 +255,38 @@ public class RunGame implements Runnable {
      * @return false if user wants to quit the game
      */
     public boolean checkIfFinished() {
-
         if (didFinishLevel()) {
-
             disableStoreButtons();
-
             if (generateLvl.getAttackersList().isEmpty()) {
-
                 if (currentLevel < generateLvl.getAmountOfLevels()) {
-
                     int dialogButton = JOptionPane.YES_NO_OPTION;
-
                     int dialogResult = JOptionPane.showConfirmDialog(null,
                             "Continue to next level?", "LEVEL COMPLETED",
                             dialogButton);
 
                     if ((dialogResult == 0) && (currentLevel
                             < generateLvl.getAmountOfLevels())) {
-
                         currentLevel++;
                         reset = true;
-
                     } else {
-
                         System.out.println("Handle no option");
                     }
-
                 } else {
-
 					checkIfHighScore();
-
                     int dialogButton = JOptionPane.YES_NO_OPTION;
-
                     int dialogResult = JOptionPane.showConfirmDialog(null,
                             "Congratulation you finished all the levels",
                             "Would you like to restart", dialogButton);
 
                     if (dialogResult == 0) {
-
                         currentLevel = 1;
                         reset = true;
                     }
-                }
-
+                }             
                 worldHandler.resetNrOfAttackersToGoal();
             }
-
             return true;
         }
-
         return false;
     }
 
@@ -345,11 +295,8 @@ public class RunGame implements Runnable {
 	 * Method will render all the objects
 	 */
 	public void render() {
-
         graphics.clearRect(0, 0, WIDTH + store.getSTORE_WIDTH(), HEIGHT);
-
 		worldHandler.render(graphics);
-
         drawGameImage();
 	}
 
@@ -358,14 +305,10 @@ public class RunGame implements Runnable {
 	 * the screen
 	 */
 	public void drawGameImage() {
-
 		Graphics g = gamePanel.getGraphics();
-
         if (gameImg != null) {
-
 			g.drawImage(gameImg, 0, 0, null);
 		}
-
 		g.dispose();
 	}
 
@@ -374,21 +317,16 @@ public class RunGame implements Runnable {
      * create a new Thread for game loop
      */
 	public void startGame() {
-
-		SwingUtilities.invokeLater(new Runnable() {
-
+		SwingUtilities.invokeLater(new Runnable() {			
 			@Override
 			public void run() {
-
                 gui = new Window(TITLE, WIDTH, HEIGHT, buttonListener);
-
 				gui.add(gamePanel, BorderLayout.CENTER);
 				gui.add(store.buildStore(), BorderLayout.EAST);
 
 				gui.setVisible(true);
 
 				if (!gameRunning) {
-
 					start();
 				}
 			}
@@ -404,13 +342,10 @@ public class RunGame implements Runnable {
 	public boolean isGameOver() {
 		if (generateLvl.getAttackersList().isEmpty()
 				&& store.getWallet() < 10) {
-
             checkIfHighScore();
 
             return true;
-
         } else {
-
             return false;
 		}
 	}
@@ -421,7 +356,6 @@ public class RunGame implements Runnable {
      * @return true if requirements have been filled
      */
 	public boolean didFinishLevel() {
-
         return worldHandler.getNrOfAttackersToGoal() >= victory;
 	}
 
@@ -431,84 +365,61 @@ public class RunGame implements Runnable {
      * If an event has occurred then the right method will be called
      */
 	public void checkActionListenerList() {
-
 		if (!buttonListener.getListOfActions().isEmpty()) {
-
 			for (int i = 0; i < buttonListener.getListOfActions()
 					.size(); i++) {
-
 				if (buttonListener.getListOfActions().get(i)
 						.getSource() == store.getBtnBuyNormal()) {
-
 					worldHandler
 							.createNewAttacker(AttackerType.NORMALATTACKER);
-
+					
                     store.setWallet(store.getWallet()
 							- store.getNormalAttackerPrice());
-
                     store.getLblMoney()
 							.setText(String.valueOf(store.getWallet()));
-
+                    
                     buttonListener.getListOfActions().remove(i);
-
                 } else if (buttonListener.getListOfActions().get(i)
 						.getSource() == store.getBtnBuySpecial()) {
-
 					worldHandler
 							.createNewAttacker(AttackerType.SPECIALATTACKER);
-
+					
                     store.setWallet(store.getWallet()
 							- store.getSpecialAttackerPrice());
-
                     store.getLblMoney()
 							.setText(String.valueOf(store.getWallet()));
-
 					store.getBtnBuySpecial().setEnabled(false);
-
                     store.getBtnSetTeleporterStart().setEnabled(true);
-
                     store.getBtnSetTeleporterEnd().setEnabled(false);
-
+                    
                     buttonListener.getListOfActions().remove(i);
-
                 } else if (buttonListener.getListOfActions().get(i)
 						.getSource() == store.getBtnBuyMuscle()) {
-
 					worldHandler
 							.createNewAttacker(AttackerType.MUSCLEATTACKER);
-
+					
                     store.setWallet(store.getWallet()
 							- store.getMuscleAttackerPrice());
-
                     store.getLblMoney()
 							.setText(String.valueOf(store.getWallet()));
-
+                    
                     buttonListener.getListOfActions().remove(i);
-
                 } else if (buttonListener.getListOfActions().get(i)
 						.getSource() == gui.getAbout()) {
-
                     JOptionPane.showMessageDialog(null,
 							"Authors:\n\nAmanda Dahlin\n"
 									+ "Gustav Nordlander\n"
 									+ "Samuel Bylund Felixson\n"
 									+ "Masoud Shofahi\n\n\u00a9 2016");
 					buttonListener.getListOfActions().remove(i);
-
                 } else if (buttonListener.getListOfActions().get(i)
 						.getSource() == gui.getQuit()) {
-
                     gameRunning = false;
-
                     buttonListener.getListOfActions().remove(i);
-
                     System.exit(0);
-
                 } else if (buttonListener.getListOfActions().get(i)
 						.getSource() == gui.getPause()) {
-
                     if (!pause) {
-
 						pause = true;
 
                         store.getBtnBuyMuscle().setEnabled(false);
@@ -518,9 +429,7 @@ public class RunGame implements Runnable {
                         gui.updateButtonText();
 
                         buttonListener.getListOfActions().remove(i);
-
                     } else {
-
 						store.getBtnBuyMuscle().setEnabled(true);
 						store.getBtnBuyNormal().setEnabled(true);
 						store.getBtnBuySpecial().setEnabled(true);
@@ -533,27 +442,19 @@ public class RunGame implements Runnable {
 
                 } else if (buttonListener.getListOfActions().get(i)
 						.getSource() == gui.getRestart()) {
-
                     restartLevel();
-
                     buttonListener.getListOfActions().remove(i);
-
                 } else if (buttonListener.getListOfActions().get(i)
 						.getSource() == gui.getQuit()) {
-
                     gameRunning = false;
-
                     buttonListener.getListOfActions().remove(i);
-
+                    
                     System.exit(0);
-
                 } else if (buttonListener.getListOfActions().get(i)
 						.getSource() == gui.getChangeLevel()) {
-
                     getListOfLevels();
 
                     buttonListener.getListOfActions().remove(i);
-
                 } else if (buttonListener.getListOfActions().get(i)
 						.getSource() == gui.getHelp()) {
 
@@ -563,7 +464,6 @@ public class RunGame implements Runnable {
                                     "different \nprices. ETC.");
 
 						buttonListener.getListOfActions().remove(i);
-
                 } else if (buttonListener.getListOfActions().get(i)
 						.getSource() == store.getBtnSetTeleporterStart()) {
 
@@ -584,7 +484,6 @@ public class RunGame implements Runnable {
 					store.getBtnSetTeleporterEnd().setEnabled(true);
 
                     buttonListener.getListOfActions().remove(i);
-
                 } else if (buttonListener.getListOfActions().get(i)
 						.getSource() == store.getBtnSetTeleporterEnd()) {
 
@@ -618,13 +517,10 @@ public class RunGame implements Runnable {
 	 * error message
 	 */
 	private void getListOfLevels() {
-
 		if (generateLvl.getAmountOfLevels() == 0) {
-
 			JOptionPane.showMessageDialog(null,
 					"There are no Levels available", "Error",
 					JOptionPane.ERROR_MESSAGE);
-
             return;
 		}
 
@@ -634,7 +530,6 @@ public class RunGame implements Runnable {
                 selectionValues, String.valueOf(currentLevel));
 
         if(selection != null){
-
             currentLevel = Integer.parseInt(selection.toString());
 
             reset = true;
@@ -645,7 +540,6 @@ public class RunGame implements Runnable {
      * Method will restart the current level
      */
     protected void restartLevel(){
-
         store.setWallet(generateLvl.getStartMoney());
 
         reset = true;
@@ -665,19 +559,16 @@ public class RunGame implements Runnable {
      * and calls the method to add highscore to database if it is.
      */
 	private void checkIfHighScore() {
-
         ArrayList<DatabaseModel> highScores = database.getThreeHighscores();
 		String name = "- NO NAME -";
 
 		if (currentLevel > highScores.get(2).getLevel()
 				|| (currentLevel == highScores.get(2).getLevel()
                 && store.getWallet() >= highScores.get(2).getScore())) {
-
             name = JOptionPane
 					.showInputDialog("NEW HIGH SCORE\nEnter name:\n");
 
 			if (name != null) {
-
                 database.setHighScore(name, currentLevel, store.getWallet());
 
                 updateHighScorePanel();
@@ -689,7 +580,6 @@ public class RunGame implements Runnable {
      * Method to update highscores showing in the store menu.
      */
 	private void updateHighScorePanel() {
-
         ArrayList<DatabaseModel> highScores = database.getThreeHighscores();
 
         DatabaseModel first = highScores.get(0);
@@ -710,7 +600,6 @@ public class RunGame implements Runnable {
      * Method to disable all store buttons.
      */
 	private void disableStoreButtons() {
-
         store.getBtnBuyMuscle().setEnabled(false);
 		store.getBtnBuyNormal().setEnabled(false);
 		store.getBtnBuySpecial().setEnabled(false);
