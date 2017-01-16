@@ -138,9 +138,7 @@ public class RunGame implements Runnable {
         gameImg = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
 
         graphics = gameImg.getGraphics();
-
-        generateLvl.loadLevel(1);
-
+        generateLvl.loadLevel(currentLevel);
         store.setWallet(generateLvl.getStartMoney());
 
         victory = generateLvl.getAttackersToFinish();
@@ -153,7 +151,7 @@ public class RunGame implements Runnable {
         }
 
 		mouseAdapter = new MouseAdapter(generateLvl.getBlocks());
-		gamePanel.addMouseListener(mouseAdapter);
+		//gamePanel.setDoubleBuffered(true);
 
 		worldHandler.resetNrOfAttackersToGoal();
 	}
@@ -200,6 +198,7 @@ public class RunGame implements Runnable {
 				updates++;
 				delta--;
 			}
+
 
             render();
 
@@ -307,14 +306,11 @@ public class RunGame implements Runnable {
                         reset = true;
 
                     } else {
-
-                        System.out.println("Handle no option");
+                        restartLevel();
                     }
 
                 } else {
-
-					checkIfHighScore();
-
+                    checkIfHighScore();
                     int dialogButton = JOptionPane.YES_NO_OPTION;
 
                     int dialogResult = JOptionPane.showConfirmDialog(null,
@@ -322,9 +318,9 @@ public class RunGame implements Runnable {
                             "Would you like to restart", dialogButton);
 
                     if (dialogResult == 0) {
-
-                        currentLevel = 1;
-                        reset = true;
+                        restartLevel();
+                    }else{
+                        System.exit(0);
                     }
                 }
 
@@ -356,14 +352,42 @@ public class RunGame implements Runnable {
 	 */
 	public void drawGameImage() {
 
-		Graphics g = gamePanel.getGraphics();
 
-        if (gameImg != null) {
+		/*SwingUtilities.invokeLater(new Runnable() {
 
-			g.drawImage(gameImg, 0, 0, null);
-		}
+			@Override
+			public void run() {
 
-		g.dispose();
+
+			}
+		});*/
+
+
+
+		SwingWorker<Boolean,Void> worker = new SwingWorker<Boolean, Void>() {
+			Graphics g;
+
+			@Override
+			protected Boolean doInBackground() throws Exception {
+				 g = gamePanel.getGraphics();
+
+				return true;
+			}
+			@Override
+			protected void done() {
+
+				if (gameImg != null) {
+
+					g.drawImage(gameImg, 0, 0, null);
+				}
+
+				g.dispose();
+			}
+		};
+
+		worker.execute();
+
+
 	}
 
     /**
@@ -745,5 +769,7 @@ public class RunGame implements Runnable {
     public GenerateLevel getGenerateLvl() {
         return generateLvl;
     }
+
+
 
 }

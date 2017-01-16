@@ -9,10 +9,6 @@
  * Course: Applikationsutveckling i Java
  */
 
-import java.io.IOException;
-
-import org.xml.sax.SAXException;
-
 public class CompleteTest {
 
     public static void main(String[] args) {
@@ -24,7 +20,6 @@ public class CompleteTest {
             game = new RunGame("Anti Tower Defense Beta",args[0]);
 
         game.startGame();
-
     }
 
 }

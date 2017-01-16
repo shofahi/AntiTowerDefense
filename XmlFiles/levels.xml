@@ -35,18 +35,6 @@
         <yPos>440</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>60</xPos>
-        <yPos>460</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>60</xPos>
-        <yPos>480</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>80</xPos>
-        <yPos>320</yPos>
-      </block>
-      <block type="DEFENDER">
         <xPos>80</xPos>
         <yPos>340</yPos>
       </block>
@@ -69,18 +57,6 @@
       <block type="DEFENDER">
         <xPos>80</xPos>
         <yPos>440</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>80</xPos>
-        <yPos>460</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>80</xPos>
-        <yPos>480</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>100</xPos>
-        <yPos>320</yPos>
       </block>
       <block type="DEFENDER">
         <xPos>100</xPos>
@@ -107,18 +83,6 @@
         <yPos>440</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>100</xPos>
-        <yPos>460</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>100</xPos>
-        <yPos>480</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>120</xPos>
-        <yPos>320</yPos>
-      </block>
-      <block type="DEFENDER">
         <xPos>120</xPos>
         <yPos>340</yPos>
       </block>
@@ -141,18 +105,6 @@
       <block type="DEFENDER">
         <xPos>120</xPos>
         <yPos>440</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>120</xPos>
-        <yPos>460</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>120</xPos>
-        <yPos>480</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>140</xPos>
-        <yPos>320</yPos>
       </block>
       <block type="DEFENDER">
         <xPos>140</xPos>
@@ -179,18 +131,6 @@
         <yPos>440</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>140</xPos>
-        <yPos>460</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>140</xPos>
-        <yPos>480</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>160</xPos>
-        <yPos>320</yPos>
-      </block>
-      <block type="DEFENDER">
         <xPos>160</xPos>
         <yPos>340</yPos>
       </block>
@@ -213,18 +153,6 @@
       <block type="DEFENDER">
         <xPos>160</xPos>
         <yPos>440</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>160</xPos>
-        <yPos>460</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>160</xPos>
-        <yPos>480</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>180</xPos>
-        <yPos>320</yPos>
       </block>
       <block type="DEFENDER">
         <xPos>180</xPos>
@@ -251,18 +179,6 @@
         <yPos>440</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>180</xPos>
-        <yPos>460</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>180</xPos>
-        <yPos>480</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>200</xPos>
-        <yPos>320</yPos>
-      </block>
-      <block type="DEFENDER">
         <xPos>200</xPos>
         <yPos>340</yPos>
       </block>
@@ -285,18 +201,6 @@
       <block type="DEFENDER">
         <xPos>200</xPos>
         <yPos>440</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>200</xPos>
-        <yPos>460</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>200</xPos>
-        <yPos>480</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>220</xPos>
-        <yPos>320</yPos>
       </block>
       <block type="DEFENDER">
         <xPos>220</xPos>
@@ -323,18 +227,6 @@
         <yPos>440</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>220</xPos>
-        <yPos>460</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>220</xPos>
-        <yPos>480</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>240</xPos>
-        <yPos>320</yPos>
-      </block>
-      <block type="DEFENDER">
         <xPos>240</xPos>
         <yPos>340</yPos>
       </block>
@@ -357,18 +249,6 @@
       <block type="DEFENDER">
         <xPos>240</xPos>
         <yPos>440</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>240</xPos>
-        <yPos>460</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>240</xPos>
-        <yPos>480</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>260</xPos>
-        <yPos>320</yPos>
       </block>
       <block type="DEFENDER">
         <xPos>260</xPos>
@@ -395,18 +275,6 @@
         <yPos>440</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>260</xPos>
-        <yPos>460</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>260</xPos>
-        <yPos>480</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>280</xPos>
-        <yPos>320</yPos>
-      </block>
-      <block type="DEFENDER">
         <xPos>280</xPos>
         <yPos>340</yPos>
       </block>
@@ -431,28 +299,64 @@
         <yPos>440</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>280</xPos>
-        <yPos>460</yPos>
+        <xPos>300</xPos>
+        <yPos>20</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>280</xPos>
-        <yPos>480</yPos>
+        <xPos>300</xPos>
+        <yPos>40</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>280</xPos>
-        <yPos>500</yPos>
+        <xPos>300</xPos>
+        <yPos>60</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>280</xPos>
-        <yPos>520</yPos>
+        <xPos>300</xPos>
+        <yPos>80</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>280</xPos>
-        <yPos>540</yPos>
+        <xPos>300</xPos>
+        <yPos>100</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>280</xPos>
-        <yPos>560</yPos>
+        <xPos>300</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>300</yPos>
       </block>
       <block type="DEFENDER">
         <xPos>300</xPos>
@@ -483,28 +387,64 @@
         <yPos>440</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>300</xPos>
-        <yPos>460</yPos>
+        <xPos>320</xPos>
+        <yPos>20</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>300</xPos>
-        <yPos>480</yPos>
+        <xPos>320</xPos>
+        <yPos>40</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>300</xPos>
-        <yPos>500</yPos>
+        <xPos>320</xPos>
+        <yPos>60</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>300</xPos>
-        <yPos>520</yPos>
+        <xPos>320</xPos>
+        <yPos>80</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>300</xPos>
-        <yPos>540</yPos>
+        <xPos>320</xPos>
+        <yPos>100</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>300</xPos>
-        <yPos>560</yPos>
+        <xPos>320</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>300</yPos>
       </block>
       <block type="DEFENDER">
         <xPos>320</xPos>
@@ -534,37 +474,1235 @@
         <xPos>320</xPos>
         <yPos>440</yPos>
       </block>
-      <block type="DEFENDER">
-        <xPos>320</xPos>
-        <yPos>460</yPos>
+      <block type="TURNEAST">
+        <xPos>340</xPos>
+        <yPos>0</yPos>
       </block>
-      <block type="DEFENDER">
-        <xPos>320</xPos>
-        <yPos>480</yPos>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>20</yPos>
       </block>
-      <block type="DEFENDER">
-        <xPos>320</xPos>
-        <yPos>500</yPos>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>40</yPos>
       </block>
-      <block type="DEFENDER">
-        <xPos>320</xPos>
-        <yPos>520</yPos>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>60</yPos>
       </block>
-      <block type="DEFENDER">
-        <xPos>320</xPos>
-        <yPos>540</yPos>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>80</yPos>
       </block>
-      <block type="DEFENDER">
-        <xPos>320</xPos>
-        <yPos>560</yPos>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>100</yPos>
       </block>
-      <block type="DEFENDER">
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="PATH">
         <xPos>340</xPos>
         <yPos>320</yPos>
       </block>
-      <block type="DEFENDER">
+      <block type="PATH">
         <xPos>340</xPos>
         <yPos>340</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>460</yPos>
+      </block>
+      <block type="TURNEAST">
+        <xPos>340</xPos>
+        <yPos>480</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>360</xPos>
+        <yPos>20</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="TURN_Y">
+        <xPos>360</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>360</xPos>
+        <yPos>460</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>480</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>380</xPos>
+        <yPos>20</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>380</xPos>
+        <yPos>460</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>480</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>400</xPos>
+        <yPos>20</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>400</xPos>
+        <yPos>460</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>480</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>420</xPos>
+        <yPos>20</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>420</xPos>
+        <yPos>460</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>480</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>440</xPos>
+        <yPos>20</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="TURNNORTH">
+        <xPos>440</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>440</xPos>
+        <yPos>460</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>440</xPos>
+        <yPos>480</yPos>
+      </block>
+      <block type="GOALPOSITION">
+        <xPos>460</xPos>
+        <yPos>20</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>460</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>460</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>460</xPos>
+        <yPos>460</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>460</xPos>
+        <yPos>480</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>480</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>480</xPos>
+        <yPos>460</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>480</xPos>
+        <yPos>480</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>500</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>500</xPos>
+        <yPos>460</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>500</xPos>
+        <yPos>480</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>520</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>520</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>520</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>520</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>520</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>520</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>520</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>520</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>520</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>520</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>520</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="TURNWEST">
+        <xPos>520</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>520</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>520</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>520</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>520</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>520</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>520</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>520</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>520</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>520</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>520</xPos>
+        <yPos>460</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>520</xPos>
+        <yPos>480</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="TURNNORTH">
+        <xPos>540</xPos>
+        <yPos>460</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>540</xPos>
+        <yPos>480</yPos>
+      </block>
+    </blockList>
+    <rules>
+      <STARTING_GOLD>150</STARTING_GOLD>
+      <NORMAL_DEFENDER>3</NORMAL_DEFENDER>
+      <NUCLEAR_DEFENDER>0</NUCLEAR_DEFENDER>
+      <ATTACKERS_TO_FINISH>4</ATTACKERS_TO_FINISH>
+    </rules>
+  </level>
+  <level number="2">
+    <blockList>
+      <block type="STARTPOSITION">
+        <xPos>0</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>20</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>40</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>60</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>60</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>60</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>60</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>60</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>80</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>80</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>80</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>80</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>80</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>100</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>100</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>100</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>100</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>100</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>120</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>120</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>120</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>120</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>120</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>140</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>140</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>140</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>140</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>140</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>160</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>180</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>200</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>200</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>200</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>200</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>200</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>220</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>240</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>260</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>260</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>260</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>260</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>260</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>280</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>300</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>460</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>480</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>500</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>520</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>540</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>360</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>380</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>320</xPos>
+        <yPos>400</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>420</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>440</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>460</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>480</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>500</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>520</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>540</yPos>
       </block>
       <block type="DEFENDER">
         <xPos>340</xPos>
@@ -607,18 +1745,6 @@
         <yPos>540</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>340</xPos>
-        <yPos>560</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>360</xPos>
-        <yPos>320</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>360</xPos>
-        <yPos>340</yPos>
-      </block>
-      <block type="DEFENDER">
         <xPos>360</xPos>
         <yPos>360</yPos>
       </block>
@@ -659,82 +1785,6 @@
         <yPos>540</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>360</xPos>
-        <yPos>560</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>40</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>60</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>80</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>100</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>120</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>140</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>160</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>180</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>200</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>220</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>240</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>260</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>280</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>300</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>320</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>340</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>360</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>380</yPos>
-      </block>
-      <block type="DEFENDER">
         <xPos>380</xPos>
         <yPos>400</yPos>
       </block>
@@ -767,94 +1817,6 @@
         <yPos>540</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>380</xPos>
-        <yPos>560</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>40</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>60</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>80</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>100</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>120</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>140</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>160</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>180</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>200</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>220</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>240</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>260</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>280</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>300</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>320</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>340</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>360</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>380</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>400</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>420</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>440</yPos>
-      </block>
-      <block type="DEFENDER">
         <xPos>400</xPos>
         <yPos>460</yPos>
       </block>
@@ -873,10 +1835,6 @@
       <block type="DEFENDER">
         <xPos>400</xPos>
         <yPos>540</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>400</xPos>
-        <yPos>560</yPos>
       </block>
       <block type="DEFENDER">
         <xPos>420</xPos>
@@ -944,26 +1902,6 @@
       </block>
       <block type="DEFENDER">
         <xPos>420</xPos>
-        <yPos>360</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>420</xPos>
-        <yPos>380</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>420</xPos>
-        <yPos>400</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>420</xPos>
-        <yPos>420</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>420</xPos>
-        <yPos>440</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>420</xPos>
         <yPos>460</yPos>
       </block>
       <block type="DEFENDER">
@@ -981,10 +1919,6 @@
       <block type="DEFENDER">
         <xPos>420</xPos>
         <yPos>540</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>420</xPos>
-        <yPos>560</yPos>
       </block>
       <block type="DEFENDER">
         <xPos>440</xPos>
@@ -1052,26 +1986,6 @@
       </block>
       <block type="DEFENDER">
         <xPos>440</xPos>
-        <yPos>360</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>440</xPos>
-        <yPos>380</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>440</xPos>
-        <yPos>400</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>440</xPos>
-        <yPos>420</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>440</xPos>
-        <yPos>440</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>440</xPos>
         <yPos>460</yPos>
       </block>
       <block type="DEFENDER">
@@ -1089,10 +2003,6 @@
       <block type="DEFENDER">
         <xPos>440</xPos>
         <yPos>540</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>440</xPos>
-        <yPos>560</yPos>
       </block>
       <block type="GOALPOSITION">
         <xPos>460</xPos>
@@ -1168,26 +2078,6 @@
       </block>
       <block type="DEFENDER">
         <xPos>460</xPos>
-        <yPos>360</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>460</xPos>
-        <yPos>380</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>460</xPos>
-        <yPos>400</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>460</xPos>
-        <yPos>420</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>460</xPos>
-        <yPos>440</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>460</xPos>
         <yPos>460</yPos>
       </block>
       <block type="DEFENDER">
@@ -1205,10 +2095,6 @@
       <block type="DEFENDER">
         <xPos>460</xPos>
         <yPos>540</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>460</xPos>
-        <yPos>560</yPos>
       </block>
       <block type="DEFENDER">
         <xPos>480</xPos>
@@ -1276,26 +2162,6 @@
       </block>
       <block type="DEFENDER">
         <xPos>480</xPos>
-        <yPos>360</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>480</xPos>
-        <yPos>380</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>480</xPos>
-        <yPos>400</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>480</xPos>
-        <yPos>420</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>480</xPos>
-        <yPos>440</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>480</xPos>
         <yPos>460</yPos>
       </block>
       <block type="DEFENDER">
@@ -1313,10 +2179,6 @@
       <block type="DEFENDER">
         <xPos>480</xPos>
         <yPos>540</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>480</xPos>
-        <yPos>560</yPos>
       </block>
       <block type="DEFENDER">
         <xPos>500</xPos>
@@ -1384,26 +2246,6 @@
       </block>
       <block type="DEFENDER">
         <xPos>500</xPos>
-        <yPos>360</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>500</xPos>
-        <yPos>380</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>500</xPos>
-        <yPos>400</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>500</xPos>
-        <yPos>420</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>500</xPos>
-        <yPos>440</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>500</xPos>
         <yPos>460</yPos>
       </block>
       <block type="DEFENDER">
@@ -1421,10 +2263,6 @@
       <block type="DEFENDER">
         <xPos>500</xPos>
         <yPos>540</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>500</xPos>
-        <yPos>560</yPos>
       </block>
       <block type="DEFENDER">
         <xPos>520</xPos>
@@ -1531,58 +2369,6 @@
         <yPos>540</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>520</xPos>
-        <yPos>560</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>540</xPos>
-        <yPos>40</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>540</xPos>
-        <yPos>60</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>540</xPos>
-        <yPos>80</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>540</xPos>
-        <yPos>100</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>540</xPos>
-        <yPos>120</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>540</xPos>
-        <yPos>140</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>540</xPos>
-        <yPos>160</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>540</xPos>
-        <yPos>180</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>540</xPos>
-        <yPos>200</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>540</xPos>
-        <yPos>220</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>540</xPos>
-        <yPos>240</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>540</xPos>
-        <yPos>260</yPos>
-      </block>
-      <block type="DEFENDER">
         <xPos>540</xPos>
         <yPos>280</yPos>
       </block>
@@ -1637,10 +2423,6 @@
       <block type="DEFENDER">
         <xPos>540</xPos>
         <yPos>540</yPos>
-      </block>
-      <block type="DEFENDER">
-        <xPos>540</xPos>
-        <yPos>560</yPos>
       </block>
       <block type="TURNWEST">
         <xPos>560</xPos>
@@ -1699,10 +2481,6 @@
         <yPos>540</yPos>
       </block>
       <block type="DEFENDER">
-        <xPos>560</xPos>
-        <yPos>560</yPos>
-      </block>
-      <block type="DEFENDER">
         <xPos>580</xPos>
         <yPos>300</yPos>
       </block>
@@ -1754,16 +2532,846 @@
         <xPos>580</xPos>
         <yPos>540</yPos>
       </block>
+    </blockList>
+    <rules>
+      <STARTING_GOLD>200</STARTING_GOLD>
+      <NORMAL_DEFENDER>3</NORMAL_DEFENDER>
+      <NUCLEAR_DEFENDER>2</NUCLEAR_DEFENDER>
+      <ATTACKERS_TO_FINISH>5</ATTACKERS_TO_FINISH>
+    </rules>
+  </level>
+  <level number="3">
+    <blockList>
+      <block type="STARTPOSITION">
+        <xPos>0</xPos>
+        <yPos>300</yPos>
+      </block>
       <block type="DEFENDER">
-        <xPos>580</xPos>
-        <yPos>560</yPos>
+        <xPos>20</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>20</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>20</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>20</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>20</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>40</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>40</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>40</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>40</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>40</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>60</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>60</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>60</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>60</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>60</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>80</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>80</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>80</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>80</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>80</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>100</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>100</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>100</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>100</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>100</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>120</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>120</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>120</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>120</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>120</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>140</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>140</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>140</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>140</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>140</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>160</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>160</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="TURNNORTH">
+        <xPos>180</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>180</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>180</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>200</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="TURNEAST">
+        <xPos>200</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>200</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>200</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>200</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>200</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>200</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>200</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>200</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>200</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>200</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>200</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>220</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>220</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>220</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>220</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>240</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>240</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>240</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>240</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>260</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>260</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>260</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>260</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="TURN_X">
+        <xPos>260</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>260</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>260</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>260</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>260</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>260</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>260</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>260</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>260</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>260</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>260</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>280</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>280</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="TURNNORTH">
+        <xPos>280</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>280</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>300</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>300</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>220</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>240</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>260</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>280</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>300</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>320</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>300</xPos>
+        <yPos>340</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>320</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>320</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>320</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>340</xPos>
+        <yPos>20</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>340</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>340</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>340</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>340</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>340</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>340</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>340</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>340</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>20</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>360</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>360</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>360</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="GOALPOSITION">
+        <xPos>380</xPos>
+        <yPos>0</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>380</xPos>
+        <yPos>20</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>380</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>380</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>380</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>380</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>380</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>380</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="PATH">
+        <xPos>380</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>380</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>20</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="TURNNORTH">
+        <xPos>400</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="TURNNORTH">
+        <xPos>400</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>400</xPos>
+        <yPos>200</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>20</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>40</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>60</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>80</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>100</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>120</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>140</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>160</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>180</yPos>
+      </block>
+      <block type="DEFENDER">
+        <xPos>420</xPos>
+        <yPos>200</yPos>
       </block>
     </blockList>
     <rules>
-      <STARTING_GOLD>500</STARTING_GOLD>
-      <NORMAL_DEFENDER>3</NORMAL_DEFENDER>
-      <NUCLEAR_DEFENDER>1</NUCLEAR_DEFENDER>
-      <ATTACKERS_TO_FINISH>2</ATTACKERS_TO_FINISH>
+      <STARTING_GOLD>300</STARTING_GOLD>
+      <NORMAL_DEFENDER>4</NORMAL_DEFENDER>
+      <NUCLEAR_DEFENDER>3</NUCLEAR_DEFENDER>
+      <ATTACKERS_TO_FINISH>5</ATTACKERS_TO_FINISH>
     </rules>
   </level>
 </levelList>

@@ -2,12 +2,11 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
     <xsd:element name="levelList"> <!--Start of levelList -->
         <xsd:complexType>
-            <xsd:all>
-                <xsd:element name = "level"> <!--Start: level-->
+            <xsd:sequence>
+                <xsd:element name = "level" maxOccurs="unbounded"> <!--Start: level-->
                     <xsd:complexType>
                         <xsd:all>
                             <xsd:element name = "blockList"> <!--Start: blockList-->
-
                                 <xsd:complexType>
                                     <xsd:sequence>
                                         <xsd:element name = "block" minOccurs="2" maxOccurs="unbounded"><!--Start: block-->
@@ -59,7 +58,7 @@
                         <xsd:attribute name='number' use='required' type='xsd:positiveInteger'/>
                     </xsd:complexType>
                 </xsd:element> <!--End: level-->
-            </xsd:all>
+            </xsd:sequence>
         </xsd:complexType>
 
     </xsd:element> <!--End of levelList -->
