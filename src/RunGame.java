@@ -363,7 +363,7 @@ public class RunGame implements Runnable {
 		});*/
 
 
-
+		//System.out.println("test");
 		SwingWorker<Boolean,Void> worker = new SwingWorker<Boolean, Void>() {
 			Graphics g;
 
