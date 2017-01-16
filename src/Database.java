@@ -8,6 +8,9 @@
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Class for the Apache derby database
+ */
 public class Database {
     private static final String DRIVER = "org.apache.derby.jdbc.ClientDriver";
     private static final String JDBC_URL = "jdbc:derby:antiTDDatabase";

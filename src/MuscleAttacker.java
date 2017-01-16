@@ -10,6 +10,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
+/**
+ * Muscle type attacker class
+ */
 public class MuscleAttacker extends Attacker {
     static private final int SPEED = 2;
     static private final int START_HEALTH = 3500;

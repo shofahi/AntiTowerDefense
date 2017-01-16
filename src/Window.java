@@ -12,10 +12,7 @@ import java.awt.*;
 
 /**
  * Class creating menu bar including buttons & listener
- * 
- * @version 28 November 2016
- * @authors Amanda Dahlin, Gustav Nordlander, 
- * 			Samuel Bylund Felixson, Masoud Shofahi
+ *
  */
 public class Window extends JFrame {
 

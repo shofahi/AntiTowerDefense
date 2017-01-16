@@ -11,6 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
+/**
+ * Listener
+ */
 public class ButtonListener implements ActionListener {
 
     private LinkedList<ActionEvent> listOfActions;

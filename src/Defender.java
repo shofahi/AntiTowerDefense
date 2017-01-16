@@ -10,8 +10,9 @@
 import java.awt.*;
 import java.util.LinkedList;
 
-
-
+/**
+ * Abstract class for Defender type classes.
+ */
 public abstract class Defender {
 
     private Position pos;

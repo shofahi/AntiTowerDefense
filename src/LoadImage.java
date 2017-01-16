@@ -13,6 +13,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * Class for loading images into the game.
+ */
 public class LoadImage {
     public static int i = 0;
     /**

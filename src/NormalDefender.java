@@ -12,6 +12,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
 
+/**
+ * Normal type defender class
+ */
 public class NormalDefender extends Defender {
 
     static private final int DAMAGE = 5;

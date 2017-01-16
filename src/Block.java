@@ -10,8 +10,6 @@ import java.awt.*;
 /**
  * This is class will be implemented by Objects that are static in game.
  */
-
-
 abstract public class Block{
 
     private boolean yNorth = true;

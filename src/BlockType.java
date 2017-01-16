@@ -6,7 +6,11 @@
  * Date: 19/12/2017
  * Course: Applikationsutveckling i Java
  */
-enum BlockType {
+
+/**
+ * Enum for all different blocktypes in the game.
+ */
+public enum BlockType {
 
    PATH,
 

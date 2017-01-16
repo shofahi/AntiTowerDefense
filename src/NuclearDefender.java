@@ -10,6 +10,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
 
+/**
+ * Nuclear type defender class
+ */
 public class NuclearDefender extends Defender {
 
     static private final int DAMAGE = 1;

@@ -16,6 +16,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Class that creates a Store object.
+ */
 public class Store {
 
 	public BufferedImage attacker;

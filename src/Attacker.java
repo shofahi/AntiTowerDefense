@@ -10,7 +10,10 @@
 import java.awt.*;
 import java.util.LinkedList;
 
-abstract class Attacker implements LandonClass {
+/**
+ * Abstract class for Attacker type classes.
+ */
+abstract public class Attacker implements LandonClass {
 
     private int health;
     private int moveSpeed;

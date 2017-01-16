@@ -8,6 +8,10 @@
  * Date: 17/12/2017
  * Course: Applikationsutveckling i Java
  */
+
+/**
+ * ENUM
+ */
 public enum LevelInfo {
 
     STARTING_GOLD,

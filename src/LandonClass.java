@@ -5,6 +5,10 @@
  * Date: 17/12/2017
  * Course: Applikationsutveckling i Java
  */
+
+/**
+ * Interface for landon
+ */
 public interface LandonClass {
     /**
      * Draw blocks on map

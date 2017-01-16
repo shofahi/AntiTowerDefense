@@ -8,6 +8,9 @@
 
 import java.awt.*;
 
+/**
+ * Class for level blocks.
+ */
 public class LevelBlocks extends Block {
 
 	/**
