@@ -13,6 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -23,9 +24,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-/**
- * Class for loading, reading and validating Xml files.
- */
 public class XmlReader{
 
     private String path;
@@ -50,8 +48,7 @@ public class XmlReader{
      */
     public XmlReader(GenerateLevel generateLevel){
 
-        path = "XmlFiles/test.xml";
-
+        path = "XmlFiles/levels.xml";
         generateLvl= generateLevel;
     }
 
