@@ -5,6 +5,7 @@
  * Date: 17/12/2017
  * Course: Applikationsutveckling i Java
  */
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -39,10 +40,8 @@ public class Database {
 
     /**
      * Default constructor.
-     * @throws SQLException
-     * @throws ClassNotFoundException
      */
-    public Database() throws SQLException, ClassNotFoundException {
+    public Database() {
         setUpDBConnection();
         createDBTable();
     }
@@ -59,7 +58,15 @@ public class Database {
             System.out.println(e.getMessage());
         } catch (ClassNotFoundException | IllegalAccessException |
                 InstantiationException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database Error: Could not " +
+                    "find database JAR-files! \n(derby.jar and derbyclient" +
+                    ".jar NEEDS to be inside \"derbyJARs\" folder placed in" +
+                    " AntiTowerDefense root folder. \nRaw Error message: " +
+                    e.toString(),
+                    "Error",
+                    JOptionPane
+                    .ERROR_MESSAGE);
+            System.exit(1);
         }
     }
 
@@ -79,8 +86,14 @@ public class Database {
                     + "score INTEGER NOT NULL)");
             statement.close();
         } catch (SQLException e) {
-            if(DatabaseHelper.tableAlreadyExists(e)){
-                return; //It's no problem that the table alreay exist. pass
+            if(!DatabaseHelper.tableAlreadyExists(e)){
+                JOptionPane.showMessageDialog(null, "Database Error:\n" +
+                        "Either the database connection is closed " +
+                        "or you  do not have access to the database \nRaw " +
+                        "error message: " + e.toString(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                System.exit(1);
             }
         }
     }
@@ -100,7 +113,13 @@ public class Database {
             pStatement.execute();
             pStatement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database Error:\n" +
+                            "Either the database connection is closed or you" +
+                            " do not have access to the database \nRaw error" +
+                            " message: " + e.toString(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
     }
 
@@ -116,8 +135,8 @@ public class Database {
         try {
             pStatement = connection.prepareStatement(SQL_GETSCOREBYNAME);
             pStatement.setString(1,name);
-            resultSet = pStatement.executeQuery();
             try{
+            resultSet = pStatement.executeQuery();
                 while(resultSet.next()){
                     DatabaseModel tmpModel = new DatabaseModel();
                     tmpModel.setId(resultSet.getInt("id"));
@@ -126,13 +145,27 @@ public class Database {
                     tmpModel.setScore(resultSet.getInt("score"));
                     playerHighscores.add(tmpModel);
                 }
-            }catch(SQLException e){
-                    e.printStackTrace();
-            }
+
             resultSet.close();
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, "Database Error: Either " +
+                        "the resulting set of a database query has" +
+                        "been unexpectedly closed\n or there was a database " +
+                        "access error. \n" +
+                        "Raw error message: " + e.toString(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                System.exit(1);
+            }
             pStatement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database Error:\n" +
+                            "Either the database connection is closed or you" +
+                            " do not have access to the database \nRaw error" +
+                            " message: " + e.toString(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
         return playerHighscores;
     }
@@ -141,23 +174,42 @@ public class Database {
      * Method to get all highscores stored in the whole database table
      * @return Arraylist containing the highscores
      */
-    public synchronized ArrayList<DatabaseModel> getAllHighscores(){
+    public synchronized ArrayList<DatabaseModel> getAllHighscores() {
         ArrayList<DatabaseModel> highscoreList = new ArrayList<DatabaseModel>();
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(SQL_GETALLSCORES);
-            while(resultSet.next()){
-                DatabaseModel tmpModel = new DatabaseModel();
-                tmpModel.setId(resultSet.getInt("id"));
-                tmpModel.setName(resultSet.getString("name"));
-                tmpModel.setLevel(resultSet.getInt("level"));
-                tmpModel.setScore(resultSet.getInt("score"));
-                highscoreList.add(tmpModel);
+            try {
+                resultSet = statement.executeQuery(SQL_GETALLSCORES);
+                while (resultSet.next()) {
+                    DatabaseModel tmpModel = new DatabaseModel();
+                    tmpModel.setId(resultSet.getInt("id"));
+                    tmpModel.setName(resultSet.getString("name"));
+                    tmpModel.setLevel(resultSet.getInt("level"));
+                    tmpModel.setScore(resultSet.getInt("score"));
+                    highscoreList.add(tmpModel);
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Database Error:\n " +
+                                "Either the resulting set of a database query" +
+                                " has been unexpectedly closed\n or there was" +
+                                " a database access error. \n" +
+                                "Raw error message: " + e.toString(),
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                System.exit(1);
             }
             statement.close();
-            resultSet.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database Error:\n" +
+                            "Either the database connection is closed or you" +
+                            " do not have access to the database \nRaw error" +
+                            " message: " + e.toString(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+
+
         }
         return highscoreList;
     }
@@ -173,20 +225,36 @@ public class Database {
         int i = 0;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(SQL_GETALLSCORES);
-            while(resultSet.next() && i < 3){
-                DatabaseModel tmpModel = new DatabaseModel();
-                tmpModel.setId(resultSet.getInt("id"));
-                tmpModel.setName(resultSet.getString("name"));
-                tmpModel.setLevel(resultSet.getInt("level"));
-                tmpModel.setScore(resultSet.getInt("score"));
-                highscoreList.add(tmpModel);
-                i++;
-            }
-            statement.close();
-            resultSet.close();
+            try {
+                resultSet = statement.executeQuery(SQL_GETALLSCORES);
+                while (resultSet.next() && i < 3) {
+                    DatabaseModel tmpModel = new DatabaseModel();
+                    tmpModel.setId(resultSet.getInt("id"));
+                    tmpModel.setName(resultSet.getString("name"));
+                    tmpModel.setLevel(resultSet.getInt("level"));
+                    tmpModel.setScore(resultSet.getInt("score"));
+                    highscoreList.add(tmpModel);
+                    i++;
+                }
+                resultSet.close();
+            }catch (SQLException e){
+                JOptionPane.showMessageDialog(null, "Database Error:\n " +
+                                "Either the resulting set of a database query" +
+                                " has been unexpectedly closed\n or there was" +
+                                " a database access error. \n" +
+                                "Raw error message: " + e.toString(),
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                }
+                statement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database Error:\n" +
+                            "Either the database connection is closed or you" +
+                            " do not have access to the database \nRaw error" +
+                            " message: " + e.toString(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
         return highscoreList;
     }
@@ -206,8 +274,14 @@ public class Database {
                 DriverManager.getConnection(JDBC_URL + JDBC_SHUTDOWN);
                 connection.close();
             }
-        } catch (SQLException sqlExcept) {
-            System.out.println(sqlExcept.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Database Error:\n" +
+                            "Either the database connection is closed or you" +
+                            " do not have access to the database \nRaw error" +
+                            " message: " + e.toString(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
     }
 
@@ -220,7 +294,13 @@ public class Database {
             pStatement.execute();
             pStatement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database Error:\n" +
+                            "Either the database connection is closed or you" +
+                            " do not have access to the database \nRaw error" +
+                            " message: " + e.toString(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
     }
 }
