@@ -63,7 +63,6 @@ public class XmlReader{
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 
         try {
-
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(path);
 
@@ -74,20 +73,20 @@ public class XmlReader{
             nodeList = doc.getElementsByTagName("level");
 
         } catch (ParserConfigurationException e) {
-
-            e.printStackTrace();
-
+        	JOptionPane.showMessageDialog(null,"Error: " +
+                    "DocumentBuilder cannot be created with specified "
+                    + "configuration \n" + e.toString(),
+            "Error",JOptionPane.ERROR_MESSAGE);
         } catch (IOException e) {
-
-            e.printStackTrace();
-
+        	JOptionPane.showMessageDialog(null,"Error: " +
+                    "File not found \n" + e.toString(),
+            "Error",JOptionPane.ERROR_MESSAGE);
         } catch (org.xml.sax.SAXException e) {
-
-            e.printStackTrace();
-
+        	JOptionPane.showMessageDialog(null,"Error: " +
+                    "SAX Exception \n" + e.toString(),
+            "Error",JOptionPane.ERROR_MESSAGE);
         }
     }
-
     /**
      * Method will validate the .xml file with a .xsd file
      * @param xsd the .xsd file
